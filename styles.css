@@ -73,7 +73,7 @@
     --z-sticky: 50;
     --z-fixed: 100;
     --z-modal: 200;
-    --z-toast: 300;
+    --z-toast: 9999;
     
     /* Themed Preview Variables */
     --themed-bg: #1a1a1a;
@@ -839,7 +839,7 @@ body {
     -webkit-appearance: none;
     appearance: none;
     height: 4px;
-    background: var(--bg-tertiary);
+    background: rgba(255, 255, 255, 0.2); 
     border-radius: 2px;
     outline: none;
 }
@@ -887,6 +887,11 @@ body {
     gap: var(--spacing-sm);
 }
 
+/* Mini Shape Selector for Preview Panel */
+.shape-selector.mini {
+    justify-content: center;
+}
+
 .shape-option {
     width: 44px;
     height: 44px;
@@ -898,6 +903,11 @@ body {
     justify-content: center;
     cursor: pointer;
     transition: all var(--transition-fast);
+}
+
+.shape-selector.mini .shape-option {
+    width: 36px;
+    height: 36px;
 }
 
 .shape-option:hover {
@@ -915,6 +925,11 @@ body {
     height: 22px;
     background: var(--text-secondary);
     transition: background var(--transition-fast);
+}
+
+.shape-selector.mini .shape-preview {
+    width: 18px;
+    height: 18px;
 }
 
 .shape-option.active .shape-preview {
@@ -938,25 +953,51 @@ body {
 }
 
 /* ============================================
-   PREVIEW SECTION
+   PREVIEW SECTION CONTROLS
    ============================================ */
-.preview-mode-toggle {
+.preview-controls {
     display: flex;
-    background: var(--bg-tertiary);
-    border-radius: var(--radius-md);
-    padding: 4px;
-    gap: 4px;
+    flex-direction: column;
+    gap: var(--spacing-md);
     width: 100%;
-    max-width: 300px;
+    max-width: 340px;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
 }
 
-.preview-mode-btn {
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.segment-control {
+    display: flex;
+    background: var(--bg-card);
+    padding: 3px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.segment-btn {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 8px 12px;
+    padding: 6px 10px;
     background: transparent;
     border: none;
     color: var(--text-secondary);
@@ -968,24 +1009,31 @@ body {
     transition: all var(--transition-fast);
 }
 
-.preview-mode-btn .material-symbols-rounded {
+.segment-btn .material-symbols-rounded {
     font-size: 1rem;
 }
 
-.preview-mode-btn:hover:not(.active) {
+.segment-btn:hover:not(.active) {
     background: var(--bg-hover);
+    color: var(--text-primary);
 }
 
-.preview-mode-btn.active {
+.segment-btn.active {
     background: var(--text-primary);
     color: var(--bg-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Legacy styles support */
+.preview-mode-toggle {
+    display: none; /* Replaced by segment-control */
 }
 
 .preview-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-xl) 0;
+    padding-bottom: var(--spacing-xl);
     min-height: 500px;
     width: 100%;
 }
@@ -1000,7 +1048,7 @@ body {
    PHONE FRAME
    ============================================ */
 .phone-frame {
-    width: 280px;
+    width: min(280px, 85vw);
     aspect-ratio: 9 / 19.5;
     background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
     border-radius: 40px;
@@ -1176,6 +1224,23 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: opacity 0.2s;
+}
+
+/* Theme Switching Logic for Grid Icons */
+.app-icon .icon-color {
+    display: block;
+}
+.app-icon .icon-mono {
+    display: none;
+    filter: invert(1); /* Mono icons usually come black, we want white on dark theme */
+}
+
+.phone-screen.themed .app-icon .icon-color {
+    display: none;
+}
+.phone-screen.themed .app-icon .icon-mono {
+    display: block;
 }
 
 .app-icon .material-symbols-rounded {
@@ -1206,7 +1271,8 @@ body {
 }
 
 .phone-screen.themed .app-icon img {
-    filter: grayscale(100%) brightness(2);
+    /* If no mono icon, fallback to grayscale for colored ones */
+    /* filter: grayscale(100%) brightness(2);  <-- Removed, using explicit mono icons */
 }
 
 .phone-screen.themed .app-icon .material-symbols-rounded {
@@ -1276,46 +1342,14 @@ body {
     background: var(--themed-icon-bg);
 }
 
-.phone-screen.themed .dock-icon img {
-    filter: grayscale(100%) brightness(2);
-}
+/* Dock icons auto-theme logic same as grid */
+.dock-icon .icon-color { display: block; }
+.dock-icon .icon-mono { display: none; filter: invert(1); }
+.phone-screen.themed .dock-icon .icon-color { display: none; }
+.phone-screen.themed .dock-icon .icon-mono { display: block; }
 
 .phone-screen.themed .dock-icon .material-symbols-rounded {
     color: #fff;
-}
-
-/* Theme FAB */
-.theme-fab {
-    position: absolute;
-    bottom: 90px;
-    right: 12px;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    z-index: 20;
-}
-
-.theme-fab:hover {
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.theme-fab:active {
-    transform: scale(0.95);
-}
-
-.theme-fab .material-symbols-rounded {
-    color: white;
-    font-size: 20px;
 }
 
 /* Home Indicator */
@@ -1337,7 +1371,7 @@ body {
     width: 100%;
     max-width: 640px;
     aspect-ratio: 16 / 9;
-    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    background: linear-gradient(145deg, #1a1a1a, #0a0a12);
     border-radius: 12px;
     padding: 12px;
     box-shadow: 
@@ -1841,379 +1875,4 @@ body {
 .copy-btn {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    background: transparent;
-    border: none;
-    border-radius: var(--radius-sm);
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.copy-btn:hover {
-    background: var(--bg-hover);
-    color: var(--text-primary);
-}
-
-.copy-btn.copied {
-    color: var(--success);
-}
-
-.code-block {
-    padding: var(--spacing-md);
-    overflow-x: auto;
-}
-
-.code-block pre {
-    margin: 0;
-}
-
-.code-block code {
-    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-    font-size: 0.75rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    white-space: pre;
-}
-
-.code-dynamic {
-    color: var(--info);
-    font-weight: 500;
-}
-
-.code-hint {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    background: rgba(0, 0, 0, 0.2);
-    border-top: 1px solid var(--border-color);
-}
-
-/* ============================================
-   TOAST NOTIFICATION
-   ============================================ */
-.toast {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--bg-card-solid);
-    border: 1px solid var(--border-color);
-    padding: 14px 20px;
-    border-radius: var(--radius-lg);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    box-shadow: var(--shadow-lg);
-    z-index: var(--z-toast);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    backdrop-filter: blur(var(--blur-amount));
-    -webkit-backdrop-filter: blur(var(--blur-amount));
-}
-
-.toast.show {
-    transform: translateX(-50%) translateY(0);
-}
-
-.toast.success #toastIcon {
-    color: var(--success);
-}
-
-.toast.error #toastIcon {
-    color: var(--error);
-}
-
-.toast.info #toastIcon {
-    color: var(--info);
-}
-
-#toastMessage {
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-/* ============================================
-   ANIMATIONS
-   ============================================ */
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
-.loading {
-    animation: pulse 1s infinite;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.spinning {
-    animation: spin 1s linear infinite;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ============================================
-   RESPONSIVE - TABLET
-   ============================================ */
-@media (max-width: 1200px) {
-    .main-container {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--spacing-md);
-        padding: var(--spacing-md);
-    }
-
-    .preview-panel {
-        grid-column: 1 / -1;
-        order: -1;
-    }
-
-    .config-panel,
-    .export-panel {
-        position: static;
-        max-height: none;
-    }
-
-    .code-panel {
-        grid-column: 1 / -1;
-    }
-}
-
-/* ============================================
-   RESPONSIVE - MOBILE
-   ============================================ */
-@media (max-width: 768px) {
-    .header {
-        padding: var(--spacing-sm) var(--spacing-md);
-    }
-
-    .logo-text {
-        display: none;
-    }
-
-    .mobile-menu-btn {
-        display: flex;
-    }
-
-    .mobile-nav {
-        display: flex;
-    }
-
-    .main-container {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-        padding: var(--spacing-md);
-        padding-bottom: calc(80px + env(safe-area-inset-bottom));
-    }
-
-    .panel {
-        border-radius: var(--radius-lg);
-        padding: var(--spacing-md);
-    }
-
-    /* Hide panels based on mobile nav selection */
-    .panel {
-        display: none;
-    }
-
-    .panel.active {
-        display: flex;
-    }
-
-    /* Always show preview on mobile by default */
-    .preview-panel {
-        display: flex;
-        order: -1;
-    }
-
-    .preview-container {
-        min-height: auto;
-        padding: var(--spacing-md) 0;
-    }
-
-    .phone-frame {
-        width: 240px;
-    }
-
-    .tv-frame {
-        max-width: 100%;
-    }
-
-    .tv-sidebar {
-        width: 120px;
-        padding: var(--spacing-sm);
-    }
-
-    .tv-main {
-        padding: var(--spacing-md);
-    }
-
-    .tv-banner-preview {
-        width: 160px;
-        height: 90px;
-    }
-
-    .tv-banner-title {
-        font-size: 14px;
-    }
-
-    .tv-app-card {
-        width: 70px;
-    }
-
-    .tv-app-card-icon {
-        width: 45px;
-        height: 45px;
-    }
-
-    .code-panel {
-        display: flex;
-    }
-
-    .code-block code {
-        font-size: 0.65rem;
-    }
-
-    .upload-zone {
-        min-height: 120px;
-        padding: 1.5rem 1rem;
-    }
-
-    .toast {
-        left: var(--spacing-md);
-        right: var(--spacing-md);
-        transform: translateX(0) translateY(100px);
-        bottom: calc(80px + env(safe-area-inset-bottom));
-    }
-
-    .toast.show {
-        transform: translateX(0) translateY(0);
-    }
-}
-
-/* ============================================
-   RESPONSIVE - SMALL MOBILE
-   ============================================ */
-@media (max-width: 380px) {
-    .phone-frame {
-        width: 220px;
-    }
-
-    .app-grid {
-        gap: 12px 8px;
-    }
-
-    .app-icon {
-        width: 44px;
-        height: 44px;
-    }
-
-    .dock-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .phone-dock {
-        gap: 12px;
-        padding: 8px 14px;
-    }
-
-    .clock-time {
-        font-size: 2.5rem;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .color-presets {
-        gap: 4px;
-    }
-
-    .color-preset {
-        width: 24px;
-        height: 24px;
-    }
-}
-
-/* ============================================
-   LANDSCAPE MOBILE
-   ============================================ */
-@media (max-height: 500px) and (orientation: landscape) {
-    .preview-container {
-        min-height: auto;
-    }
-
-    .phone-frame {
-        width: 180px;
-    }
-
-    .tv-frame {
-        max-width: 400px;
-    }
-
-    .mobile-nav {
-        flex-direction: row;
-    }
-}
-
-/* ============================================
-   DARK MODE SUPPORT (if user prefers)
-   ============================================ */
-@media (prefers-color-scheme: dark) {
-    /* Already dark, no changes needed */
-}
-
-/* ============================================
-   REDUCED MOTION
-   ============================================ */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* ============================================
-   PRINT STYLES
-   ============================================ */
-@media print {
-    .header,
-    .mobile-nav,
-    .theme-fab,
-    .download-btn,
-    .toast {
-        display: none !important;
-    }
-
-    body {
-        background: white;
-        color: black;
-    }
-
-    .panel {
-        background: white;
-        border: 1px solid #ddd;
-    }
-}
+    j
