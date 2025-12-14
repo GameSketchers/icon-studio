@@ -19,19 +19,76 @@
             <div class="logo-icon">
                 <span class="material-symbols-rounded">widgets</span>
             </div>
-            <span class="logo-text" data-i18n="appTitle">Icon Studio</span>
+            <span class="logo-text">Icon Studio</span>
         </div>
         <div class="header-actions">
-            <select class="lang-select" id="langSelect">
-                <option value="en">English</option>
-                <option value="tr">Türkçe</option>
-                <option value="ja">日本語</option>
-            </select>
+            <button class="lang-btn" id="langBtn">
+                <span class="lang-flag" id="currentLangFlag">🇺🇸</span>
+                <span class="lang-name" id="currentLangName">English</span>
+                <span class="material-symbols-rounded">expand_more</span>
+            </button>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <span class="material-symbols-rounded">translate</span>
             </button>
         </div>
     </header>
+
+    <!-- LANGUAGE MODAL -->
+    <div class="lang-modal" id="langModal">
+        <div class="lang-modal-content">
+            <div class="lang-modal-header">
+                <h3 class="lang-modal-title">
+                    <span class="material-symbols-rounded">translate</span>
+                    <span data-i18n="selectLanguage">Select Language</span>
+                </h3>
+                <button class="lang-modal-close" id="langModalClose">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="lang-options">
+                <div class="lang-option active" data-lang="en">
+                    <span class="lang-option-flag">🇺🇸</span>
+                    <span class="lang-option-name">English</span>
+                    <span class="material-symbols-rounded lang-option-check">check_circle</span>
+                </div>
+                <div class="lang-option" data-lang="tr">
+                    <span class="lang-option-flag">🇹🇷</span>
+                    <span class="lang-option-name">Türkçe</span>
+                    <span class="material-symbols-rounded lang-option-check">check_circle</span>
+                </div>
+                <div class="lang-option" data-lang="ja">
+                    <span class="lang-option-flag">🇯🇵</span>
+                    <span class="lang-option-name">日本語</span>
+                    <span class="material-symbols-rounded lang-option-check">check_circle</span>
+                </div>
+                <div class="lang-option" data-lang="de">
+                    <span class="lang-option-flag">🇩🇪</span>
+                    <span class="lang-option-name">Deutsch</span>
+                    <span class="material-symbols-rounded lang-option-check">check_circle</span>
+                </div>
+                <div class="lang-option" data-lang="fr">
+                    <span class="lang-option-flag">🇫🇷</span>
+                    <span class="lang-option-name">Français</span>
+                    <span class="material-symbols-rounded lang-option-check">check_circle</span>
+                </div>
+                <div class="lang-option" data-lang="es">
+                    <span class="lang-option-flag">🇪🇸</span>
+                    <span class="lang-option-name">Español</span>
+                    <span class="material-symbols-rounded lang-option-check">check_circle</span>
+                </div>
+                <div class="lang-option" data-lang="zh">
+                    <span class="lang-option-flag">🇨🇳</span>
+                    <span class="lang-option-name">中文</span>
+                    <span class="material-symbols-rounded lang-option-check">check_circle</span>
+                </div>
+                <div class="lang-option" data-lang="ko">
+                    <span class="lang-option-flag">🇰🇷</span>
+                    <span class="lang-option-name">한국어</span>
+                    <span class="material-symbols-rounded lang-option-check">check_circle</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- MOBILE NAVIGATION -->
     <nav class="mobile-nav" id="mobileNav">
@@ -214,7 +271,7 @@
                         </div>
                         <input type="text" class="input-field color-text" id="tvBgColorText" value="#1a1a1a">
                     </div>
-                    <div class="toggle-row" style="margin-top: 10px;">
+                    <div class="toggle-row" style="margin-top: 12px;">
                         <div class="toggle-label">
                             <span data-i18n="syncWithIcon">Sync with icon background</span>
                         </div>
@@ -467,38 +524,7 @@
 
             <div class="section-title" data-i18n="fileStructure">FILE STRUCTURE</div>
             <div class="file-tree" id="fileTree">
-                <div class="file-item folder">
-                    <span class="material-symbols-rounded">folder</span>
-                    <span>android/res/</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>mipmap-*/ic_launcher.png</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>mipmap-*/ic_launcher_foreground.png</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>mipmap-*/ic_launcher_monochrome.png</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">code</span>
-                    <span>values/ic_launcher_background.xml</span>
-                </div>
-                <div class="file-item folder">
-                    <span class="material-symbols-rounded">folder</span>
-                    <span>ios/AppIcon.appiconset/</span>
-                </div>
-                <div class="file-item folder">
-                    <span class="material-symbols-rounded">folder</span>
-                    <span>web/icons/</span>
-                </div>
-                <div class="file-item file">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>playstore-icon.png</span>
-                </div>
+                <!-- Dynamically populated by JS -->
             </div>
 
             <button class="download-btn" id="downloadBtn">
