@@ -45,7 +45,7 @@
             bgColor: "Background Color",
             tvBgColor: "TV Banner Background",
             syncWithIcon: "Sync with icon background",
-            padding: "Padding",
+            scale: "Scale",
             iconShape: "Preview Shape",
             tvBannerSection: "TV BANNER (320×180)",
             uploadTvBanner: "Upload TV Banner",
@@ -87,7 +87,7 @@
             bgColor: "Arkaplan Rengi",
             tvBgColor: "TV Banner Arkaplanı",
             syncWithIcon: "İkon arkaplanı ile senkronize",
-            padding: "Kenar Boşluğu",
+            scale: "Ölçek",
             iconShape: "Önizleme Şekli",
             tvBannerSection: "TV BANNER (320×180)",
             uploadTvBanner: "TV Banner Yükle",
@@ -129,7 +129,7 @@
             bgColor: "背景色",
             tvBgColor: "TVバナー背景",
             syncWithIcon: "アイコン背景と同期",
-            padding: "パディング",
+            scale: "スケール",
             iconShape: "プレビュー形状",
             tvBannerSection: "TVバナー (320×180)",
             uploadTvBanner: "TVバナーをアップロード",
@@ -166,7 +166,7 @@
         bgColor: '#1a1a1a',
         tvBgColor: '#1a1a1a',
         syncTvBgColor: true,
-        padding: 0,
+        scale: 100,
         shape: 'squircle',
         useMono: true,
         isThemed: false,
@@ -204,8 +204,8 @@
             tvBgColorPicker: document.getElementById('tvBgColorPicker'),
             tvBgColorText: document.getElementById('tvBgColorText'),
             syncTvBgColor: document.getElementById('syncTvBgColor'),
-            paddingSlider: document.getElementById('paddingSlider'),
-            paddingValue: document.getElementById('paddingValue'),
+            scaleSlider: document.getElementById('scaleSlider'),
+            scaleValue: document.getElementById('scaleValue'),
             monoToggle: document.getElementById('monoToggle'),
             monoSection: document.getElementById('monoSection'),
             monoStatus: document.getElementById('monoStatus'),
@@ -247,7 +247,6 @@
             downloadBtn: document.getElementById('downloadBtn'),
             progressFill: document.getElementById('progressFill'),
             copyBtns: document.querySelectorAll('.copy-btn'),
-            codeDynamicEls: document.querySelectorAll('.code-dynamic'),
             toast: document.getElementById('toast'),
             toastIcon: document.getElementById('toastIcon'),
             toastMessage: document.getElementById('toastMessage'),
@@ -274,8 +273,8 @@
         DOM.langSelect.addEventListener('change', handleLanguageChange);
         
         DOM.mobileMenuBtn.addEventListener('click', () => {
-             DOM.langSelect.focus();
-             DOM.langSelect.click();
+            DOM.langSelect.focus();
+            DOM.langSelect.click();
         });
 
         DOM.mobileNavItems.forEach(item => {
@@ -308,7 +307,9 @@
             preset.addEventListener('click', handleColorPresetClick);
         });
         
-        DOM.paddingSlider.addEventListener('input', handlePaddingChange);
+        if (DOM.scaleSlider) {
+            DOM.scaleSlider.addEventListener('input', handleScaleChange);
+        }
         
         DOM.shapeOptions.forEach(option => {
             option.addEventListener('click', handleShapeChange);
@@ -329,7 +330,7 @@
         });
         
         [DOM.exportAndroid, DOM.exportIOS, DOM.exportWeb, DOM.exportTV, DOM.exportPlayStore].forEach(el => {
-            if(el) el.addEventListener('change', () => {
+            if (el) el.addEventListener('change', () => {
                 state[el.id] = el.checked;
                 updateFileCount();
             });
@@ -467,7 +468,6 @@
             DOM.syncTvBgColor.checked = false;
             toggleTvInputsState();
         }
-
         state.tvBgColor = e.target.value;
         DOM.tvBgColorText.value = e.target.value;
         updateTVPreview();
@@ -481,7 +481,6 @@
                 DOM.syncTvBgColor.checked = false;
                 toggleTvInputsState();
             }
-
             state.tvBgColor = val;
             DOM.tvBgColorPicker.value = val;
             updateTVPreview();
@@ -514,20 +513,18 @@
         updateBgColor(e.currentTarget.dataset.color);
     }
 
-    function handlePaddingChange(e) {
-        state.padding = parseInt(e.target.value);
-        DOM.paddingValue.textContent = state.padding + '%';
+    function handleScaleChange(e) {
+        state.scale = parseInt(e.target.value);
+        if (DOM.scaleValue) {
+            DOM.scaleValue.textContent = state.scale + '%';
+        }
         updateAllPreviews();
     }
 
     function handleShapeChange(e) {
         const option = e.currentTarget;
         DOM.shapeOptions.forEach(o => {
-            if (o.dataset.shape === option.dataset.shape) {
-                o.classList.add('active');
-            } else {
-                o.classList.remove('active');
-            }
+            o.classList.toggle('active', o.dataset.shape === option.dataset.shape);
         });
         state.shape = option.dataset.shape;
         updateIconShapes();
@@ -594,8 +591,7 @@
     
     function updateThemeUI() {
         document.querySelectorAll('.segment-btn[data-theme]').forEach(b => {
-            const isThemedBtn = b.dataset.theme === 'themed';
-            b.classList.toggle('active', isThemedBtn === state.isThemed);
+            b.classList.toggle('active', (b.dataset.theme === 'themed') === state.isThemed);
         });
         DOM.phoneScreen.classList.toggle('themed', state.isThemed);
         updatePhonePreview();
@@ -658,7 +654,6 @@
         const appsAfter = GRID_APPS.slice(4);
 
         let html = '';
-
         appsBefore.forEach(app => html += generateAppHtml(app));
 
         html += `
@@ -671,7 +666,6 @@
         `;
 
         appsAfter.forEach(app => html += generateAppHtml(app));
-
         DOM.appGrid.innerHTML = html;
         updatePhonePreview();
     }
@@ -682,7 +676,6 @@
                 <div class="app-icon ${state.shape}" style="background: ${app.color}">
                     <img class="icon-color" src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" 
                          onerror="this.style.display='none'">
-                    
                     <img class="icon-mono" src="${ICON_BASE_PATH}${app.mono}" alt="${app.name} Mono" 
                          onerror="this.style.display='none'">
                 </div>
@@ -693,19 +686,16 @@
 
     function renderDockIcons() {
         let html = '';
-        
         DOCK_ICONS.forEach(app => {
             html += `
                 <div class="dock-icon" style="background: ${app.color}">
                     <img class="icon-color" src="${ICON_BASE_PATH}${app.file}" alt="${app.name}"
                          onerror="this.style.display='none'">
-                    
                     <img class="icon-mono" src="${ICON_BASE_PATH}${app.mono}" alt="${app.name} Mono" 
                          onerror="this.style.display='none'">
                 </div>
             `;
         });
-        
         DOM.phoneDock.innerHTML = html;
     }
 
@@ -732,9 +722,7 @@
         `;
         DOM.tvAppList.innerHTML = sidebarHtml;
         
-        let rowHtml = '';
-        
-        rowHtml += `
+        let rowHtml = `
             <div class="tv-app-card" data-app="user">
                 <div class="tv-app-card-icon" id="tvRowUserIcon">
                     <canvas id="tvRowCanvas" width="60" height="60"></canvas>
@@ -786,11 +774,11 @@
             ctx.fillRect(0, 0, size, size);
             
             if (state.foregroundImg) {
-                drawCenteredImage(ctx, state.foregroundImg, size, state.padding);
+                drawCenteredImage(ctx, state.foregroundImg, size, state.scale);
             }
         }
         
-        if(DOM.phoneAppLabel) DOM.phoneAppLabel.textContent = state.appName;
+        if (DOM.phoneAppLabel) DOM.phoneAppLabel.textContent = state.appName;
     }
 
     function updateTVPreview() {
@@ -807,26 +795,14 @@
             const scale = Math.max(320 / state.tvBannerImg.width, 180 / state.tvBannerImg.height);
             const w = state.tvBannerImg.width * scale;
             const h = state.tvBannerImg.height * scale;
-            const x = (320 - w) / 2;
-            const y = (180 - h) / 2;
-            ctx.drawImage(state.tvBannerImg, x, y, w, h);
+            ctx.drawImage(state.tvBannerImg, (320 - w) / 2, (180 - h) / 2, w, h);
         } else if (state.foregroundImg) {
-            const iconSize = 70;
+            const iconSize = 70 * (state.scale / 100);
             const aspectRatio = state.foregroundImg.width / state.foregroundImg.height;
-            let drawWidth, drawHeight;
+            let drawWidth = aspectRatio > 1 ? iconSize : iconSize * aspectRatio;
+            let drawHeight = aspectRatio > 1 ? iconSize / aspectRatio : iconSize;
             
-            if (aspectRatio > 1) {
-                drawWidth = iconSize;
-                drawHeight = iconSize / aspectRatio;
-            } else {
-                drawHeight = iconSize;
-                drawWidth = iconSize * aspectRatio;
-            }
-            
-            const x = (320 - drawWidth) / 2;
-            const y = 40;
-            
-            ctx.drawImage(state.foregroundImg, x, y, drawWidth, drawHeight);
+            ctx.drawImage(state.foregroundImg, (320 - drawWidth) / 2, 40, drawWidth, drawHeight);
             
             ctx.fillStyle = '#ffffff';
             ctx.font = '600 16px Inter, sans-serif';
@@ -856,13 +832,13 @@
         ctx.fillRect(0, 0, size, size);
         
         if (state.foregroundImg) {
-            drawCenteredImage(ctx, state.foregroundImg, size, state.padding);
+            drawCenteredImage(ctx, state.foregroundImg, size, state.scale);
         }
     }
 
-    function drawCenteredImage(ctx, img, size, paddingPercent) {
-        const padding = (size * paddingPercent) / 100;
-        const drawSize = size - (padding * 2);
+    function drawCenteredImage(ctx, img, size, scalePercent = 100) {
+        const scaleFactor = scalePercent / 100;
+        const drawSize = size * scaleFactor;
         
         const aspectRatio = img.width / img.height;
         let drawWidth, drawHeight;
@@ -875,8 +851,8 @@
             drawWidth = drawSize * aspectRatio;
         }
         
-        const offsetX = padding + (drawSize - drawWidth) / 2;
-        const offsetY = padding + (drawSize - drawHeight) / 2;
+        const offsetX = (size - drawWidth) / 2;
+        const offsetY = (size - drawHeight) / 2;
         
         ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
     }
@@ -887,7 +863,7 @@
         tempCanvas.height = size;
         const tempCtx = tempCanvas.getContext('2d');
         
-        drawCenteredImage(tempCtx, img, size, state.padding);
+        drawCenteredImage(tempCtx, img, size, state.scale);
         
         tempCtx.globalCompositeOperation = 'source-in';
         tempCtx.fillStyle = '#ffffff';
@@ -902,16 +878,16 @@
         tempCanvas.height = size;
         const tempCtx = tempCanvas.getContext('2d');
         
-        drawCenteredImage(tempCtx, img, size, state.padding);
+        drawCenteredImage(tempCtx, img, size, state.scale);
         
         const imageData = tempCtx.getImageData(0, 0, size, size);
         const data = imageData.data;
         
         for (let i = 0; i < data.length; i += 4) {
-            if (data[i + 3] > 20) { 
-                data[i] = 255;     
-                data[i + 1] = 255; 
-                data[i + 2] = 255; 
+            if (data[i + 3] > 20) {
+                data[i] = 255;
+                data[i + 1] = 255;
+                data[i + 2] = 255;
             }
         }
         
@@ -968,8 +944,12 @@
         let count = 0;
         let platforms = 0;
         
-        if (state.exportAndroid) { count += 25; platforms++; }
-        if (state.exportIOS) { count += 20; platforms++; }
+        if (state.exportAndroid) { 
+            count += 20;
+            if (state.useMono) count += 5;
+            platforms++; 
+        }
+        if (state.exportIOS) { count += 14; platforms++; }
         if (state.exportWeb) { count += 12; platforms++; }
         if (state.exportTV) { count += 2; platforms++; }
         if (state.exportPlayStore) { count += 1; }
@@ -980,16 +960,16 @@
 
     function updateCodeSnippets() {
         document.querySelectorAll('.code-dynamic').forEach(el => {
-            if(el.id.includes('IconName')) el.textContent = state.iconName;
-            if(el.id.includes('BgColor') || el.id.includes('ThemeColor')) el.textContent = state.bgColor;
-            if(el.id.includes('AppName')) el.textContent = state.appName;
+            if (el.id.includes('IconName')) el.textContent = state.iconName;
+            if (el.id.includes('BgColor') || el.id.includes('ThemeColor')) el.textContent = state.bgColor;
+            if (el.id.includes('AppName')) el.textContent = state.appName;
         });
         
         const adaptiveXml = document.getElementById('adaptiveIconFileName');
-        if(adaptiveXml) adaptiveXml.textContent = `${state.iconName}.xml`;
+        if (adaptiveXml) adaptiveXml.textContent = `${state.iconName}.xml`;
         
         const bgXml = document.getElementById('bgColorFileName');
-        if(bgXml) bgXml.textContent = `${state.iconName}_background.xml`;
+        if (bgXml) bgXml.textContent = `${state.iconName}_background.xml`;
     }
 
     function checkMobileView() {
@@ -998,7 +978,7 @@
             updateMobilePanels();
         } else {
             [DOM.configPanel, DOM.previewPanel, DOM.exportPanel, DOM.codePanel].forEach(p => {
-                if(p) {
+                if (p) {
                     p.classList.remove('active');
                     p.style.display = '';
                 }
@@ -1060,22 +1040,37 @@
         
         if (state.exportAndroid) {
             for (const [density, sizes] of Object.entries(densities)) {
-                zip.file(`android/res/mipmap-${density}/${iconName}.png`, await generateIcon(sizes.legacy, false));
-                zip.file(`android/res/mipmap-${density}/${iconName}_round.png`, await generateIcon(sizes.legacy, true));
-                zip.file(`android/res/mipmap-${density}/${iconName}_foreground.png`, await generateForeground(sizes.adaptive));
-                updateProgress(3);
+                zip.file(`android/res/mipmap-${density}/${iconName}.png`, 
+                    await generateHighQualityIcon(sizes.legacy, false));
+                zip.file(`android/res/mipmap-${density}/${iconName}_round.png`, 
+                    await generateHighQualityIcon(sizes.legacy, true));
+                zip.file(`android/res/mipmap-${density}/${iconName}_foreground.png`, 
+                    await generateHighQualityForeground(sizes.adaptive));
+                
+                if (state.useMono) {
+                    zip.file(`android/res/mipmap-${density}/${iconName}_monochrome.png`, 
+                        await generateHighQualityMonochrome(sizes.adaptive));
+                }
+                
+                updateProgress(4);
             }
             
-            if (state.useMono) {
-                zip.file(`android/res/drawable/${iconName}_monochrome.png`, await generateMonochrome(512));
-            }
-            
-            const bgXml = `<?xml version="1.0" encoding="utf-8"?>\n<resources>\n    <color name="${iconName}_background">${state.bgColor}</color>\n</resources>`;
+            const bgXml = `<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="${iconName}_background">${state.bgColor}</color>
+</resources>`;
             zip.file(`android/res/values/${iconName}_background.xml`, bgXml);
             
-            let adaptiveXml = `<?xml version="1.0" encoding="utf-8"?>\n<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">\n    <background android:drawable="@color/${iconName}_background"/>\n    <foreground android:drawable="@mipmap/${iconName}_foreground"/>`;
-            if (state.useMono) adaptiveXml += `\n    <monochrome android:drawable="@drawable/${iconName}_monochrome"/>`;
-            adaptiveXml += `\n</adaptive-icon>`;
+            let adaptiveXml = `<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/${iconName}_background"/>
+    <foreground android:drawable="@mipmap/${iconName}_foreground"/>`;
+            if (state.useMono) {
+                adaptiveXml += `
+    <monochrome android:drawable="@mipmap/${iconName}_monochrome"/>`;
+            }
+            adaptiveXml += `
+</adaptive-icon>`;
             
             zip.file(`android/res/mipmap-anydpi-v26/${iconName}.xml`, adaptiveXml);
             zip.file(`android/res/mipmap-anydpi-v26/${iconName}_round.xml`, adaptiveXml);
@@ -1085,7 +1080,8 @@
         if (state.exportIOS) {
             const iosSizes = [20, 29, 40, 58, 60, 76, 80, 87, 120, 152, 167, 180, 1024];
             for (const size of iosSizes) {
-                zip.file(`ios/AppIcon.appiconset/Icon-${size}.png`, await generateIcon(size, false, true));
+                zip.file(`ios/AppIcon.appiconset/Icon-${size}.png`, 
+                    await generateHighQualityIcon(size, false, true));
                 updateProgress(1.5);
             }
             zip.file('ios/AppIcon.appiconset/Contents.json', JSON.stringify(generateIOSContentsJson(), null, 2));
@@ -1094,7 +1090,8 @@
         if (state.exportWeb) {
             const webSizes = [16, 32, 48, 72, 96, 128, 144, 192, 384, 512];
             for (const size of webSizes) {
-                zip.file(`web/icons/icon-${size}.png`, await generateIcon(size, false));
+                zip.file(`web/icons/icon-${size}.png`, 
+                    await generateHighQualityIcon(size, false));
                 updateProgress(1);
             }
             
@@ -1112,125 +1109,181 @@
                 display: 'standalone'
             };
             zip.file('web/manifest.json', JSON.stringify(manifest, null, 2));
-            zip.file('web/favicon.png', await generateIcon(32, false));
+            zip.file('web/favicon.png', await generateHighQualityIcon(32, false));
         }
         
         if (state.exportTV) {
-            zip.file('android/res/drawable-xhdpi/tv_banner.png', await generateTVBanner());
-            zip.file('android/res/drawable-xhdpi/tv_icon.png', await generateIcon(320, false));
+            zip.file(`android/res/drawable-xhdpi/${iconName}_tv_banner.png`, 
+                await generateHighQualityTVBanner());
+            zip.file(`android/res/drawable-xhdpi/${iconName}_tv_icon.png`, 
+                await generateHighQualityIcon(320, false));
             updateProgress(5);
         }
         
         if (state.exportPlayStore) {
-            zip.file('play_store_512.png', await generateIcon(512, false, true));
+            zip.file('playstore-icon.png', await generateHighQualityIcon(512, false, true));
             updateProgress(5);
         }
         
         DOM.progressFill.style.width = '100%';
-        const content = await zip.generateAsync({ type: 'blob' });
+        const content = await zip.generateAsync({ 
+            type: 'blob', 
+            compression: 'DEFLATE', 
+            compressionOptions: { level: 9 } 
+        });
         const filename = `${state.appName.toLowerCase().replace(/\s+/g, '_')}_icons.zip`;
         saveAs(content, filename);
     }
 
-    function generateIcon(size, isRound = false, noAlpha = false) {
+    function generateHighQualityIcon(size, isRound = false, noAlpha = false) {
         return new Promise(resolve => {
+            const upscale = size < 128 ? 4 : 2;
             const canvas = document.createElement('canvas');
-            canvas.width = size;
-            canvas.height = size;
+            canvas.width = size * upscale;
+            canvas.height = size * upscale;
             const ctx = canvas.getContext('2d');
+            
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
             
             if (noAlpha) {
                 ctx.fillStyle = state.bgColor;
-                ctx.fillRect(0, 0, size, size);
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
             } else if (isRound) {
                 ctx.beginPath();
-                ctx.arc(size/2, size/2, size/2, 0, Math.PI*2);
+                ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, Math.PI * 2);
                 ctx.fillStyle = state.bgColor;
                 ctx.fill();
                 ctx.clip();
             } else {
                 ctx.fillStyle = state.bgColor;
-                ctx.fillRect(0, 0, size, size);
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
             
             if (state.foregroundImg) {
-                drawCenteredImage(ctx, state.foregroundImg, size, state.padding);
+                drawCenteredImage(ctx, state.foregroundImg, canvas.width, state.scale);
             }
-            canvas.toBlob(resolve, 'image/png');
+            
+            const finalCanvas = document.createElement('canvas');
+            finalCanvas.width = size;
+            finalCanvas.height = size;
+            const finalCtx = finalCanvas.getContext('2d');
+            finalCtx.imageSmoothingEnabled = true;
+            finalCtx.imageSmoothingQuality = 'high';
+            finalCtx.drawImage(canvas, 0, 0, size, size);
+            
+            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
         });
     }
 
-    function generateForeground(size) {
+    function generateHighQualityForeground(size) {
         return new Promise(resolve => {
+            const upscale = size < 128 ? 4 : 2;
             const canvas = document.createElement('canvas');
-            canvas.width = size;
-            canvas.height = size;
+            canvas.width = size * upscale;
+            canvas.height = size * upscale;
             const ctx = canvas.getContext('2d');
             
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
             if (state.foregroundImg) {
-                drawCenteredImage(ctx, state.foregroundImg, size, state.padding);
+                drawCenteredImage(ctx, state.foregroundImg, canvas.width, state.scale);
             }
-            canvas.toBlob(resolve, 'image/png');
+            
+            const finalCanvas = document.createElement('canvas');
+            finalCanvas.width = size;
+            finalCanvas.height = size;
+            const finalCtx = finalCanvas.getContext('2d');
+            finalCtx.imageSmoothingEnabled = true;
+            finalCtx.imageSmoothingQuality = 'high';
+            finalCtx.drawImage(canvas, 0, 0, size, size);
+            
+            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
         });
     }
 
-    function generateMonochrome(size) {
+    function generateHighQualityMonochrome(size) {
         return new Promise(resolve => {
+            const upscale = size < 128 ? 4 : 2;
             const canvas = document.createElement('canvas');
-            canvas.width = size;
-            canvas.height = size;
+            canvas.width = size * upscale;
+            canvas.height = size * upscale;
             const ctx = canvas.getContext('2d');
+            
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
             
             const img = state.monoImg || state.foregroundImg;
             if (img) {
-                if (state.monoImg) {
-                    drawCenteredImage(ctx, img, size, state.padding);
-                    const imageData = ctx.getImageData(0,0,size,size);
-                    const data = imageData.data;
-                    for(let i=0; i<data.length; i+=4) {
-                        if(data[i+3] > 0) {
-                            data[i]=255; data[i+1]=255; data[i+2]=255;
-                        }
+                drawCenteredImage(ctx, img, canvas.width, state.scale);
+                
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+                for (let i = 0; i < data.length; i += 4) {
+                    if (data[i + 3] > 20) {
+                        data[i] = 255;
+                        data[i + 1] = 255;
+                        data[i + 2] = 255;
                     }
-                    ctx.putImageData(imageData, 0, 0);
-                } else {
-                    drawAutoMono(ctx, img, size);
                 }
+                ctx.putImageData(imageData, 0, 0);
             }
-            canvas.toBlob(resolve, 'image/png');
+            
+            const finalCanvas = document.createElement('canvas');
+            finalCanvas.width = size;
+            finalCanvas.height = size;
+            const finalCtx = finalCanvas.getContext('2d');
+            finalCtx.imageSmoothingEnabled = true;
+            finalCtx.imageSmoothingQuality = 'high';
+            finalCtx.drawImage(canvas, 0, 0, size, size);
+            
+            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
         });
     }
 
-    function generateTVBanner() {
+    function generateHighQualityTVBanner() {
         return new Promise(resolve => {
+            const upscale = 2;
             const canvas = document.createElement('canvas');
-            canvas.width = 320;
-            canvas.height = 180;
+            canvas.width = 320 * upscale;
+            canvas.height = 180 * upscale;
             const ctx = canvas.getContext('2d');
             
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
             ctx.fillStyle = state.syncTvBgColor ? state.bgColor : state.tvBgColor;
-            ctx.fillRect(0, 0, 320, 180);
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             if (state.tvBannerImg) {
-                const scale = Math.max(320 / state.tvBannerImg.width, 180 / state.tvBannerImg.height);
-                const w = state.tvBannerImg.width * scale;
-                const h = state.tvBannerImg.height * scale;
-                ctx.drawImage(state.tvBannerImg, (320-w)/2, (180-h)/2, w, h);
+                const imgScale = Math.max(canvas.width / state.tvBannerImg.width, canvas.height / state.tvBannerImg.height);
+                const w = state.tvBannerImg.width * imgScale;
+                const h = state.tvBannerImg.height * imgScale;
+                ctx.drawImage(state.tvBannerImg, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
             } else if (state.foregroundImg) {
-                const iconSize = 70;
+                const iconSize = 140 * (state.scale / 100);
                 const aspectRatio = state.foregroundImg.width / state.foregroundImg.height;
-                let dw, dh;
-                if(aspectRatio>1) { dw=iconSize; dh=iconSize/aspectRatio; }
-                else { dh=iconSize; dw=iconSize*aspectRatio; }
+                let dw = aspectRatio > 1 ? iconSize : iconSize * aspectRatio;
+                let dh = aspectRatio > 1 ? iconSize / aspectRatio : iconSize;
                 
-                ctx.drawImage(state.foregroundImg, (320-dw)/2, 40, dw, dh);
+                ctx.drawImage(state.foregroundImg, (canvas.width - dw) / 2, 80, dw, dh);
                 
                 ctx.fillStyle = '#ffffff';
-                ctx.font = '600 18px Inter, sans-serif';
+                ctx.font = '600 36px Inter, sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText(state.appName, 160, 140);
+                ctx.fillText(state.appName, canvas.width / 2, 280);
             }
-            canvas.toBlob(resolve, 'image/png');
+            
+            const finalCanvas = document.createElement('canvas');
+            finalCanvas.width = 320;
+            finalCanvas.height = 180;
+            const finalCtx = finalCanvas.getContext('2d');
+            finalCtx.imageSmoothingEnabled = true;
+            finalCtx.imageSmoothingQuality = 'high';
+            finalCtx.drawImage(canvas, 0, 0, 320, 180);
+            
+            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
         });
     }
 
