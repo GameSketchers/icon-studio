@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>App Icon Studio Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bg-noise"></div>
+    <div class="bg-gradient"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <span class="material-symbols-rounded">widgets</span>
+            </div>
+            <span class="logo-text" data-i18n="appTitle">Icon Studio</span>
+        </div>
+        <div class="header-actions">
+            <select class="lang-select" id="langSelect">
+                <option value="en">English</option>
+                <option value="tr">Türkçe</option>
+                <option value="ja">日本語</option>
+            </select>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-item active" data-panel="config">
+            <span class="material-symbols-rounded">tune</span>
+            <span data-i18n="configuration">Config</span>
+        </button>
+        <button class="mobile-nav-item" data-panel="preview">
+            <span class="material-symbols-rounded">smartphone</span>
+            <span data-i18n="preview">Preview</span>
+        </button>
+        <button class="mobile-nav-item" data-panel="export">
+            <span class="material-symbols-rounded">download</span>
+            <span data-i18n="export">Export</span>
+        </button>
+        <button class="mobile-nav-item" data-panel="code">
+            <span class="material-symbols-rounded">code</span>
+            <span data-i18n="code">Code</span>
+        </button>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        
+        <!-- Configuration Panel -->
+        <section class="panel config-panel" id="configPanel">
+            <div class="panel-header">
+                <span class="material-symbols-rounded">tune</span>
+                <h2 class="panel-title" data-i18n="configuration">Configuration</h2>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tabs">
+                <button class="tab active" data-tab="icon">
+                    <span class="material-symbols-rounded">apps</span>
+                    <span data-i18n="tabIcon">Icon</span>
+                </button>
+                <button class="tab" data-tab="tv">
+                    <span class="material-symbols-rounded">tv</span>
+                    <span data-i18n="tabTV">TV Banner</span>
+                </button>
+            </div>
+
+            <!-- Icon Tab Content -->
+            <div class="tab-content active" id="iconTab">
+                <!-- App Name Input -->
+                <div class="input-group">
+                    <label class="input-label">
+                        <span class="material-symbols-rounded">label</span>
+                        <span data-i18n="appName">App Name</span>
+                    </label>
+                    <input type="text" class="input-field" id="appNameInput" value="MyApp" placeholder="Enter app name">
+                </div>
+
+                <!-- Icon File Name Input -->
+                <div class="input-group">
+                    <label class="input-label">
+                        <span class="material-symbols-rounded">code</span>
+                        <span data-i18n="iconFileName">Icon File Name</span>
+                    </label>
+                    <input type="text" class="input-field" id="iconNameInput" value="ic_launcher" placeholder="ic_launcher">
+                </div>
+
+                <!-- Foreground Section -->
+                <div class="section-title" data-i18n="foregroundSection">FOREGROUND</div>
+                <div class="upload-zone" id="foregroundUpload">
+                    <input type="file" id="foregroundFile" accept="image/*" hidden>
+                    <div class="upload-content">
+                        <div class="upload-icon">
+                            <span class="material-symbols-rounded">add_photo_alternate</span>
+                        </div>
+                        <div class="upload-title" data-i18n="uploadForeground">Upload Foreground</div>
+                        <div class="upload-subtitle" data-i18n="dragDrop">Drag & Drop or Click</div>
+                    </div>
+                    <img class="upload-preview" id="foregroundPreview" alt="Foreground Preview">
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Mono Icon Toggle -->
+                <div class="toggle-row">
+                    <div class="toggle-label">
+                        <span class="material-symbols-rounded">contrast</span>
+                        <span data-i18n="monoIcon">Mono Icon</span>
+                        <span class="badge">Android 13+</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="monoToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Mono Upload Section -->
+                <div class="mono-section" id="monoSection">
+                    <div class="upload-mini" id="monoUpload">
+                        <input type="file" id="monoFile" accept="image/*" hidden>
+                        <div class="upload-mini-icon">
+                            <span class="material-symbols-rounded">invert_colors</span>
+                        </div>
+                        <div class="upload-mini-text">
+                            <div class="upload-mini-title" data-i18n="uploadMono">Upload Mono Layer</div>
+                            <div class="upload-mini-subtitle" data-i18n="autoConvert">Or auto-convert from foreground</div>
+                        </div>
+                        <span class="material-symbols-rounded upload-mini-status" id="monoStatus">check_circle</span>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Background Color -->
+                <div class="input-group">
+                    <label class="input-label">
+                        <span class="material-symbols-rounded">palette</span>
+                        <span data-i18n="bgColor">Background Color</span>
+                    </label>
+                    <div class="color-picker-row">
+                        <div class="color-input-wrapper">
+                            <input type="color" class="color-input" id="bgColorPicker" value="#1a1a1a">
+                        </div>
+                        <input type="text" class="input-field color-text" id="bgColorText" value="#1a1a1a">
+                    </div>
+                    <div class="color-presets" id="colorPresets">
+                        <div class="color-preset active" style="background: #1a1a1a" data-color="#1a1a1a" title="Dark"></div>
+                        <div class="color-preset" style="background: #ffffff" data-color="#ffffff" title="White"></div>
+                        <div class="color-preset" style="background: #6366f1" data-color="#6366f1" title="Indigo"></div>
+                        <div class="color-preset" style="background: #8b5cf6" data-color="#8b5cf6" title="Purple"></div>
+                        <div class="color-preset" style="background: #ec4899" data-color="#ec4899" title="Pink"></div>
+                        <div class="color-preset" style="background: #ef4444" data-color="#ef4444" title="Red"></div>
+                        <div class="color-preset" style="background: #f59e0b" data-color="#f59e0b" title="Amber"></div>
+                        <div class="color-preset" style="background: #22c55e" data-color="#22c55e" title="Green"></div>
+                        <div class="color-preset" style="background: #3b82f6" data-color="#3b82f6" title="Blue"></div>
+                        <div class="color-preset" style="background: #0ea5e9" data-color="#0ea5e9" title="Cyan"></div>
+                    </div>
+                </div>
+
+                <!-- Padding Slider -->
+                <div class="input-group">
+                    <label class="input-label">
+                        <span class="material-symbols-rounded">padding</span>
+                        <span data-i18n="padding">Padding</span>
+                    </label>
+                    <div class="range-wrapper">
+                        <input type="range" class="range-slider" id="paddingSlider" min="0" max="40" value="15">
+                        <span class="range-value" id="paddingValue">15%</span>
+                    </div>
+                </div>
+
+                <!-- Icon Shape -->
+                <div class="input-group">
+                    <label class="input-label">
+                        <span class="material-symbols-rounded">shapes</span>
+                        <span data-i18n="iconShape">Preview Shape</span>
+                    </label>
+                    <div class="shape-selector">
+                        <div class="shape-option" data-shape="circle" title="Circle">
+                            <div class="shape-preview circle"></div>
+                        </div>
+                        <div class="shape-option active" data-shape="squircle" title="Squircle">
+                            <div class="shape-preview squircle"></div>
+                        </div>
+                        <div class="shape-option" data-shape="rounded" title="Rounded">
+                            <div class="shape-preview rounded"></div>
+                        </div>
+                        <div class="shape-option" data-shape="square" title="Square">
+                            <div class="shape-preview square"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TV Tab Content -->
+            <div class="tab-content" id="tvTab">
+                <div class="section-title" data-i18n="tvBannerSection">TV BANNER (320×180)</div>
+                
+                <div class="upload-zone" id="tvBannerUpload">
+                    <input type="file" id="tvBannerFile" accept="image/*" hidden>
+                    <div class="upload-content">
+                        <div class="upload-icon">
+                            <span class="material-symbols-rounded">smart_display</span>
+                        </div>
+                        <div class="upload-title" data-i18n="uploadTvBanner">Upload TV Banner</div>
+                        <div class="upload-subtitle">320×180px recommended</div>
+                    </div>
+                    <img class="upload-preview" id="tvBannerPreview" alt="TV Banner Preview">
+                </div>
+
+                <p class="hint-text" data-i18n="tvHint">If not uploaded, will generate from icon automatically</p>
+
+                <div class="divider"></div>
+
+                <!-- TV Background Color -->
+                <div class="input-group">
+                    <label class="input-label">
+                        <span class="material-symbols-rounded">format_color_fill</span>
+                        <span data-i18n="tvBgColor">TV Banner Background</span>
+                    </label>
+                    <div class="color-picker-row">
+                        <div class="color-input-wrapper">
+                            <input type="color" class="color-input" id="tvBgColorPicker" value="#1a1a1a">
+                        </div>
+                        <input type="text" class="input-field color-text" id="tvBgColorText" value="#1a1a1a">
+                    </div>
+                    <label class="checkbox-row">
+                        <input type="checkbox" id="syncTvBgColor" checked>
+                        <span data-i18n="syncWithIcon">Sync with icon background</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preview Section -->
+        <section class="panel preview-panel" id="previewPanel">
+            <div class="panel-header">
+                <span class="material-symbols-rounded">visibility</span>
+                <h2 class="panel-title" data-i18n="preview">Preview</h2>
+            </div>
+
+            <!-- Preview Mode Toggle -->
+            <div class="preview-mode-toggle">
+                <button class="preview-mode-btn active" data-mode="phone">
+                    <span class="material-symbols-rounded">smartphone</span>
+                    <span>Phone</span>
+                </button>
+                <button class="preview-mode-btn" data-mode="tv">
+                    <span class="material-symbols-rounded">tv</span>
+                    <span>TV</span>
+                </button>
+            </div>
+
+            <!-- Preview Container -->
+            <div class="preview-container">
+                
+                <!-- Phone Preview -->
+                <div class="phone-frame" id="phoneFrame">
+                    <div class="phone-screen" id="phoneScreen">
+                        <!-- Notch -->
+                        <div class="phone-notch">
+                            <div class="notch-speaker"></div>
+                        </div>
+
+                        <!-- Status Bar -->
+                        <div class="status-bar">
+                            <span class="status-time" id="statusTime">12:30</span>
+                            <div class="status-icons">
+                                <span class="material-symbols-rounded">signal_cellular_alt</span>
+                                <span class="material-symbols-rounded">wifi</span>
+                                <span class="material-symbols-rounded">battery_full</span>
+                            </div>
+                        </div>
+
+                        <!-- Home Content -->
+                        <div class="home-content">
+                            <!-- Clock Widget -->
+                            <div class="clock-widget">
+                                <div class="clock-time" id="clockDisplay">12:30</div>
+                                <div class="clock-date" id="clockDate" data-i18n="dateDisplay">Sunday, Jan 14</div>
+                            </div>
+
+                            <!-- App Grid -->
+                            <div class="app-grid" id="appGrid">
+                                <!-- Apps will be rendered by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Theme Toggle FAB -->
+                        <button class="theme-fab" id="themeFab" title="Toggle Theme">
+                            <span class="material-symbols-rounded">palette</span>
+                        </button>
+
+                        <!-- Phone Dock -->
+                        <div class="phone-dock" id="phoneDock">
+                            <!-- Dock icons will be rendered by JS -->
+                        </div>
+
+                        <!-- Home Indicator -->
+                        <div class="home-indicator"></div>
+                    </div>
+                </div>
+
+                <!-- TV Preview -->
+                <div class="tv-frame hidden" id="tvFrame">
+                    <div class="tv-screen" id="tvScreen">
+                        <!-- TV Header -->
+                        <div class="tv-header">
+                            <div class="tv-logo">
+                                <span class="material-symbols-rounded">tv</span>
+                                <span>Android TV</span>
+                            </div>
+                            <div class="tv-time" id="tvTime">12:30</div>
+                        </div>
+
+                        <!-- TV Content -->
+                        <div class="tv-content">
+                            <!-- TV Sidebar -->
+                            <div class="tv-sidebar">
+                                <div class="tv-sidebar-title" data-i18n="tvApps">Apps</div>
+                                <div class="tv-app-list" id="tvAppList">
+                                    <!-- TV apps will be rendered by JS -->
+                                </div>
+                            </div>
+
+                            <!-- TV Main Area -->
+                            <div class="tv-main">
+                                <div class="tv-featured-label">Featured App</div>
+                                <div class="tv-banner-wrapper">
+                                    <div class="tv-banner-preview" id="tvBannerPreviewBox">
+                                        <canvas id="tvPreviewCanvas" width="320" height="180"></canvas>
+                                    </div>
+                                    <div class="tv-banner-info">
+                                        <div class="tv-banner-title" id="tvBannerTitle">MyApp</div>
+                                        <div class="tv-banner-subtitle">Press to open</div>
+                                    </div>
+                                </div>
+
+                                <!-- TV App Row -->
+                                <div class="tv-row-label">Your Apps</div>
+                                <div class="tv-app-row" id="tvAppRow">
+                                    <!-- TV app cards will be rendered by JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TV Navigation -->
+                        <div class="tv-nav-hint">
+                            <span class="material-symbols-rounded">arrow_back</span>
+                            <span>Back</span>
+                            <span class="material-symbols-rounded">home</span>
+                            <span>Home</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Preview Hint -->
+            <p class="preview-hint" id="previewHint" data-i18n="previewHint">
+                Click palette button to preview themed monochrome icons
+            </p>
+        </section>
+
+        <!-- Export Panel -->
+        <section class="panel export-panel" id="exportPanel">
+            <div class="panel-header">
+                <span class="material-symbols-rounded">download</span>
+                <h2 class="panel-title" data-i18n="export">Export</h2>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalFilesCount">0</div>
+                    <div class="stat-label" data-i18n="totalFiles">Files</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="platformCount">3</div>
+                    <div class="stat-label" data-i18n="platforms">Platforms</div>
+                </div>
+            </div>
+
+            <!-- Platform Options -->
+            <div class="section-title" data-i18n="includedPlatforms">PLATFORMS</div>
+            <div class="export-options">
+                <!-- Android -->
+                <div class="export-option">
+                    <div class="export-option-info">
+                        <div class="export-option-icon android">
+                            <span class="material-symbols-rounded">android</span>
+                        </div>
+                        <div class="export-option-text">
+                            <div class="export-option-title">Android</div>
+                            <div class="export-option-subtitle" data-i18n="androidDesc">Adaptive + Legacy + Mono</div>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="exportAndroid" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- iOS -->
+                <div class="export-option">
+                    <div class="export-option-info">
+                        <div class="export-option-icon ios">
+                            <span class="material-symbols-rounded">phone_iphone</span>
+                        </div>
+                        <div class="export-option-text">
+                            <div class="export-option-title">iOS</div>
+                            <div class="export-option-subtitle" data-i18n="iosDesc">All sizes + Contents.json</div>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="exportIOS" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Web -->
+                <div class="export-option">
+                    <div class="export-option-info">
+                        <div class="export-option-icon web">
+                            <span class="material-symbols-rounded">language</span>
+                        </div>
+                        <div class="export-option-text">
+                            <div class="export-option-title">Web / PWA</div>
+                            <div class="export-option-subtitle" data-i18n="webDesc">Favicon + Manifest icons</div>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="exportWeb" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Android TV -->
+                <div class="export-option">
+                    <div class="export-option-info">
+                        <div class="export-option-icon tv">
+                            <span class="material-symbols-rounded">tv</span>
+                        </div>
+                        <div class="export-option-text">
+                            <div class="export-option-title">Android TV</div>
+                            <div class="export-option-subtitle">Banner 320×180</div>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="exportTV">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Play Store -->
+                <div class="export-option">
+                    <div class="export-option-info">
+                        <div class="export-option-icon store">
+                            <span class="material-symbols-rounded">storefront</span>
+                        </div>
+                        <div class="export-option-text">
+                            <div class="export-option-title">Play Store</div>
+                            <div class="export-option-subtitle">512×512 Hi-Res</div>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="exportPlayStore" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- File Structure Preview -->
+            <div class="section-title" data-i18n="fileStructure">FILE STRUCTURE</div>
+            <div class="file-tree" id="fileTree">
+                <div class="file-item folder">
+                    <span class="material-symbols-rounded">folder</span>
+                    <span>android/res/</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>mipmap-*/ic_launcher.png</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">code</span>
+                    <span>values/ic_launcher_background.xml</span>
+                </div>
+                <div class="file-item folder">
+                    <span class="material-symbols-rounded">folder</span>
+                    <span>ios/AppIcon.appiconset/</span>
+                </div>
+                <div class="file-item folder">
+                    <span class="material-symbols-rounded">folder</span>
+                    <span>web/icons/</span>
+                </div>
+            </div>
+
+            <!-- Download Button -->
+            <button class="download-btn" id="downloadBtn">
+                <span class="material-symbols-rounded">download</span>
+                <span data-i18n="downloadZip">Download ZIP</span>
+            </button>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </section>
+
+        <!-- Code Panel -->
+        <section class="panel code-panel" id="codePanel">
+            <div class="panel-header">
+                <span class="material-symbols-rounded">code</span>
+                <h2 class="panel-title" data-i18n="codeSnippets">Code Snippets</h2>
+            </div>
+
+            <!-- AndroidManifest.xml - TV Features -->
+            <div class="code-section">
+                <div class="code-header">
+                    <div class="code-title">
+                        <span class="material-symbols-rounded">tv</span>
+                        <span>AndroidManifest.xml - TV Features</span>
+                    </div>
+                    <button class="copy-btn" data-target="codeTvFeatures">
+                        <span class="material-symbols-rounded">content_copy</span>
+                    </button>
+                </div>
+                <div class="code-block" id="codeTvFeatures">
+                    <pre><code>&lt;!-- Add inside &lt;manifest&gt; tag for Android TV support --&gt;
+&lt;uses-feature 
+    android:name="android.software.leanback"
+    android:required="false" /&gt;
+&lt;uses-feature 
+    android:name="android.hardware.touchscreen"
+    android:required="false" /&gt;</code></pre>
+                </div>
+                <p class="code-hint">Required for Android TV compatibility. Set required="true" for TV-only apps.</p>
+            </div>
+
+            <!-- AndroidManifest.xml - Application Tag -->
+            <div class="code-section">
+                <div class="code-header">
+                    <div class="code-title">
+                        <span class="material-symbols-rounded">android</span>
+                        <span>AndroidManifest.xml - Application</span>
+                    </div>
+                    <button class="copy-btn" data-target="codeAppAttrs">
+                        <span class="material-symbols-rounded">content_copy</span>
+                    </button>
+                </div>
+                <div class="code-block" id="codeAppAttrs">
+                    <pre><code>&lt;!-- Add these attributes to &lt;application&gt; tag --&gt;
+android:icon="@mipmap/<span class="code-dynamic" id="codeIconName1">ic_launcher</span>"
+android:roundIcon="@mipmap/<span class="code-dynamic" id="codeIconName2">ic_launcher</span>_round"
+android:banner="@drawable/<span class="code-dynamic" id="codeIconName3">ic_launcher</span>_foreground"
+android:logo="@mipmap/<span class="code-dynamic" id="codeIconName4">ic_launcher</span>"
+android:label="@string/app_name"</code></pre>
+                </div>
+                <p class="code-hint">Banner attribute is for Android TV leanback launcher.</p>
+            </div>
+
+            <!-- Adaptive Icon XML -->
+            <div class="code-section">
+                <div class="code-header">
+                    <div class="code-title">
+                        <span class="material-symbols-rounded">deployed_code</span>
+                        <span id="adaptiveIconFileName">ic_launcher.xml</span>
+                    </div>
+                    <button class="copy-btn" data-target="codeAdaptiveIcon">
+                        <span class="material-symbols-rounded">content_copy</span>
+                    </button>
+                </div>
+                <div class="code-block" id="codeAdaptiveIcon">
+                    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;background android:drawable="@color/<span class="code-dynamic" id="codeIconName5">ic_launcher</span>_background"/&gt;
+    &lt;foreground android:drawable="@mipmap/<span class="code-dynamic" id="codeIconName6">ic_launcher</span>_foreground"/&gt;
+    &lt;monochrome android:drawable="@drawable/<span class="code-dynamic" id="codeIconName7">ic_launcher</span>_monochrome"/&gt;
+&lt;/adaptive-icon&gt;</code></pre>
+                </div>
+                <p class="code-hint">Place in res/mipmap-anydpi-v26/ folder.</p>
+            </div>
+
+            <!-- Background Color XML -->
+            <div class="code-section">
+                <div class="code-header">
+                    <div class="code-title">
+                        <span class="material-symbols-rounded">format_color_fill</span>
+                        <span id="bgColorFileName">ic_launcher_background.xml</span>
+                    </div>
+                    <button class="copy-btn" data-target="codeBgColor">
+                        <span class="material-symbols-rounded">content_copy</span>
+                    </button>
+                </div>
+                <div class="code-block" id="codeBgColor">
+                    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;color name="<span class="code-dynamic" id="codeIconName8">ic_launcher</span>_background"&gt;<span class="code-dynamic" id="codeBgColorValue">#1a1a1a</span>&lt;/color&gt;
+&lt;/resources&gt;</code></pre>
+                </div>
+                <p class="code-hint">Place in res/values/ folder.</p>
+            </div>
+
+            <!-- iOS Info.plist -->
+            <div class="code-section">
+                <div class="code-header">
+                    <div class="code-title">
+                        <span class="material-symbols-rounded">phone_iphone</span>
+                        <span>iOS Info.plist</span>
+                    </div>
+                    <button class="copy-btn" data-target="codeIosPlist">
+                        <span class="material-symbols-rounded">content_copy</span>
+                    </button>
+                </div>
+                <div class="code-block" id="codeIosPlist">
+                    <pre><code>&lt;key&gt;CFBundleIcons&lt;/key&gt;
+&lt;dict&gt;
+    &lt;key&gt;CFBundlePrimaryIcon&lt;/key&gt;
+    &lt;dict&gt;
+        &lt;key&gt;CFBundleIconFiles&lt;/key&gt;
+        &lt;array&gt;
+            &lt;string&gt;AppIcon&lt;/string&gt;
+        &lt;/array&gt;
+    &lt;/dict&gt;
+&lt;/dict&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Web Manifest -->
+            <div class="code-section">
+                <div class="code-header">
+                    <div class="code-title">
+                        <span class="material-symbols-rounded">language</span>
+                        <span>manifest.json</span>
+                    </div>
+                    <button class="copy-btn" data-target="codeWebManifest">
+                        <span class="material-symbols-rounded">content_copy</span>
+                    </button>
+                </div>
+                <div class="code-block" id="codeWebManifest">
+                    <pre><code>{
+  "name": "<span class="code-dynamic" id="codeAppName">MyApp</span>",
+  "short_name": "<span class="code-dynamic" id="codeAppNameShort">MyApp</span>",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "<span class="code-dynamic" id="codeThemeColor">#1a1a1a</span>",
+  "background_color": "<span class="code-dynamic" id="codeManifestBg">#1a1a1a</span>"
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- HTML Link Tags -->
+            <div class="code-section">
+                <div class="code-header">
+                    <div class="code-title">
+                        <span class="material-symbols-rounded">html</span>
+                        <span>HTML &lt;head&gt; Tags</span>
+                    </div>
+                    <button class="copy-btn" data-target="codeHtmlHead">
+                        <span class="material-symbols-rounded">content_copy</span>
+                    </button>
+                </div>
+                <div class="code-block" id="codeHtmlHead">
+                    <pre><code>&lt;!-- Favicon --&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16.png"&gt;
+
+&lt;!-- Apple Touch Icon --&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180.png"&gt;
+
+&lt;!-- Manifest --&gt;
+&lt;link rel="manifest" href="/manifest.json"&gt;
+
+&lt;!-- Theme Color --&gt;
+&lt;meta name="theme-color" content="<span class="code-dynamic" id="codeMetaTheme">#1a1a1a</span>"&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="material-symbols-rounded" id="toastIcon">check_circle</span>
+        <span id="toastMessage">Success!</span>
+    </div>
+
+    <!-- Hidden Canvas for Processing -->
+    <canvas id="processCanvas" width="1024" height="1024" style="display: none;"></canvas>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    
+    <!-- App Script -->
+    <script src="app.js"></script>
+</body>
+</html>
