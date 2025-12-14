@@ -1,8 +1,8 @@
-# 🎨 Icon Forge
+# 🎨 Icon Studio
 
 A powerful, browser-based app icon generator for Android, iOS, Web, and Android TV. Create adaptive icons, monochrome themed icons, and TV banners from a single source image.
 
-![Icon Forge Preview](preview.png)
+![Icon Studio Preview](preview.png)
 
 ## ✨ Features
 
@@ -18,18 +18,11 @@ A powerful, browser-based app icon generator for Android, iOS, Web, and Android 
 
 ### Online
 
-Visit [https://gamesketchers.github.io/icon-forge](https://gamesketchers.github.io/icon-forge)
+Visit [https://gamesketchers.github.io/icon-studio](https://gamesketchers.github.io/icon-studio)
 
 ### Local Development
 
 ```bash
-# Clone the repository
-git clone https://github.com/GameSketchers/icon-forge.git
-
-# Navigate to directory
-cd icon-forge
-
-# Open in browser (no build required)
+git clone https://github.com/GameSketchers/icon-studio.git
+cd icon-studio
 open index.html
-# or use a local server
-npx serve .
