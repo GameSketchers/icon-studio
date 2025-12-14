@@ -28,6 +28,17 @@
         { id: 'twitch', name: 'Twitch', file: 'twitch.png', color: '#9146FF' }
     ];
 
+    const LANGUAGES = [
+        { code: 'en', name: 'English', flag: '🇺🇸' },
+        { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+        { code: 'ja', name: '日本語', flag: '🇯🇵' },
+        { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+        { code: 'fr', name: 'Français', flag: '🇫🇷' },
+        { code: 'es', name: 'Español', flag: '🇪🇸' },
+        { code: 'zh', name: '中文', flag: '🇨🇳' },
+        { code: 'ko', name: '한국어', flag: '🇰🇷' }
+    ];
+
     const translations = {
         en: {
             appTitle: "Icon Studio",
@@ -69,7 +80,9 @@
             error: "Please upload a foreground image first",
             loaded: "Image loaded!",
             copied: "Copied to clipboard!",
-            dateDisplay: "Sunday, Jan 14"
+            dateDisplay: "Sunday, Jan 14",
+            selectLanguage: "Select Language",
+            autoColor: "Color detected from image"
         },
         tr: {
             appTitle: "İkon Stüdyosu",
@@ -111,7 +124,9 @@
             error: "Lütfen önce bir ön plan görseli yükleyin",
             loaded: "Görsel yüklendi!",
             copied: "Panoya kopyalandı!",
-            dateDisplay: "Pazar, 14 Ocak"
+            dateDisplay: "Pazar, 14 Ocak",
+            selectLanguage: "Dil Seçin",
+            autoColor: "Renk resimden algılandı"
         },
         ja: {
             appTitle: "アイコンスタジオ",
@@ -153,7 +168,229 @@
             error: "最初にフォアグラウンド画像をアップロードしてください",
             loaded: "画像を読み込みました！",
             copied: "クリップボードにコピーしました！",
-            dateDisplay: "1月14日 日曜日"
+            dateDisplay: "1月14日 日曜日",
+            selectLanguage: "言語を選択",
+            autoColor: "画像から色を検出しました"
+        },
+        de: {
+            appTitle: "Icon Studio",
+            configuration: "Konfiguration",
+            tabIcon: "Symbol",
+            tabTV: "TV-Banner",
+            appName: "App-Name",
+            iconFileName: "Symbol-Dateiname",
+            foregroundSection: "VORDERGRUND",
+            uploadForeground: "Vordergrund hochladen",
+            dragDrop: "Ziehen & Ablegen oder Klicken",
+            monoIcon: "Mono-Symbol",
+            uploadMono: "Mono-Ebene hochladen",
+            autoConvert: "Oder automatisch konvertieren",
+            bgColor: "Hintergrundfarbe",
+            tvBgColor: "TV-Banner-Hintergrund",
+            syncWithIcon: "Mit Symbol-Hintergrund synchronisieren",
+            scale: "Skalierung",
+            iconShape: "Vorschauform",
+            tvBannerSection: "TV-BANNER (320×180)",
+            uploadTvBanner: "TV-Banner hochladen",
+            tvHint: "Wird automatisch aus dem Symbol generiert, wenn nicht hochgeladen",
+            tvApps: "Apps",
+            preview: "Vorschau",
+            previewHint: "Themenmodus umschalten für Monochrom-Vorschau",
+            export: "Exportieren",
+            totalFiles: "Dateien",
+            platforms: "Plattformen",
+            includedPlatforms: "PLATTFORMEN",
+            androidDesc: "Adaptive + Legacy + Mono",
+            iosDesc: "Alle Größen + Contents.json",
+            webDesc: "Favicon + Manifest-Symbole",
+            fileStructure: "DATEISTRUKTUR",
+            downloadZip: "ZIP herunterladen",
+            codeSnippets: "Code-Snippets",
+            code: "Code",
+            processing: "Verarbeitung...",
+            success: "ZIP erfolgreich heruntergeladen!",
+            error: "Bitte laden Sie zuerst ein Vordergrundbild hoch",
+            loaded: "Bild geladen!",
+            copied: "In die Zwischenablage kopiert!",
+            dateDisplay: "Sonntag, 14. Jan",
+            selectLanguage: "Sprache auswählen",
+            autoColor: "Farbe aus Bild erkannt"
+        },
+        fr: {
+            appTitle: "Icon Studio",
+            configuration: "Configuration",
+            tabIcon: "Icône",
+            tabTV: "Bannière TV",
+            appName: "Nom de l'app",
+            iconFileName: "Nom du fichier icône",
+            foregroundSection: "PREMIER PLAN",
+            uploadForeground: "Télécharger le premier plan",
+            dragDrop: "Glisser-déposer ou Cliquer",
+            monoIcon: "Icône Mono",
+            uploadMono: "Télécharger la couche Mono",
+            autoConvert: "Ou conversion automatique",
+            bgColor: "Couleur d'arrière-plan",
+            tvBgColor: "Arrière-plan bannière TV",
+            syncWithIcon: "Synchroniser avec l'arrière-plan de l'icône",
+            scale: "Échelle",
+            iconShape: "Forme de prévisualisation",
+            tvBannerSection: "BANNIÈRE TV (320×180)",
+            uploadTvBanner: "Télécharger la bannière TV",
+            tvHint: "Si non téléchargé, sera généré automatiquement à partir de l'icône",
+            tvApps: "Apps",
+            preview: "Aperçu",
+            previewHint: "Basculer le mode thème pour prévisualiser les icônes monochromes",
+            export: "Exporter",
+            totalFiles: "Fichiers",
+            platforms: "Plateformes",
+            includedPlatforms: "PLATEFORMES",
+            androidDesc: "Adaptive + Legacy + Mono",
+            iosDesc: "Toutes tailles + Contents.json",
+            webDesc: "Favicon + icônes Manifest",
+            fileStructure: "STRUCTURE DES FICHIERS",
+            downloadZip: "Télécharger ZIP",
+            codeSnippets: "Extraits de code",
+            code: "Code",
+            processing: "Traitement...",
+            success: "ZIP téléchargé avec succès!",
+            error: "Veuillez d'abord télécharger une image de premier plan",
+            loaded: "Image chargée!",
+            copied: "Copié dans le presse-papiers!",
+            dateDisplay: "Dimanche 14 janv.",
+            selectLanguage: "Choisir la langue",
+            autoColor: "Couleur détectée de l'image"
+        },
+        es: {
+            appTitle: "Icon Studio",
+            configuration: "Configuración",
+            tabIcon: "Icono",
+            tabTV: "Banner TV",
+            appName: "Nombre de App",
+            iconFileName: "Nombre de archivo de icono",
+            foregroundSection: "PRIMER PLANO",
+            uploadForeground: "Subir primer plano",
+            dragDrop: "Arrastrar y soltar o hacer clic",
+            monoIcon: "Icono Mono",
+            uploadMono: "Subir capa Mono",
+            autoConvert: "O conversión automática",
+            bgColor: "Color de fondo",
+            tvBgColor: "Fondo de banner TV",
+            syncWithIcon: "Sincronizar con fondo de icono",
+            scale: "Escala",
+            iconShape: "Forma de vista previa",
+            tvBannerSection: "BANNER TV (320×180)",
+            uploadTvBanner: "Subir banner TV",
+            tvHint: "Si no se sube, se generará automáticamente desde el icono",
+            tvApps: "Apps",
+            preview: "Vista previa",
+            previewHint: "Cambiar modo de tema para previsualizar iconos monocromáticos",
+            export: "Exportar",
+            totalFiles: "Archivos",
+            platforms: "Plataformas",
+            includedPlatforms: "PLATAFORMAS",
+            androidDesc: "Adaptive + Legacy + Mono",
+            iosDesc: "Todos los tamaños + Contents.json",
+            webDesc: "Favicon + iconos Manifest",
+            fileStructure: "ESTRUCTURA DE ARCHIVOS",
+            downloadZip: "Descargar ZIP",
+            codeSnippets: "Fragmentos de código",
+            code: "Código",
+            processing: "Procesando...",
+            success: "¡ZIP descargado exitosamente!",
+            error: "Por favor, suba primero una imagen de primer plano",
+            loaded: "¡Imagen cargada!",
+            copied: "¡Copiado al portapapeles!",
+            dateDisplay: "Domingo, 14 ene",
+            selectLanguage: "Seleccionar idioma",
+            autoColor: "Color detectado de la imagen"
+        },
+        zh: {
+            appTitle: "图标工作室",
+            configuration: "配置",
+            tabIcon: "图标",
+            tabTV: "电视横幅",
+            appName: "应用名称",
+            iconFileName: "图标文件名",
+            foregroundSection: "前景",
+            uploadForeground: "上传前景",
+            dragDrop: "拖放或点击",
+            monoIcon: "单色图标",
+            uploadMono: "上传单色图层",
+            autoConvert: "或自动转换",
+            bgColor: "背景颜色",
+            tvBgColor: "电视横幅背景",
+            syncWithIcon: "与图标背景同步",
+            scale: "缩放",
+            iconShape: "预览形状",
+            tvBannerSection: "电视横幅 (320×180)",
+            uploadTvBanner: "上传电视横幅",
+            tvHint: "如果未上传，将从图标自动生成",
+            tvApps: "应用",
+            preview: "预览",
+            previewHint: "切换主题模式以预览单色图标",
+            export: "导出",
+            totalFiles: "文件",
+            platforms: "平台",
+            includedPlatforms: "平台",
+            androidDesc: "Adaptive + Legacy + Mono",
+            iosDesc: "所有尺寸 + Contents.json",
+            webDesc: "Favicon + Manifest图标",
+            fileStructure: "文件结构",
+            downloadZip: "下载ZIP",
+            codeSnippets: "代码片段",
+            code: "代码",
+            processing: "处理中...",
+            success: "ZIP下载成功！",
+            error: "请先上传前景图像",
+            loaded: "图像已加载！",
+            copied: "已复制到剪贴板！",
+            dateDisplay: "1月14日 星期日",
+            selectLanguage: "选择语言",
+            autoColor: "从图像检测到颜色"
+        },
+        ko: {
+            appTitle: "아이콘 스튜디오",
+            configuration: "구성",
+            tabIcon: "아이콘",
+            tabTV: "TV 배너",
+            appName: "앱 이름",
+            iconFileName: "아이콘 파일 이름",
+            foregroundSection: "전경",
+            uploadForeground: "전경 업로드",
+            dragDrop: "드래그 앤 드롭 또는 클릭",
+            monoIcon: "모노 아이콘",
+            uploadMono: "모노 레이어 업로드",
+            autoConvert: "또는 자동 변환",
+            bgColor: "배경색",
+            tvBgColor: "TV 배너 배경",
+            syncWithIcon: "아이콘 배경과 동기화",
+            scale: "크기",
+            iconShape: "미리보기 모양",
+            tvBannerSection: "TV 배너 (320×180)",
+            uploadTvBanner: "TV 배너 업로드",
+            tvHint: "업로드하지 않으면 아이콘에서 자동 생성됩니다",
+            tvApps: "앱",
+            preview: "미리보기",
+            previewHint: "테마 모드를 전환하여 단색 아이콘 미리보기",
+            export: "내보내기",
+            totalFiles: "파일",
+            platforms: "플랫폼",
+            includedPlatforms: "플랫폼",
+            androidDesc: "Adaptive + Legacy + Mono",
+            iosDesc: "모든 크기 + Contents.json",
+            webDesc: "Favicon + Manifest 아이콘",
+            fileStructure: "파일 구조",
+            downloadZip: "ZIP 다운로드",
+            codeSnippets: "코드 스니펫",
+            code: "코드",
+            processing: "처리 중...",
+            success: "ZIP이 성공적으로 다운로드되었습니다!",
+            error: "먼저 전경 이미지를 업로드하세요",
+            loaded: "이미지가 로드되었습니다!",
+            copied: "클립보드에 복사되었습니다!",
+            dateDisplay: "1월 14일 일요일",
+            selectLanguage: "언어 선택",
+            autoColor: "이미지에서 색상 감지됨"
         }
     };
 
@@ -178,7 +415,8 @@
         currentLang: 'en',
         currentTab: 'icon',
         currentPreviewMode: 'phone',
-        currentMobilePanel: 'config'
+        currentMobilePanel: 'config',
+        langModalOpen: false
     };
 
     let DOM = {};
@@ -186,7 +424,12 @@
 
     function cacheDOMElements() {
         DOM = {
-            langSelect: document.getElementById('langSelect'),
+            langBtn: document.getElementById('langBtn'),
+            langModal: document.getElementById('langModal'),
+            langModalClose: document.getElementById('langModalClose'),
+            langOptions: document.querySelectorAll('.lang-option'),
+            currentLangFlag: document.getElementById('currentLangFlag'),
+            currentLangName: document.getElementById('currentLangName'),
             mobileMenuBtn: document.getElementById('mobileMenuBtn'),
             mobileNav: document.getElementById('mobileNav'),
             mobileNavItems: document.querySelectorAll('.mobile-nav-item'),
@@ -265,18 +508,38 @@
         setInterval(updateClock, 1000);
         updateAllPreviews();
         updateFileCount();
+        updateFileTree();
         updateCodeSnippets();
         checkMobileView();
         toggleTvInputsState();
+        updateLangDisplay();
     }
 
     function setupEventListeners() {
-        DOM.langSelect.addEventListener('change', handleLanguageChange);
-        
-        DOM.mobileMenuBtn.addEventListener('click', () => {
-            DOM.langSelect.focus();
-            DOM.langSelect.click();
+        // Language modal
+        if (DOM.langBtn) {
+            DOM.langBtn.addEventListener('click', openLangModal);
+        }
+        if (DOM.langModalClose) {
+            DOM.langModalClose.addEventListener('click', closeLangModal);
+        }
+        if (DOM.langModal) {
+            DOM.langModal.addEventListener('click', (e) => {
+                if (e.target === DOM.langModal) closeLangModal();
+            });
+        }
+        DOM.langOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const lang = option.dataset.lang;
+                handleLanguageChange(lang);
+                closeLangModal();
+            });
         });
+        
+        // Mobile menu - opens language modal
+        if (DOM.mobileMenuBtn) {
+            DOM.mobileMenuBtn.addEventListener('click', openLangModal);
+        }
 
         DOM.mobileNavItems.forEach(item => {
             item.addEventListener('click', handleMobileNavClick);
@@ -338,6 +601,7 @@
             if (el) el.addEventListener('change', () => {
                 state[el.id] = el.checked;
                 updateFileCount();
+                updateFileTree();
             });
         });
         
@@ -346,6 +610,48 @@
         DOM.copyBtns.forEach(btn => {
             btn.addEventListener('click', handleCopyClick);
         });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && state.langModalOpen) {
+                closeLangModal();
+            }
+        });
+    }
+
+    // Language Modal Functions
+    function openLangModal() {
+        if (DOM.langModal) {
+            DOM.langModal.classList.add('active');
+            state.langModalOpen = true;
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeLangModal() {
+        if (DOM.langModal) {
+            DOM.langModal.classList.remove('active');
+            state.langModalOpen = false;
+            document.body.style.overflow = '';
+        }
+    }
+
+    function handleLanguageChange(lang) {
+        state.currentLang = lang;
+        updateLangDisplay();
+        updateTranslations();
+        updateClock();
+        
+        // Update active state in modal
+        DOM.langOptions.forEach(opt => {
+            opt.classList.toggle('active', opt.dataset.lang === lang);
+        });
+    }
+
+    function updateLangDisplay() {
+        const lang = LANGUAGES.find(l => l.code === state.currentLang) || LANGUAGES[0];
+        if (DOM.currentLangFlag) DOM.currentLangFlag.textContent = lang.flag;
+        if (DOM.currentLangName) DOM.currentLangName.textContent = lang.name;
     }
 
     function setupUploadZone(zone, input, previewEl, callback) {
@@ -397,10 +703,55 @@
         reader.readAsDataURL(file);
     }
 
-    function handleLanguageChange(e) {
-        state.currentLang = e.target.value;
-        updateTranslations();
-        updateClock();
+    // Dominant Color Detection
+    function getDominantColor(img) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Use small size for performance
+        const size = 50;
+        canvas.width = size;
+        canvas.height = size;
+        
+        ctx.drawImage(img, 0, 0, size, size);
+        
+        const imageData = ctx.getImageData(0, 0, size, size);
+        const data = imageData.data;
+        
+        const colorCounts = {};
+        let maxCount = 0;
+        let dominantColor = { r: 26, g: 26, b: 26 }; // Default dark
+        
+        for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            const a = data[i + 3];
+            
+            // Skip transparent/semi-transparent pixels
+            if (a < 128) continue;
+            
+            // Skip near-white and near-black
+            const brightness = (r + g + b) / 3;
+            if (brightness > 240 || brightness < 15) continue;
+            
+            // Quantize colors (reduce to fewer buckets)
+            const qr = Math.round(r / 32) * 32;
+            const qg = Math.round(g / 32) * 32;
+            const qb = Math.round(b / 32) * 32;
+            
+            const key = `${qr},${qg},${qb}`;
+            colorCounts[key] = (colorCounts[key] || 0) + 1;
+            
+            if (colorCounts[key] > maxCount) {
+                maxCount = colorCounts[key];
+                dominantColor = { r: qr, g: qg, b: qb };
+            }
+        }
+        
+        // Convert to hex
+        const toHex = (n) => Math.min(255, Math.max(0, n)).toString(16).padStart(2, '0');
+        return `#${toHex(dominantColor.r)}${toHex(dominantColor.g)}${toHex(dominantColor.b)}`;
     }
 
     function handleMobileNavClick(e) {
@@ -427,6 +778,8 @@
         DOM.tvTab.classList.toggle('active', tabId === 'tv');
         DOM.iconTab.style.display = tabId === 'icon' ? 'flex' : 'none';
         DOM.tvTab.style.display = tabId === 'tv' ? 'flex' : 'none';
+        
+        updateFileTree();
     }
 
     function handleAppNameChange(e) {
@@ -437,6 +790,7 @@
 
     function handleIconNameChange(e) {
         state.iconName = e.target.value || 'ic_launcher';
+        updateFileTree();
         updateCodeSnippets();
     }
 
@@ -557,12 +911,19 @@
             updateThemeUI();
         }
         updateAllPreviews();
+        updateFileCount();
+        updateFileTree();
     }
 
     function handleForegroundUpload(img) {
         state.foregroundImg = img;
+        
+        // Auto-detect dominant color
+        const detectedColor = getDominantColor(img);
+        updateBgColor(detectedColor);
+        
         updateAllPreviews();
-        showToast(translations[state.currentLang].loaded, 'success');
+        showToast(translations[state.currentLang].autoColor || translations[state.currentLang].loaded, 'success');
     }
 
     function handleMonoUpload(img) {
@@ -570,6 +931,7 @@
         DOM.monoUpload.classList.add('active');
         DOM.monoStatus.style.opacity = '1';
         updatePhonePreview();
+        showToast(translations[state.currentLang].loaded, 'success');
     }
 
     function handleTvBannerUpload(img) {
@@ -951,7 +1313,7 @@
     }
 
     function updateTranslations() {
-        const t = translations[state.currentLang];
+        const t = translations[state.currentLang] || translations.en;
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (t[key]) el.textContent = t[key];
@@ -974,6 +1336,119 @@
         
         DOM.totalFilesCount.textContent = count;
         DOM.platformCount.textContent = platforms;
+    }
+
+    function updateFileTree() {
+        const iconName = state.iconName || 'ic_launcher';
+        let html = '';
+        
+        if (state.exportAndroid) {
+            html += `
+                <div class="file-item folder">
+                    <span class="material-symbols-rounded">folder</span>
+                    <span>android/res/</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>mipmap-*/${iconName}.png</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>mipmap-*/${iconName}_round.png</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>mipmap-*/${iconName}_foreground.png</span>
+                </div>
+            `;
+            
+            if (state.useMono) {
+                html += `
+                    <div class="file-item file indent-1">
+                        <span class="material-symbols-rounded">image</span>
+                        <span>mipmap-*/${iconName}_monochrome.png</span>
+                    </div>
+                `;
+            }
+            
+            html += `
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">code</span>
+                    <span>values/${iconName}_background.xml</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">code</span>
+                    <span>mipmap-anydpi-v26/${iconName}.xml</span>
+                </div>
+            `;
+        }
+        
+        if (state.exportTV) {
+            html += `
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>drawable-xhdpi/${iconName}_tv_banner.png</span>
+                </div>
+            `;
+        }
+        
+        if (state.exportIOS) {
+            html += `
+                <div class="file-item folder">
+                    <span class="material-symbols-rounded">folder</span>
+                    <span>ios/AppIcon.appiconset/</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>Icon-*.png</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">code</span>
+                    <span>Contents.json</span>
+                </div>
+            `;
+        }
+        
+        if (state.exportWeb) {
+            html += `
+                <div class="file-item folder">
+                    <span class="material-symbols-rounded">folder</span>
+                    <span>web/</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>icons/icon-*.png</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">code</span>
+                    <span>manifest.json</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>favicon.png</span>
+                </div>
+            `;
+        }
+        
+        if (state.exportPlayStore) {
+            html += `
+                <div class="file-item file">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>playstore-icon.png</span>
+                </div>
+            `;
+        }
+        
+        if (html === '') {
+            html = `
+                <div class="file-item" style="color: var(--text-muted); font-style: italic;">
+                    <span class="material-symbols-rounded">info</span>
+                    <span>No platforms selected</span>
+                </div>
+            `;
+        }
+        
+        DOM.fileTree.innerHTML = html;
     }
 
     function updateCodeSnippets() {
