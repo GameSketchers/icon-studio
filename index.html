@@ -13,6 +13,7 @@
     <div class="bg-noise"></div>
     <div class="bg-gradient"></div>
 
+    <!-- HEADER -->
     <header class="header">
         <div class="logo">
             <div class="logo-icon">
@@ -27,11 +28,12 @@
                 <option value="ja">日本語</option>
             </select>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span class="material-symbols-rounded">menu</span>
+                <span class="material-symbols-rounded">translate</span>
             </button>
         </div>
     </header>
 
+    <!-- MOBILE NAVIGATION -->
     <nav class="mobile-nav" id="mobileNav">
         <button class="mobile-nav-item active" data-panel="config">
             <span class="material-symbols-rounded">tune</span>
@@ -51,8 +53,10 @@
         </button>
     </nav>
 
+    <!-- MAIN CONTAINER -->
     <main class="main-container">
         
+        <!-- CONFIG PANEL -->
         <section class="panel config-panel" id="configPanel">
             <div class="panel-header">
                 <span class="material-symbols-rounded">tune</span>
@@ -70,6 +74,7 @@
                 </button>
             </div>
 
+            <!-- ICON TAB -->
             <div class="tab-content active" id="iconTab">
                 <div class="input-group">
                     <label class="input-label">
@@ -102,6 +107,7 @@
 
                 <div class="divider"></div>
 
+                <!-- MONO TOGGLE -->
                 <div class="toggle-row">
                     <div class="toggle-label">
                         <span class="material-symbols-rounded">contrast</span>
@@ -130,6 +136,7 @@
 
                 <div class="divider"></div>
 
+                <!-- BACKGROUND COLOR -->
                 <div class="input-group">
                     <label class="input-label">
                         <span class="material-symbols-rounded">palette</span>
@@ -155,18 +162,27 @@
                     </div>
                 </div>
 
+                <!-- SCALE -->
                 <div class="input-group">
                     <label class="input-label">
-                        <span class="material-symbols-rounded">padding</span>
-                        <span data-i18n="padding">Padding</span>
+                        <span class="material-symbols-rounded">zoom_in_map</span>
+                        <span data-i18n="scale">Scale</span>
                     </label>
                     <div class="range-wrapper">
-                        <input type="range" class="range-slider" id="paddingSlider" min="0" max="40" value="0">
-                        <span class="range-value" id="paddingValue">0%</span>
+                        <span class="range-label-min">50%</span>
+                        <input type="range" class="range-slider" id="scaleSlider" min="50" max="150" value="100">
+                        <span class="range-label-max">150%</span>
+                    </div>
+                    <div class="range-value-display">
+                        <span class="range-value" id="scaleValue">100%</span>
+                        <button class="reset-btn" id="resetScaleBtn" title="Reset to 100%">
+                            <span class="material-symbols-rounded">refresh</span>
+                        </button>
                     </div>
                 </div>
             </div>
 
+            <!-- TV TAB -->
             <div class="tab-content" id="tvTab">
                 <div class="section-title" data-i18n="tvBannerSection">TV BANNER (320×180)</div>
                 
@@ -186,6 +202,7 @@
 
                 <div class="divider"></div>
 
+                <!-- TV BACKGROUND COLOR -->
                 <div class="input-group">
                     <label class="input-label">
                         <span class="material-symbols-rounded">format_color_fill</span>
@@ -210,6 +227,7 @@
             </div>
         </section>
 
+        <!-- PREVIEW PANEL -->
         <section class="panel preview-panel" id="previewPanel">
             <div class="panel-header">
                 <span class="material-symbols-rounded">visibility</span>
@@ -247,7 +265,7 @@
 
                 <div class="control-group" id="shapeControlGroup">
                     <label class="control-label" data-i18n="iconShape">Preview Shape</label>
-                    <div class="shape-selector mini">
+                    <div class="shape-selector">
                         <div class="shape-option" data-shape="circle" title="Circle">
                             <div class="shape-preview circle"></div>
                         </div>
@@ -266,6 +284,7 @@
 
             <div class="preview-container">
                 
+                <!-- PHONE FRAME -->
                 <div class="phone-frame" id="phoneFrame">
                     <div class="phone-screen" id="phoneScreen">
                         <div class="phone-notch">
@@ -296,6 +315,7 @@
                     </div>
                 </div>
 
+                <!-- TV FRAME -->
                 <div class="tv-frame hidden" id="tvFrame">
                     <div class="tv-screen" id="tvScreen">
                         <div class="tv-header">
@@ -342,6 +362,7 @@
             <p class="preview-hint" id="previewHint" data-i18n="previewHint">Switch theme mode to preview themed monochrome icons</p>
         </section>
 
+        <!-- EXPORT PANEL -->
         <section class="panel export-panel" id="exportPanel">
             <div class="panel-header">
                 <span class="material-symbols-rounded">download</span>
@@ -455,6 +476,14 @@
                     <span>mipmap-*/ic_launcher.png</span>
                 </div>
                 <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>mipmap-*/ic_launcher_foreground.png</span>
+                </div>
+                <div class="file-item file indent-1">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>mipmap-*/ic_launcher_monochrome.png</span>
+                </div>
+                <div class="file-item file indent-1">
                     <span class="material-symbols-rounded">code</span>
                     <span>values/ic_launcher_background.xml</span>
                 </div>
@@ -465,6 +494,10 @@
                 <div class="file-item folder">
                     <span class="material-symbols-rounded">folder</span>
                     <span>web/icons/</span>
+                </div>
+                <div class="file-item file">
+                    <span class="material-symbols-rounded">image</span>
+                    <span>playstore-icon.png</span>
                 </div>
             </div>
 
@@ -478,6 +511,7 @@
             </div>
         </section>
 
+        <!-- CODE PANEL -->
         <section class="panel code-panel" id="codePanel">
             <div class="panel-header">
                 <span class="material-symbols-rounded">code</span>
@@ -519,7 +553,7 @@
                     <pre><code>&lt;!-- Add these attributes to &lt;application&gt; tag --&gt;
 android:icon="@mipmap/<span class="code-dynamic" id="codeIconName1">ic_launcher</span>"
 android:roundIcon="@mipmap/<span class="code-dynamic" id="codeIconName2">ic_launcher</span>_round"
-android:banner="@drawable/<span class="code-dynamic" id="codeIconName3">ic_launcher</span>_foreground"
+android:banner="@drawable/<span class="code-dynamic" id="codeIconName3">ic_launcher</span>_tv_banner"
 android:logo="@mipmap/<span class="code-dynamic" id="codeIconName4">ic_launcher</span>"
 android:label="@string/app_name"</code></pre>
                 </div>
@@ -540,7 +574,7 @@ android:label="@string/app_name"</code></pre>
 &lt;adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"&gt;
     &lt;background android:drawable="@color/<span class="code-dynamic" id="codeIconName5">ic_launcher</span>_background"/&gt;
     &lt;foreground android:drawable="@mipmap/<span class="code-dynamic" id="codeIconName6">ic_launcher</span>_foreground"/&gt;
-    &lt;monochrome android:drawable="@drawable/<span class="code-dynamic" id="codeIconName7">ic_launcher</span>_monochrome"/&gt;
+    &lt;monochrome android:drawable="@mipmap/<span class="code-dynamic" id="codeIconName7">ic_launcher</span>_monochrome"/&gt;
 &lt;/adaptive-icon&gt;</code></pre>
                 </div>
             </div>
@@ -624,16 +658,18 @@ android:label="@string/app_name"</code></pre>
 
     </main>
 
+    <!-- TOAST -->
     <div class="toast" id="toast">
         <span class="material-symbols-rounded" id="toastIcon">check_circle</span>
         <span id="toastMessage">Success!</span>
     </div>
 
+    <!-- HIDDEN CANVAS -->
     <canvas id="processCanvas" width="1024" height="1024" style="display: none;"></canvas>
 
+    <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    
     <script src="app.js"></script>
 </body>
 </html>
