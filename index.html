@@ -111,7 +111,7 @@
 
                 <div class="divider"></div>
 
-                <!-- Mono Icon Toggle -->
+                <!-- Mono Icon Toggle (Configuration only) -->
                 <div class="toggle-row">
                     <div class="toggle-label">
                         <span class="material-symbols-rounded">contrast</span>
@@ -174,30 +174,8 @@
                         <span data-i18n="padding">Padding</span>
                     </label>
                     <div class="range-wrapper">
-                        <input type="range" class="range-slider" id="paddingSlider" min="0" max="40" value="15">
-                        <span class="range-value" id="paddingValue">15%</span>
-                    </div>
-                </div>
-
-                <!-- Icon Shape -->
-                <div class="input-group">
-                    <label class="input-label">
-                        <span class="material-symbols-rounded">shapes</span>
-                        <span data-i18n="iconShape">Preview Shape</span>
-                    </label>
-                    <div class="shape-selector">
-                        <div class="shape-option" data-shape="circle" title="Circle">
-                            <div class="shape-preview circle"></div>
-                        </div>
-                        <div class="shape-option active" data-shape="squircle" title="Squircle">
-                            <div class="shape-preview squircle"></div>
-                        </div>
-                        <div class="shape-option" data-shape="rounded" title="Rounded">
-                            <div class="shape-preview rounded"></div>
-                        </div>
-                        <div class="shape-option" data-shape="square" title="Square">
-                            <div class="shape-preview square"></div>
-                        </div>
+                        <input type="range" class="range-slider" id="paddingSlider" min="0" max="40" value="0">
+                        <span class="range-value" id="paddingValue">0%</span>
                     </div>
                 </div>
             </div>
@@ -249,16 +227,56 @@
                 <h2 class="panel-title" data-i18n="preview">Preview</h2>
             </div>
 
-            <!-- Preview Mode Toggle -->
-            <div class="preview-mode-toggle">
-                <button class="preview-mode-btn active" data-mode="phone">
-                    <span class="material-symbols-rounded">smartphone</span>
-                    <span>Phone</span>
-                </button>
-                <button class="preview-mode-btn" data-mode="tv">
-                    <span class="material-symbols-rounded">tv</span>
-                    <span>TV</span>
-                </button>
+            <!-- Preview Controls Container -->
+            <div class="preview-controls">
+                <!-- Device Mode Toggle -->
+                <div class="control-group">
+                    <label class="control-label">Device</label>
+                    <div class="segment-control">
+                        <button class="segment-btn active" data-mode="phone">
+                            <span class="material-symbols-rounded">smartphone</span>
+                            <span>Phone</span>
+                        </button>
+                        <button class="segment-btn" data-mode="tv">
+                            <span class="material-symbols-rounded">tv</span>
+                            <span>TV</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Theme Mode Toggle -->
+                <div class="control-group" id="themeControlGroup">
+                    <label class="control-label">Theme Mode</label>
+                    <div class="segment-control">
+                        <button class="segment-btn active" data-theme="normal">
+                            <span class="material-symbols-rounded">palette</span>
+                            <span>Normal</span>
+                        </button>
+                        <button class="segment-btn" data-theme="themed">
+                            <span class="material-symbols-rounded">contrast</span>
+                            <span>Themed</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Icon Shape Selector -->
+                <div class="control-group" id="shapeControlGroup">
+                    <label class="control-label" data-i18n="iconShape">Preview Shape</label>
+                    <div class="shape-selector mini">
+                        <div class="shape-option" data-shape="circle" title="Circle">
+                            <div class="shape-preview circle"></div>
+                        </div>
+                        <div class="shape-option active" data-shape="squircle" title="Squircle">
+                            <div class="shape-preview squircle"></div>
+                        </div>
+                        <div class="shape-option" data-shape="rounded" title="Rounded">
+                            <div class="shape-preview rounded"></div>
+                        </div>
+                        <div class="shape-option" data-shape="square" title="Square">
+                            <div class="shape-preview square"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Preview Container -->
@@ -295,11 +313,6 @@
                                 <!-- Apps will be rendered by JS -->
                             </div>
                         </div>
-
-                        <!-- Theme Toggle FAB -->
-                        <button class="theme-fab" id="themeFab" title="Toggle Theme">
-                            <span class="material-symbols-rounded">palette</span>
-                        </button>
 
                         <!-- Phone Dock -->
                         <div class="phone-dock" id="phoneDock">
@@ -365,11 +378,6 @@
                 </div>
 
             </div>
-
-            <!-- Preview Hint -->
-            <p class="preview-hint" id="previewHint" data-i18n="previewHint">
-                Click palette button to preview themed monochrome icons
-            </p>
         </section>
 
         <!-- Export Panel -->
