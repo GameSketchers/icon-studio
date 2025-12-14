@@ -206,6 +206,7 @@
             syncTvBgColor: document.getElementById('syncTvBgColor'),
             scaleSlider: document.getElementById('scaleSlider'),
             scaleValue: document.getElementById('scaleValue'),
+            resetScaleBtn: document.getElementById('resetScaleBtn'),
             monoToggle: document.getElementById('monoToggle'),
             monoSection: document.getElementById('monoSection'),
             monoStatus: document.getElementById('monoStatus'),
@@ -309,6 +310,10 @@
         
         if (DOM.scaleSlider) {
             DOM.scaleSlider.addEventListener('input', handleScaleChange);
+        }
+        
+        if (DOM.resetScaleBtn) {
+            DOM.resetScaleBtn.addEventListener('click', handleResetScale);
         }
         
         DOM.shapeOptions.forEach(option => {
@@ -515,10 +520,23 @@
 
     function handleScaleChange(e) {
         state.scale = parseInt(e.target.value);
+        updateScaleDisplay();
+        updateAllPreviews();
+    }
+
+    function handleResetScale() {
+        state.scale = 100;
+        if (DOM.scaleSlider) {
+            DOM.scaleSlider.value = 100;
+        }
+        updateScaleDisplay();
+        updateAllPreviews();
+    }
+
+    function updateScaleDisplay() {
         if (DOM.scaleValue) {
             DOM.scaleValue.textContent = state.scale + '%';
         }
-        updateAllPreviews();
     }
 
     function handleShapeChange(e) {
@@ -792,9 +810,9 @@
         ctx.fillRect(0, 0, 320, 180);
         
         if (state.tvBannerImg) {
-            const scale = Math.max(320 / state.tvBannerImg.width, 180 / state.tvBannerImg.height);
-            const w = state.tvBannerImg.width * scale;
-            const h = state.tvBannerImg.height * scale;
+            const imgScale = Math.max(320 / state.tvBannerImg.width, 180 / state.tvBannerImg.height);
+            const w = state.tvBannerImg.width * imgScale;
+            const h = state.tvBannerImg.height * imgScale;
             ctx.drawImage(state.tvBannerImg, (320 - w) / 2, (180 - h) / 2, w, h);
         } else if (state.foregroundImg) {
             const iconSize = 70 * (state.scale / 100);
