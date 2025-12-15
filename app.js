@@ -33,11 +33,12 @@
     ];
 
     const TV_APPS = [
-        { id: 'netflix', name: 'Netflix', file: 'netflix.png', color: '#E50914' },
-        { id: 'youtube', name: 'YouTube', file: 'youtube.png', color: '#FF0000' },
-        { id: 'prime', name: 'Prime Video', file: 'prime.png', color: '#00A8E1' },
-        { id: 'spotify', name: 'Spotify', file: 'spotify.png', color: '#1DB954' },
-        { id: 'twitch', name: 'Twitch', file: 'twitch.png', color: '#9146FF' }
+        { id: 'netflix', name: 'Netflix', banner: 'netflix_banner.png', color: '#E50914' },
+        { id: 'youtube', name: 'YouTube', banner: 'youtube_banner.png', color: '#FF0000' },
+        { id: 'prime', name: 'Prime Video', banner: 'prime_banner.png', color: '#00A8E1' },
+        { id: 'disney', name: 'Disney+', banner: 'disney_banner.png', color: '#113CCF' },
+        { id: 'spotify', name: 'Spotify', banner: 'spotify_banner.png', color: '#1DB954' },
+        { id: 'twitch', name: 'Twitch', banner: 'twitch_banner.png', color: '#9146FF' }
     ];
 
     const LANGUAGES = [
@@ -53,13 +54,12 @@
 
     const translations = {
         en: {
-            appTitle: "Icon Studio",
             configuration: "Configuration",
             tabIcon: "Icon",
             tabTV: "TV Banner",
             appName: "App Name",
             iconFileName: "Icon File Name",
-            foregroundSection: "FOREGROUND",
+            foreground: "FOREGROUND",
             uploadForeground: "Upload Foreground",
             dragDrop: "Drag & Drop or Click",
             monoIcon: "Mono Icon",
@@ -70,10 +70,14 @@
             syncWithIcon: "Sync with icon background",
             scale: "Scale",
             iconShape: "Preview Shape",
-            tvBannerSection: "TV BANNER (320×180)",
+            tvBanner: "TV BANNER (320×180)",
             uploadTvBanner: "Upload TV Banner",
             tvHint: "If not uploaded, will generate from icon automatically",
+            tvHome: "Home",
+            tvMovies: "Movies",
             tvApps: "Apps",
+            tvYourApps: "Your Apps",
+            tvPopular: "Popular Apps",
             preview: "Preview",
             previewHint: "Switch theme mode to preview themed monochrome icons",
             export: "Export",
@@ -87,24 +91,22 @@
             downloadZip: "Download ZIP",
             codeSnippets: "Code Snippets",
             code: "Code",
+            config: "Config",
             processing: "Processing...",
             success: "ZIP downloaded successfully!",
             error: "Please upload a foreground image first",
             loaded: "Image loaded!",
             copied: "Copied to clipboard!",
-            dateDisplay: "Sunday, Jan 14",
             selectLanguage: "Select Language",
-            autoColor: "Color detected from image",
             enableMono: "Enable Mono Icon first"
         },
         tr: {
-            appTitle: "İkon Stüdyosu",
             configuration: "Yapılandırma",
             tabIcon: "İkon",
             tabTV: "TV Banner",
             appName: "Uygulama Adı",
             iconFileName: "İkon Dosya Adı",
-            foregroundSection: "ÖN PLAN",
+            foreground: "ÖN PLAN",
             uploadForeground: "Ön Plan Yükle",
             dragDrop: "Sürükle veya Tıkla",
             monoIcon: "Mono İkon",
@@ -115,10 +117,14 @@
             syncWithIcon: "İkon arkaplanı ile senkronize",
             scale: "Ölçek",
             iconShape: "Önizleme Şekli",
-            tvBannerSection: "TV BANNER (320×180)",
+            tvBanner: "TV BANNER (320×180)",
             uploadTvBanner: "TV Banner Yükle",
             tvHint: "Yüklenmezse ikondan otomatik oluşturulur",
+            tvHome: "Ana Sayfa",
+            tvMovies: "Filmler",
             tvApps: "Uygulamalar",
+            tvYourApps: "Uygulamalarınız",
+            tvPopular: "Popüler Uygulamalar",
             preview: "Önizleme",
             previewHint: "Temalı mono ikonları önizlemek için tema modunu değiştirin",
             export: "Dışa Aktar",
@@ -132,24 +138,22 @@
             downloadZip: "ZIP İndir",
             codeSnippets: "Kod Parçacıkları",
             code: "Kod",
+            config: "Ayarlar",
             processing: "İşleniyor...",
             success: "ZIP başarıyla indirildi!",
             error: "Lütfen önce bir ön plan görseli yükleyin",
             loaded: "Görsel yüklendi!",
             copied: "Panoya kopyalandı!",
-            dateDisplay: "Pazar, 14 Ocak",
             selectLanguage: "Dil Seçin",
-            autoColor: "Renk resimden algılandı",
             enableMono: "Önce Mono İkonu etkinleştirin"
         },
         ja: {
-            appTitle: "アイコンスタジオ",
             configuration: "設定",
             tabIcon: "アイコン",
             tabTV: "TVバナー",
             appName: "アプリ名",
             iconFileName: "アイコンファイル名",
-            foregroundSection: "フォアグラウンド",
+            foreground: "フォアグラウンド",
             uploadForeground: "フォアグラウンドをアップロード",
             dragDrop: "ドラッグ＆ドロップまたはクリック",
             monoIcon: "モノクロアイコン",
@@ -160,10 +164,14 @@
             syncWithIcon: "アイコン背景と同期",
             scale: "スケール",
             iconShape: "プレビュー形状",
-            tvBannerSection: "TVバナー (320×180)",
+            tvBanner: "TVバナー (320×180)",
             uploadTvBanner: "TVバナーをアップロード",
             tvHint: "アップロードしない場合、アイコンから自動生成",
+            tvHome: "ホーム",
+            tvMovies: "映画",
             tvApps: "アプリ",
+            tvYourApps: "あなたのアプリ",
+            tvPopular: "人気のアプリ",
             preview: "プレビュー",
             previewHint: "テーマモードを切り替えてモノクロアイコンをプレビュー",
             export: "エクスポート",
@@ -177,24 +185,22 @@
             downloadZip: "ZIPをダウンロード",
             codeSnippets: "コードスニペット",
             code: "コード",
+            config: "設定",
             processing: "処理中...",
             success: "ZIPのダウンロードが完了しました！",
             error: "最初にフォアグラウンド画像をアップロードしてください",
             loaded: "画像を読み込みました！",
             copied: "クリップボードにコピーしました！",
-            dateDisplay: "1月14日 日曜日",
             selectLanguage: "言語を選択",
-            autoColor: "画像から色を検出しました",
             enableMono: "先にモノアイコンを有効にしてください"
         },
         de: {
-            appTitle: "Icon Studio",
             configuration: "Konfiguration",
             tabIcon: "Symbol",
             tabTV: "TV-Banner",
             appName: "App-Name",
             iconFileName: "Symbol-Dateiname",
-            foregroundSection: "VORDERGRUND",
+            foreground: "VORDERGRUND",
             uploadForeground: "Vordergrund hochladen",
             dragDrop: "Ziehen & Ablegen oder Klicken",
             monoIcon: "Mono-Symbol",
@@ -205,10 +211,14 @@
             syncWithIcon: "Mit Symbol-Hintergrund synchronisieren",
             scale: "Skalierung",
             iconShape: "Vorschauform",
-            tvBannerSection: "TV-BANNER (320×180)",
+            tvBanner: "TV-BANNER (320×180)",
             uploadTvBanner: "TV-Banner hochladen",
             tvHint: "Wird automatisch aus dem Symbol generiert",
+            tvHome: "Startseite",
+            tvMovies: "Filme",
             tvApps: "Apps",
+            tvYourApps: "Ihre Apps",
+            tvPopular: "Beliebte Apps",
             preview: "Vorschau",
             previewHint: "Themenmodus umschalten für Monochrom-Vorschau",
             export: "Exportieren",
@@ -222,24 +232,22 @@
             downloadZip: "ZIP herunterladen",
             codeSnippets: "Code-Snippets",
             code: "Code",
+            config: "Konfig",
             processing: "Verarbeitung...",
             success: "ZIP erfolgreich heruntergeladen!",
             error: "Bitte laden Sie zuerst ein Vordergrundbild hoch",
             loaded: "Bild geladen!",
             copied: "In die Zwischenablage kopiert!",
-            dateDisplay: "Sonntag, 14. Jan",
             selectLanguage: "Sprache auswählen",
-            autoColor: "Farbe aus Bild erkannt",
             enableMono: "Aktivieren Sie zuerst das Mono-Symbol"
         },
         fr: {
-            appTitle: "Icon Studio",
             configuration: "Configuration",
             tabIcon: "Icône",
             tabTV: "Bannière TV",
             appName: "Nom de l'app",
             iconFileName: "Nom du fichier icône",
-            foregroundSection: "PREMIER PLAN",
+            foreground: "PREMIER PLAN",
             uploadForeground: "Télécharger le premier plan",
             dragDrop: "Glisser-déposer ou Cliquer",
             monoIcon: "Icône Mono",
@@ -250,10 +258,14 @@
             syncWithIcon: "Synchroniser avec l'arrière-plan",
             scale: "Échelle",
             iconShape: "Forme de prévisualisation",
-            tvBannerSection: "BANNIÈRE TV (320×180)",
+            tvBanner: "BANNIÈRE TV (320×180)",
             uploadTvBanner: "Télécharger la bannière TV",
             tvHint: "Généré automatiquement si non téléchargé",
+            tvHome: "Accueil",
+            tvMovies: "Films",
             tvApps: "Apps",
+            tvYourApps: "Vos Apps",
+            tvPopular: "Apps Populaires",
             preview: "Aperçu",
             previewHint: "Basculer le mode thème pour prévisualiser",
             export: "Exporter",
@@ -267,24 +279,22 @@
             downloadZip: "Télécharger ZIP",
             codeSnippets: "Extraits de code",
             code: "Code",
+            config: "Config",
             processing: "Traitement...",
             success: "ZIP téléchargé avec succès!",
             error: "Veuillez d'abord télécharger une image",
             loaded: "Image chargée!",
             copied: "Copié!",
-            dateDisplay: "Dimanche 14 janv.",
             selectLanguage: "Choisir la langue",
-            autoColor: "Couleur détectée",
             enableMono: "Activez d'abord l'icône Mono"
         },
         es: {
-            appTitle: "Icon Studio",
             configuration: "Configuración",
             tabIcon: "Icono",
             tabTV: "Banner TV",
             appName: "Nombre de App",
             iconFileName: "Nombre de archivo",
-            foregroundSection: "PRIMER PLANO",
+            foreground: "PRIMER PLANO",
             uploadForeground: "Subir primer plano",
             dragDrop: "Arrastrar o hacer clic",
             monoIcon: "Icono Mono",
@@ -295,10 +305,14 @@
             syncWithIcon: "Sincronizar con fondo",
             scale: "Escala",
             iconShape: "Forma de vista previa",
-            tvBannerSection: "BANNER TV (320×180)",
+            tvBanner: "BANNER TV (320×180)",
             uploadTvBanner: "Subir banner TV",
             tvHint: "Se generará automáticamente si no se sube",
+            tvHome: "Inicio",
+            tvMovies: "Películas",
             tvApps: "Apps",
+            tvYourApps: "Tus Apps",
+            tvPopular: "Apps Populares",
             preview: "Vista previa",
             previewHint: "Cambiar modo de tema para previsualizar",
             export: "Exportar",
@@ -312,24 +326,22 @@
             downloadZip: "Descargar ZIP",
             codeSnippets: "Fragmentos de código",
             code: "Código",
+            config: "Config",
             processing: "Procesando...",
             success: "¡ZIP descargado!",
             error: "Por favor, suba una imagen primero",
             loaded: "¡Imagen cargada!",
             copied: "¡Copiado!",
-            dateDisplay: "Domingo, 14 ene",
             selectLanguage: "Seleccionar idioma",
-            autoColor: "Color detectado",
             enableMono: "Primero habilite el icono Mono"
         },
         zh: {
-            appTitle: "图标工作室",
             configuration: "配置",
             tabIcon: "图标",
             tabTV: "电视横幅",
             appName: "应用名称",
             iconFileName: "图标文件名",
-            foregroundSection: "前景",
+            foreground: "前景",
             uploadForeground: "上传前景",
             dragDrop: "拖放或点击",
             monoIcon: "单色图标",
@@ -340,10 +352,14 @@
             syncWithIcon: "与图标背景同步",
             scale: "缩放",
             iconShape: "预览形状",
-            tvBannerSection: "电视横幅 (320×180)",
+            tvBanner: "电视横幅 (320×180)",
             uploadTvBanner: "上传电视横幅",
             tvHint: "未上传将自动生成",
+            tvHome: "主页",
+            tvMovies: "电影",
             tvApps: "应用",
+            tvYourApps: "您的应用",
+            tvPopular: "热门应用",
             preview: "预览",
             previewHint: "切换主题模式预览单色图标",
             export: "导出",
@@ -357,24 +373,22 @@
             downloadZip: "下载ZIP",
             codeSnippets: "代码片段",
             code: "代码",
+            config: "配置",
             processing: "处理中...",
             success: "下载成功！",
             error: "请先上传前景图像",
             loaded: "图像已加载！",
             copied: "已复制！",
-            dateDisplay: "1月14日 星期日",
             selectLanguage: "选择语言",
-            autoColor: "检测到颜色",
             enableMono: "请先启用单色图标"
         },
         ko: {
-            appTitle: "아이콘 스튜디오",
             configuration: "구성",
             tabIcon: "아이콘",
             tabTV: "TV 배너",
             appName: "앱 이름",
             iconFileName: "아이콘 파일 이름",
-            foregroundSection: "전경",
+            foreground: "전경",
             uploadForeground: "전경 업로드",
             dragDrop: "드래그 앤 드롭 또는 클릭",
             monoIcon: "모노 아이콘",
@@ -385,10 +399,14 @@
             syncWithIcon: "아이콘 배경과 동기화",
             scale: "크기",
             iconShape: "미리보기 모양",
-            tvBannerSection: "TV 배너 (320×180)",
+            tvBanner: "TV 배너 (320×180)",
             uploadTvBanner: "TV 배너 업로드",
             tvHint: "업로드하지 않으면 자동 생성",
+            tvHome: "홈",
+            tvMovies: "영화",
             tvApps: "앱",
+            tvYourApps: "내 앱",
+            tvPopular: "인기 앱",
             preview: "미리보기",
             previewHint: "테마 모드 전환으로 미리보기",
             export: "내보내기",
@@ -402,14 +420,13 @@
             downloadZip: "ZIP 다운로드",
             codeSnippets: "코드 스니펫",
             code: "코드",
+            config: "설정",
             processing: "처리 중...",
             success: "다운로드 완료!",
             error: "먼저 전경 이미지를 업로드하세요",
             loaded: "이미지 로드됨!",
             copied: "복사됨!",
-            dateDisplay: "1월 14일 일요일",
             selectLanguage: "언어 선택",
-            autoColor: "색상 감지됨",
             enableMono: "먼저 모노 아이콘을 활성화하세요"
         }
     };
@@ -441,7 +458,6 @@
 
     let DOM = {};
     let toastTimeout;
-    let clockInterval;
 
     function $(id) {
         return document.getElementById(id);
@@ -504,8 +520,7 @@
             clockDate: $('clockDate'),
             statusTime: $('statusTime'),
             tvFrame: $('tvFrame'),
-            tvAppList: $('tvAppList'),
-            tvAppRow: $('tvAppRow'),
+            tvPopularRow: $('tvPopularRow'),
             tvPreviewCanvas: $('tvPreviewCanvas'),
             tvBannerTitle: $('tvBannerTitle'),
             tvTime: $('tvTime'),
@@ -534,7 +549,7 @@
         renderDockIcons();
         renderTVApps();
         updateClock();
-        clockInterval = setInterval(updateClock, 1000);
+        setInterval(updateClock, 1000);
         updateScaleDisplay();
         updateAllPreviews();
         updateFileCount();
@@ -867,7 +882,7 @@
         const detectedColor = getDominantColor(img);
         updateBgColor(detectedColor);
         updateAllPreviews();
-        showToast(translations[state.currentLang]?.autoColor || 'Color detected from image', 'success');
+        showToast(translations[state.currentLang]?.loaded || 'Image loaded!', 'success');
     }
 
     function handleMonoUpload(img) {
@@ -987,6 +1002,16 @@
             icon.classList.remove('circle', 'squircle', 'rounded', 'square');
             icon.classList.add(state.shape);
         });
+        $$('.dock-icon').forEach(icon => {
+            icon.classList.remove('circle', 'squircle', 'rounded', 'square');
+            icon.classList.add(state.shape);
+        });
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
 
     function renderPhoneApps() {
@@ -1030,7 +1055,7 @@
         let html = '';
         DOCK_ICONS.forEach(app => {
             html += `
-                <div class="dock-icon" style="background: ${app.color}">
+                <div class="dock-icon ${state.shape}" style="background: ${app.color}">
                     <img class="icon-color" src="${ICON_BASE_PATH}${app.file}" alt="${escapeHtml(app.name)}" onerror="this.style.display='none'">
                     <img class="icon-mono" src="${ICON_BASE_PATH}${app.mono}" alt="${escapeHtml(app.name)} Mono" onerror="this.style.display='none'">
                 </div>
@@ -1040,55 +1065,22 @@
     }
 
     function renderTVApps() {
-        if (!DOM.tvAppList || !DOM.tvAppRow) return;
+        if (!DOM.tvPopularRow) return;
         
-        let sidebarHtml = '';
-        TV_APPS.forEach((app, i) => {
-            sidebarHtml += `
-                <div class="tv-app-item ${i === 0 ? 'active' : ''}" data-app="${app.id}">
-                    <div class="tv-app-icon" style="background: ${app.color}">
-                        <img src="${ICON_BASE_PATH}${app.file}" alt="${escapeHtml(app.name)}" onerror="this.style.display='none'">
-                    </div>
-                    <span class="tv-app-name">${escapeHtml(app.name)}</span>
-                </div>
-            `;
-        });
-        sidebarHtml += `
-            <div class="tv-app-item" data-app="user">
-                <div class="tv-app-icon" id="tvSidebarUserIcon">
-                    <canvas id="tvSidebarCanvas" width="32" height="32"></canvas>
-                </div>
-                <span class="tv-app-name" id="tvSidebarAppName">${escapeHtml(state.appName)}</span>
-            </div>
-        `;
-        DOM.tvAppList.innerHTML = sidebarHtml;
-
-        let rowHtml = `
-            <div class="tv-app-card" data-app="user">
-                <div class="tv-app-card-icon" id="tvRowUserIcon">
-                    <canvas id="tvRowCanvas" width="60" height="60"></canvas>
-                </div>
-                <span class="tv-app-card-name" id="tvRowAppName">${escapeHtml(state.appName)}</span>
-            </div>
-        `;
+        let html = '';
         TV_APPS.forEach(app => {
-            rowHtml += `
-                <div class="tv-app-card" data-app="${app.id}">
-                    <div class="tv-app-card-icon" style="background: ${app.color}">
-                        <img src="${ICON_BASE_PATH}${app.file}" alt="${escapeHtml(app.name)}" onerror="this.style.display='none'">
+            html += `
+                <div class="tv-banner-card" data-app="${app.id}">
+                    <div class="tv-banner-image" style="background: ${app.color}">
+                        <img src="${ICON_BASE_PATH}${app.banner}" alt="${escapeHtml(app.name)}" onerror="this.parentElement.style.background='${app.color}'">
                     </div>
-                    <span class="tv-app-card-name">${escapeHtml(app.name)}</span>
+                    <div class="tv-banner-name">${escapeHtml(app.name)}</div>
                 </div>
             `;
         });
-        DOM.tvAppRow.innerHTML = rowHtml;
+        DOM.tvPopularRow.innerHTML = html;
+        
         updateTVPreview();
-    }
-
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
     }
 
     function updateAllPreviews() {
@@ -1129,50 +1121,46 @@
         if (!canvas) return;
 
         const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, 320, 180);
-        ctx.fillStyle = state.syncTvBgColor ? state.bgColor : state.tvBgColor;
-        ctx.fillRect(0, 0, 320, 180);
+        const width = 320;
+        const height = 180;
+        
+        ctx.clearRect(0, 0, width, height);
+        
+        const bgColor = state.syncTvBgColor ? state.bgColor : state.tvBgColor;
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, width, height);
 
         if (state.tvBannerImg) {
-            const scale = Math.max(320 / state.tvBannerImg.width, 180 / state.tvBannerImg.height);
+            const scale = Math.max(width / state.tvBannerImg.width, height / state.tvBannerImg.height);
             const w = state.tvBannerImg.width * scale;
             const h = state.tvBannerImg.height * scale;
-            ctx.drawImage(state.tvBannerImg, (320 - w) / 2, (180 - h) / 2, w, h);
+            ctx.drawImage(state.tvBannerImg, (width - w) / 2, (height - h) / 2, w, h);
         } else if (state.foregroundImg) {
-            const iconSize = 70 * (state.scale / 100);
+            const iconSize = 80 * (state.scale / 100);
             const ar = state.foregroundImg.width / state.foregroundImg.height;
             let dw = ar > 1 ? iconSize : iconSize * ar;
             let dh = ar > 1 ? iconSize / ar : iconSize;
-            ctx.drawImage(state.foregroundImg, (320 - dw) / 2, 40, dw, dh);
+            
+            const iconX = (width - dw) / 2;
+            const iconY = (height - dh) / 2 - 15;
+            
+            ctx.drawImage(state.foregroundImg, iconX, iconY, dw, dh);
             
             ctx.fillStyle = '#ffffff';
-            ctx.font = '600 16px Inter, sans-serif';
+            ctx.font = '600 18px Inter, sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText(state.appName, 160, 140);
-            ctx.font = '400 11px Inter, sans-serif';
-            ctx.fillStyle = 'rgba(255,255,255,0.6)';
-            ctx.fillText('Open App', 160, 158);
+            ctx.textBaseline = 'top';
+            ctx.fillText(state.appName, width / 2, iconY + dh + 12);
+        } else {
+            ctx.fillStyle = 'rgba(255,255,255,0.3)';
+            ctx.font = '500 14px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('TV Banner Preview', width / 2, height / 2);
         }
 
-        if (DOM.tvBannerTitle) DOM.tvBannerTitle.textContent = state.appName;
-        updateSmallCanvas('tvSidebarCanvas', 32);
-        updateSmallCanvas('tvRowCanvas', 60);
-        
-        const sidebarName = $('tvSidebarAppName');
-        const rowName = $('tvRowAppName');
-        if (sidebarName) sidebarName.textContent = state.appName;
-        if (rowName) rowName.textContent = state.appName;
-    }
-
-    function updateSmallCanvas(id, size) {
-        const canvas = $(id);
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, size, size);
-        ctx.fillStyle = state.bgColor;
-        ctx.fillRect(0, 0, size, size);
-        if (state.foregroundImg) {
-            drawScaledImage(ctx, state.foregroundImg, size);
+        if (DOM.tvBannerTitle) {
+            DOM.tvBannerTitle.textContent = state.appName;
         }
     }
 
@@ -1231,10 +1219,6 @@
         const label = $('phoneAppLabel');
         if (label) label.textContent = state.appName;
         if (DOM.tvBannerTitle) DOM.tvBannerTitle.textContent = state.appName;
-        const sn = $('tvSidebarAppName');
-        const rn = $('tvRowAppName');
-        if (sn) sn.textContent = state.appName;
-        if (rn) rn.textContent = state.appName;
         updateTVPreview();
     }
 
@@ -1298,6 +1282,10 @@
             html += `<div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>drawable-xhdpi/${escapeHtml(name)}_tv_banner.png</span></div>`;
         }
 
+        if (state.exportPlayStore) {
+            html += `<div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>android/playstore-icon.png</span></div>`;
+        }
+
         if (state.exportIOS) {
             html += `
                 <div class="file-item folder"><span class="material-symbols-rounded">folder</span><span>ios/AppIcon.appiconset/</span></div>
@@ -1315,10 +1303,6 @@
             `;
         }
 
-        if (state.exportPlayStore) {
-            html += `<div class="file-item file"><span class="material-symbols-rounded">image</span><span>playstore-icon.png</span></div>`;
-        }
-
         if (!html) {
             html = `<div class="file-item" style="color: var(--text-muted); font-style: italic;"><span class="material-symbols-rounded">info</span><span>No platforms selected</span></div>`;
         }
@@ -1329,7 +1313,7 @@
     function updateCodeSnippets() {
         $$('.code-dynamic').forEach(el => {
             if (el.id.includes('IconName')) el.textContent = state.iconName;
-            if (el.id.includes('BgColor') || el.id.includes('ThemeColor') || el.id.includes('ManifestBg')) el.textContent = state.bgColor;
+            if (el.id.includes('BgColor') || el.id.includes('ThemeColor')) el.textContent = state.bgColor;
             if (el.id.includes('AppName')) el.textContent = state.appName;
         });
 
@@ -1470,7 +1454,7 @@
         }
 
         if (state.exportPlayStore) {
-            zip.file('playstore-icon.png', await createPlayStoreIcon());
+            zip.file('android/playstore-icon.png', await createPlayStoreIcon());
             addProgress(5);
         }
 
@@ -1689,16 +1673,21 @@
                 const h = state.tvBannerImg.height * imgScale;
                 ctx.drawImage(state.tvBannerImg, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
             } else if (state.foregroundImg) {
-                const iconSize = 140 * (state.scale / 100);
+                const iconSize = 160 * (state.scale / 100);
                 const ar = state.foregroundImg.width / state.foregroundImg.height;
                 let dw = ar > 1 ? iconSize : iconSize * ar;
                 let dh = ar > 1 ? iconSize / ar : iconSize;
-                ctx.drawImage(state.foregroundImg, (canvas.width - dw) / 2, 80, dw, dh);
+                
+                const iconX = (canvas.width - dw) / 2;
+                const iconY = (canvas.height - dh) / 2 - 30;
+                
+                ctx.drawImage(state.foregroundImg, iconX, iconY, dw, dh);
                 
                 ctx.fillStyle = '#ffffff';
                 ctx.font = '600 36px Inter, sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText(state.appName, canvas.width / 2, 280);
+                ctx.textBaseline = 'top';
+                ctx.fillText(state.appName, canvas.width / 2, iconY + dh + 20);
             }
 
             const final = document.createElement('canvas');

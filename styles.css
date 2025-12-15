@@ -28,7 +28,11 @@
     --focus-ring: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--info);
 }
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
 html { 
     font-size: 16px; 
@@ -81,9 +85,19 @@ select:focus-visible {
                 radial-gradient(ellipse at 80% 100%, rgba(80,60,60,0.1) 0%, transparent 50%);
 }
 
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+::-webkit-scrollbar { 
+    width: 6px; 
+    height: 6px; 
+}
+
+::-webkit-scrollbar-track { 
+    background: transparent; 
+}
+
+::-webkit-scrollbar-thumb { 
+    background: var(--border-light); 
+    border-radius: 3px; 
+}
 
 @supports (scrollbar-width: thin) {
     * {
@@ -92,6 +106,7 @@ select:focus-visible {
     }
 }
 
+/* ===== HEADER ===== */
 .header {
     position: sticky; 
     top: 0; 
@@ -170,6 +185,7 @@ select:focus-visible {
     border-color: var(--border-light);
 }
 
+/* ===== DESKTOP NAV ===== */
 .desktop-nav {
     display: flex; 
     background: var(--bg-card); 
@@ -207,6 +223,7 @@ select:focus-visible {
     box-shadow: inset var(--focus-ring);
 }
 
+/* ===== LANGUAGE MODAL ===== */
 .lang-modal {
     position: fixed; 
     inset: 0; 
@@ -327,6 +344,7 @@ select:focus-visible {
     opacity: 1; 
 }
 
+/* ===== MAIN CONTAINER ===== */
 .main-container {
     display: flex; 
     flex-direction: column; 
@@ -337,6 +355,7 @@ select:focus-visible {
     min-height: calc(100vh - 128px);
 }
 
+/* ===== PANELS ===== */
 .panel {
     display: none; 
     flex-direction: column; 
@@ -385,6 +404,7 @@ select:focus-visible {
     max-width: 400px;
 }
 
+/* ===== TABS ===== */
 .tabs {
     display: flex; 
     background: var(--bg-tertiary);
@@ -430,6 +450,7 @@ select:focus-visible {
     display: flex; 
 }
 
+/* ===== INPUT ELEMENTS ===== */
 .input-group { 
     display: flex; 
     flex-direction: column; 
@@ -488,6 +509,7 @@ select:focus-visible {
     font-style: italic; 
 }
 
+/* ===== UPLOAD ZONES ===== */
 .upload-zone {
     position: relative; 
     border: 2px dashed var(--border-light);
@@ -627,6 +649,7 @@ select:focus-visible {
     display: block;
 }
 
+/* ===== TOGGLE SWITCH ===== */
 .toggle-row { 
     display: flex; 
     justify-content: space-between; 
@@ -707,6 +730,7 @@ select:focus-visible {
     box-shadow: var(--focus-ring);
 }
 
+/* ===== COLOR PICKER ===== */
 .color-picker-row { 
     display: flex; 
     gap: 12px; 
@@ -767,7 +791,6 @@ select:focus-visible {
     transition: var(--transition);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
     padding: 0;
-    background-color: currentColor;
 }
 
 .color-preset:hover { 
@@ -783,6 +806,7 @@ select:focus-visible {
     box-shadow: var(--focus-ring), inset 0 0 0 1px rgba(255,255,255,0.1);
 }
 
+/* ===== RANGE SLIDER ===== */
 .range-wrapper {
     display: flex; 
     align-items: center; 
@@ -888,6 +912,7 @@ select:focus-visible {
     transform: rotate(180deg); 
 }
 
+/* ===== PREVIEW CONTROLS ===== */
 .preview-controls {
     display: flex; 
     flex-direction: column; 
@@ -950,6 +975,7 @@ select:focus-visible {
     color: var(--bg-primary); 
 }
 
+/* ===== SHAPE SELECTOR ===== */
 .shape-selector { 
     display: flex; 
     gap: 12px; 
@@ -995,17 +1021,18 @@ select:focus-visible {
 }
 
 .shape-preview.squircle { 
-    border-radius: 30%; 
+    border-radius: 28%; 
 }
 
 .shape-preview.rounded { 
-    border-radius: 6px; 
+    border-radius: 8px; 
 }
 
 .shape-preview.square { 
     border-radius: 2px; 
 }
 
+/* ===== PREVIEW CONTAINER ===== */
 .preview-container { 
     display: flex; 
     align-items: center; 
@@ -1021,6 +1048,7 @@ select:focus-visible {
     max-width: 300px; 
 }
 
+/* ===== PHONE FRAME ===== */
 .phone-frame {
     width: 280px; 
     aspect-ratio: 9/19.5;
@@ -1124,6 +1152,7 @@ select:focus-visible {
     color: #fff; 
 }
 
+/* ===== APP GRID ===== */
 .app-grid { 
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
@@ -1141,7 +1170,7 @@ select:focus-visible {
 .app-icon {
     width: 48px; 
     height: 48px; 
-    border-radius: 14px;
+    border-radius: 12px;
     display: flex; 
     align-items: center; 
     justify-content: center;
@@ -1149,7 +1178,7 @@ select:focus-visible {
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     overflow: hidden; 
     position: relative; 
-    transition: transform 0.2s;
+    transition: transform 0.2s, border-radius 0.2s;
 }
 
 .app-icon:hover { 
@@ -1161,15 +1190,15 @@ select:focus-visible {
 }
 
 .app-icon.squircle { 
-    border-radius: 22%; 
+    border-radius: 24%; 
 }
 
 .app-icon.rounded { 
-    border-radius: 25%; 
+    border-radius: 12px; 
 }
 
 .app-icon.square { 
-    border-radius: 10px; 
+    border-radius: 4px; 
 }
 
 .app-icon img { 
@@ -1223,6 +1252,7 @@ select:focus-visible {
     height: 100%; 
 }
 
+/* ===== PHONE DOCK ===== */
 .phone-dock {
     position: absolute; 
     bottom: 24px; 
@@ -1246,11 +1276,27 @@ select:focus-visible {
     justify-content: center;
     background: #fff; 
     overflow: hidden; 
-    transition: transform 0.2s;
+    transition: transform 0.2s, border-radius 0.2s;
 }
 
 .dock-icon:hover { 
     transform: scale(1.1); 
+}
+
+.dock-icon.circle {
+    border-radius: 50%;
+}
+
+.dock-icon.squircle {
+    border-radius: 24%;
+}
+
+.dock-icon.rounded {
+    border-radius: 12px;
+}
+
+.dock-icon.square {
+    border-radius: 4px;
 }
 
 .dock-icon img { 
@@ -1295,14 +1341,15 @@ select:focus-visible {
     border-radius: 2px; 
 }
 
+/* ===== TV FRAME ===== */
 .tv-frame {
     width: 100%; 
     max-width: 640px; 
     aspect-ratio: 16/9;
-    background: linear-gradient(145deg, #1a1a1a, #0a0a12);
-    border-radius: 16px; 
-    padding: 12px;
-    box-shadow: var(--shadow-lg); 
+    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    border-radius: 12px; 
+    padding: 8px;
+    box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(255,255,255,0.05);
     transition: var(--transition);
 }
 
@@ -1317,226 +1364,218 @@ select:focus-visible {
 .tv-screen {
     width: 100%; 
     height: 100%;
-    background: linear-gradient(135deg, #12121a, #0a0a12);
-    border-radius: 8px; 
+    background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 100%);
+    border-radius: 6px; 
     overflow: hidden; 
     display: flex; 
     flex-direction: column;
 }
 
+/* TV Header */
 .tv-header {
     display: flex; 
     justify-content: space-between; 
     align-items: center;
-    padding: 12px 20px; 
-    background: rgba(0,0,0,0.3);
+    padding: 12px 24px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
 }
 
-.tv-logo { 
-    display: flex; 
-    align-items: center; 
-    gap: 8px; 
-    font-size: 14px; 
-    color: rgba(255,255,255,0.8); 
+.tv-nav {
+    display: flex;
+    gap: 8px;
 }
 
-.tv-time { 
-    font-size: 14px; 
-    color: rgba(255,255,255,0.6); 
+.tv-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
 }
 
-.tv-content { 
-    flex: 1; 
-    display: flex; 
-    overflow: hidden; 
+.tv-nav-item .material-symbols-rounded {
+    font-size: 18px;
 }
 
-.tv-sidebar { 
-    width: 160px; 
-    background: rgba(0,0,0,0.4); 
-    padding: 16px; 
-    display: flex; 
-    flex-direction: column; 
-    gap: 8px; 
-    overflow-y: auto; 
+.tv-nav-item:hover {
+    color: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.1);
 }
 
-.tv-sidebar-title { 
-    font-size: 11px; 
-    font-weight: 600; 
-    color: rgba(255,255,255,0.5); 
-    text-transform: uppercase; 
-    margin-bottom: 8px; 
+.tv-nav-item.active {
+    color: #fff;
+    background: rgba(255,255,255,0.15);
 }
 
-.tv-app-item { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    padding: 8px 10px; 
-    border-radius: 8px; 
-    cursor: pointer; 
-    transition: var(--transition); 
+.tv-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-.tv-app-item:hover, 
-.tv-app-item.active { 
-    background: rgba(255,255,255,0.1); 
+.tv-time {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
 }
 
-.tv-app-icon { 
-    width: 32px; 
-    height: 32px; 
-    border-radius: 8px; 
-    overflow: hidden; 
-    background: #333; 
-    display: flex; 
-    align-items: center; 
+.tv-settings-btn {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 50%;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    transition: var(--transition);
 }
 
-.tv-app-icon img, 
-.tv-app-icon canvas { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
+.tv-settings-btn:hover {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
 }
 
-.tv-app-name { 
-    font-size: 11px; 
-    color: rgba(255,255,255,0.8); 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+.tv-settings-btn .material-symbols-rounded {
+    font-size: 20px;
 }
 
-.tv-main { 
-    flex: 1; 
-    padding: 20px; 
-    display: flex; 
-    flex-direction: column; 
-    gap: 16px; 
+/* TV Content */
+.tv-content {
+    flex: 1;
+    padding: 16px 24px;
     overflow-y: auto;
-    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.tv-featured-label, 
-.tv-row-label { 
-    font-size: 12px; 
-    font-weight: 600; 
-    color: rgba(255,255,255,0.6); 
-    text-transform: uppercase; 
+.tv-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.tv-banner-wrapper { 
-    display: flex; 
-    gap: 16px; 
-    align-items: flex-end; 
+.tv-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.tv-banner-preview { 
-    width: 200px; 
-    height: 113px; 
-    background: var(--bg-tertiary); 
-    border-radius: 10px; 
-    overflow: hidden; 
-    border: 2px solid rgba(255,255,255,0.1);
-    flex-shrink: 0;
-}
-
-.tv-banner-preview canvas { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-}
-
-.tv-banner-info { 
+/* TV Banner Row */
+.tv-banner-row {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
     padding-bottom: 8px;
-    min-width: 0;
+    scroll-snap-type: x mandatory;
 }
 
-.tv-banner-title { 
-    font-size: 16px; 
-    font-weight: 600; 
-    margin-bottom: 4px;
+.tv-banner-row::-webkit-scrollbar {
+    height: 4px;
+}
+
+.tv-banner-row::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+}
+
+/* TV Banner Card */
+.tv-banner-card {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: transform 0.2s ease;
+}
+
+.tv-banner-card:hover {
+    transform: scale(1.02);
+}
+
+.tv-banner-card:focus {
+    outline: none;
+}
+
+.tv-banner-card:focus .tv-banner-image {
+    box-shadow: 0 0 0 3px #fff;
+}
+
+.tv-banner-image {
+    width: 160px;
+    height: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #2a2a2a;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: box-shadow 0.2s ease;
+}
+
+.tv-banner-image img,
+.tv-banner-image canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tv-banner-name {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    max-width: 160px;
 }
 
-.tv-banner-subtitle { 
-    font-size: 12px; 
-    color: rgba(255,255,255,0.5); 
+/* User banner - slightly larger */
+.tv-banner-card.user-banner .tv-banner-image {
+    width: 180px;
+    height: 101px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5), 0 0 0 2px rgba(255,255,255,0.1);
 }
 
-.tv-app-row { 
-    display: flex; 
-    gap: 12px; 
-    overflow-x: auto; 
-    padding-bottom: 8px; 
+.tv-banner-card.user-banner .tv-banner-name {
+    max-width: 180px;
+    font-weight: 600;
+    color: #fff;
 }
 
-.tv-app-card { 
-    width: 80px; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    gap: 6px; 
-    padding: 8px; 
-    border-radius: 8px; 
-    cursor: pointer; 
-    transition: var(--transition);
-    flex-shrink: 0;
+/* TV Footer */
+.tv-footer {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 12px 24px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
 }
 
-.tv-app-card:hover { 
-    background: rgba(255,255,255,0.05); 
+.tv-footer .tv-nav-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
 }
 
-.tv-app-card-icon { 
-    width: 50px; 
-    height: 50px; 
-    border-radius: 10px; 
-    overflow: hidden; 
-    background: #333; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+.tv-footer .tv-nav-hint .material-symbols-rounded {
+    font-size: 14px;
 }
 
-.tv-app-card-icon img, 
-.tv-app-card-icon canvas { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-}
-
-.tv-app-card-name { 
-    font-size: 10px; 
-    color: rgba(255,255,255,0.7); 
-    text-align: center; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    max-width: 100%; 
-}
-
-.tv-nav-hint { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    gap: 16px; 
-    padding: 10px; 
-    background: rgba(0,0,0,0.3); 
-    font-size: 12px; 
-    color: rgba(255,255,255,0.5); 
-}
-
-.tv-nav-hint .material-symbols-rounded { 
-    font-size: 16px; 
-}
-
+/* ===== EXPORT PANEL ===== */
 .stats-grid { 
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
@@ -1603,25 +1642,11 @@ select:focus-visible {
     flex-shrink: 0;
 }
 
-.export-option-icon.android { 
-    color: var(--android-color); 
-}
-
-.export-option-icon.ios { 
-    color: var(--ios-color); 
-}
-
-.export-option-icon.web { 
-    color: var(--web-color); 
-}
-
-.export-option-icon.tv { 
-    color: var(--tv-color); 
-}
-
-.export-option-icon.store { 
-    color: var(--store-color); 
-}
+.export-option-icon.android { color: var(--android-color); }
+.export-option-icon.ios { color: var(--ios-color); }
+.export-option-icon.web { color: var(--web-color); }
+.export-option-icon.tv { color: var(--tv-color); }
+.export-option-icon.store { color: var(--store-color); }
 
 .export-option-text { 
     display: flex; 
@@ -1639,6 +1664,7 @@ select:focus-visible {
     color: var(--text-muted); 
 }
 
+/* ===== FILE TREE ===== */
 .file-tree {
     background: var(--bg-tertiary); 
     border-radius: var(--radius-lg);
@@ -1658,22 +1684,12 @@ select:focus-visible {
     color: var(--text-secondary); 
 }
 
-.file-item .material-symbols-rounded { 
-    font-size: 1rem; 
-}
+.file-item .material-symbols-rounded { font-size: 1rem; }
+.file-item.folder .material-symbols-rounded { color: #fbbf24; }
+.file-item.file .material-symbols-rounded { color: #60a5fa; }
+.file-item.indent-1 { padding-left: 20px; }
 
-.file-item.folder .material-symbols-rounded { 
-    color: #fbbf24; 
-}
-
-.file-item.file .material-symbols-rounded { 
-    color: #60a5fa; 
-}
-
-.file-item.indent-1 { 
-    padding-left: 20px; 
-}
-
+/* ===== DOWNLOAD BUTTON ===== */
 .download-btn {
     width: 100%; 
     display: flex; 
@@ -1723,6 +1739,7 @@ select:focus-visible {
     transition: width 0.3s; 
 }
 
+/* ===== CODE PANEL ===== */
 .code-section { 
     background: var(--bg-tertiary); 
     border-radius: var(--radius-lg); 
@@ -1789,6 +1806,7 @@ select:focus-visible {
     font-weight: 600; 
 }
 
+/* ===== MOBILE NAV ===== */
 .mobile-nav {
     display: none; 
     position: fixed; 
@@ -1828,6 +1846,7 @@ select:focus-visible {
     background: var(--bg-hover); 
 }
 
+/* ===== TOAST ===== */
 .toast {
     position: fixed; 
     bottom: 40px; 
@@ -1853,14 +1872,10 @@ select:focus-visible {
     pointer-events: auto; 
 }
 
-.toast.success #toastIcon { 
-    color: var(--success); 
-}
+.toast.success #toastIcon { color: var(--success); }
+.toast.error #toastIcon { color: var(--error); }
 
-.toast.error #toastIcon { 
-    color: var(--error); 
-}
-
+/* ===== ANIMATIONS ===== */
 @keyframes spin { 
     from { transform: rotate(0deg); } 
     to { transform: rotate(360deg); } 
@@ -1870,6 +1885,7 @@ select:focus-visible {
     animation: spin 1s linear infinite; 
 }
 
+/* ===== ACCESSIBILITY ===== */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -1879,68 +1895,32 @@ select:focus-visible {
         transition-duration: 0.01ms !important;
     }
     
-    .spinning {
-        animation: none;
-    }
-    
+    .spinning { animation: none; }
     .phone-frame:hover,
     .tv-frame:hover,
-    .download-btn:hover {
-        transform: none;
-    }
+    .download-btn:hover { transform: none; }
 }
 
 @media (forced-colors: active) {
-    .toggle-slider {
-        border: 2px solid CanvasText;
-    }
-    
-    .toggle-slider::before {
-        background: CanvasText;
-    }
-    
-    .toggle-switch input:checked + .toggle-slider {
-        background: Highlight;
-    }
-    
+    .toggle-slider { border: 2px solid CanvasText; }
+    .toggle-slider::before { background: CanvasText; }
+    .toggle-switch input:checked + .toggle-slider { background: Highlight; }
     .color-preset,
     .shape-option,
-    .lang-option {
-        border: 2px solid CanvasText;
-    }
-    
+    .lang-option { border: 2px solid CanvasText; }
     .color-preset.active,
     .shape-option.active,
-    .lang-option.active {
-        border-color: Highlight;
-    }
+    .lang-option.active { border-color: Highlight; }
 }
 
+/* ===== RESPONSIVE - TABLET & MOBILE ===== */
 @media (max-width: 768px) {
-    .header { 
-        padding: 12px 16px; 
-        height: 56px; 
-    }
-    
-    .logo-text { 
-        display: none; 
-    }
-    
-    .lang-btn { 
-        display: none; 
-    }
-    
-    .mobile-lang-btn { 
-        display: flex; 
-    }
-    
-    .desktop-nav { 
-        display: none; 
-    }
-    
-    .mobile-nav { 
-        display: flex; 
-    }
+    .header { padding: 12px 16px; height: 56px; }
+    .logo-text { display: none; }
+    .lang-btn { display: none; }
+    .mobile-lang-btn { display: flex; }
+    .desktop-nav { display: none; }
+    .mobile-nav { display: flex; }
     
     .main-container { 
         padding: 16px; 
@@ -1949,98 +1929,39 @@ select:focus-visible {
         gap: 16px; 
     }
     
-    .panel { 
-        padding: 20px; 
-        border-radius: var(--radius-lg); 
-    }
+    .panel { padding: 20px; border-radius: var(--radius-lg); }
+    .preview-panel .panel-header { padding: 16px; }
+    .preview-controls { padding: 16px; max-width: 100%; }
+    .preview-container { min-height: 420px; padding: 12px 0; }
     
-    .preview-panel .panel-header { 
-        padding: 16px; 
-    }
+    .phone-frame { width: 260px; border-radius: 36px; padding: 8px; }
+    .phone-screen { border-radius: 28px; }
+    .phone-notch { width: 80px; height: 24px; }
+    .app-grid { gap: 12px 8px; }
+    .app-icon { width: 44px; height: 44px; }
+    .app-label { font-size: 9px; max-width: 48px; }
+    .dock-icon { width: 40px; height: 40px; }
+    .phone-dock { padding: 8px 14px; gap: 12px; }
+    .clock-time { font-size: 3rem; }
     
-    .preview-controls { 
-        padding: 16px; 
-        max-width: 100%; 
-    }
+    /* TV Mobile */
+    .tv-header { padding: 8px 16px; }
+    .tv-nav-item { padding: 6px 10px; font-size: 11px; }
+    .tv-nav-item span:not(.material-symbols-rounded) { display: none; }
+    .tv-nav-item .material-symbols-rounded { font-size: 16px; }
+    .tv-content { padding: 12px 16px; gap: 16px; }
+    .tv-section-title { font-size: 12px; }
+    .tv-banner-row { gap: 12px; }
+    .tv-banner-image { width: 120px; height: 68px; border-radius: 6px; }
+    .tv-banner-name { font-size: 10px; max-width: 120px; }
+    .tv-banner-card.user-banner .tv-banner-image { width: 140px; height: 79px; }
+    .tv-banner-card.user-banner .tv-banner-name { max-width: 140px; }
+    .tv-footer { padding: 8px 16px; gap: 24px; }
+    .tv-settings-btn { width: 28px; height: 28px; }
+    .tv-settings-btn .material-symbols-rounded { font-size: 16px; }
     
-    .preview-container { 
-        min-height: 420px; 
-        padding: 12px 0; 
-    }
-    
-    .phone-frame { 
-        width: 260px; 
-        border-radius: 36px; 
-        padding: 8px; 
-    }
-    
-    .phone-screen { 
-        border-radius: 28px; 
-    }
-    
-    .phone-notch { 
-        width: 80px; 
-        height: 24px; 
-    }
-    
-    .app-grid { 
-        gap: 12px 8px; 
-    }
-    
-    .app-icon { 
-        width: 44px; 
-        height: 44px; 
-    }
-    
-    .app-label { 
-        font-size: 9px; 
-        max-width: 48px; 
-    }
-    
-    .dock-icon { 
-        width: 40px; 
-        height: 40px; 
-    }
-    
-    .phone-dock { 
-        padding: 8px 14px; 
-        gap: 12px; 
-    }
-    
-    .clock-time { 
-        font-size: 3rem; 
-    }
-    
-    .tv-sidebar { 
-        width: 120px; 
-        padding: 12px; 
-    }
-    
-    .tv-main { 
-        padding: 16px; 
-    }
-    
-    .tv-banner-preview { 
-        width: 160px; 
-        height: 90px; 
-    }
-    
-    .tv-app-card { 
-        width: 64px; 
-    }
-    
-    .tv-app-card-icon { 
-        width: 40px; 
-        height: 40px; 
-    }
-    
-    .lang-modal-content { 
-        padding: 20px; 
-    }
-    
-    .lang-options { 
-        grid-template-columns: 1fr; 
-    }
+    .lang-modal-content { padding: 20px; }
+    .lang-options { grid-template-columns: 1fr; }
     
     .toast { 
         left: 16px; 
@@ -2048,47 +1969,22 @@ select:focus-visible {
         transform: translateX(0) translateY(100px); 
         bottom: calc(80px + env(safe-area-inset-bottom, 0px)); 
     }
-    
-    .toast.show { 
-        transform: translateX(0) translateY(0); 
-    }
+    .toast.show { transform: translateX(0) translateY(0); }
 }
 
 @media (max-width: 380px) {
-    .phone-frame { 
-        width: 240px; 
-    }
+    .phone-frame { width: 240px; }
+    .app-icon { width: 40px; height: 40px; }
+    .dock-icon { width: 36px; height: 36px; }
+    .clock-time { font-size: 2.5rem; }
     
-    .app-icon { 
-        width: 40px; 
-        height: 40px; 
-    }
-    
-    .dock-icon { 
-        width: 36px; 
-        height: 36px; 
-    }
-    
-    .clock-time { 
-        font-size: 2.5rem; 
-    }
-    
-    .tv-sidebar { 
-        width: 100px; 
-    }
-    
-    .tv-banner-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .tv-banner-preview {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 16/9;
-    }
+    .tv-banner-image { width: 100px; height: 56px; }
+    .tv-banner-name { max-width: 100px; }
+    .tv-banner-card.user-banner .tv-banner-image { width: 120px; height: 68px; }
+    .tv-banner-card.user-banner .tv-banner-name { max-width: 120px; }
 }
 
+/* ===== UTILITY CLASSES ===== */
 .hidden { 
     display: none !important; 
 }

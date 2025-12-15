@@ -344,37 +344,60 @@
                 <div class="tv-frame hidden" id="tvFrame">
                     <div class="tv-screen">
                         <div class="tv-header">
-                            <div class="tv-logo">
-                                <span class="material-symbols-rounded">tv</span>
-                                <span>Android TV</span>
+                            <nav class="tv-nav">
+                                <button class="tv-nav-item active" data-section="home">
+                                    <span class="material-symbols-rounded">home</span>
+                                    <span data-i18n="tvHome">Home</span>
+                                </button>
+                                <button class="tv-nav-item" data-section="movies">
+                                    <span class="material-symbols-rounded">movie</span>
+                                    <span data-i18n="tvMovies">Movies</span>
+                                </button>
+                                <button class="tv-nav-item" data-section="apps">
+                                    <span class="material-symbols-rounded">apps</span>
+                                    <span data-i18n="tvApps">Apps</span>
+                                </button>
+                            </nav>
+                            <div class="tv-header-right">
+                                <span class="tv-time" id="tvTime">12:30</span>
+                                <button class="tv-settings-btn" aria-label="Settings">
+                                    <span class="material-symbols-rounded">settings</span>
+                                </button>
                             </div>
-                            <div class="tv-time" id="tvTime">12:30</div>
                         </div>
+                        
                         <div class="tv-content">
-                            <div class="tv-sidebar">
-                                <div class="tv-sidebar-title" data-i18n="tvApps">Apps</div>
-                                <div class="tv-app-list" id="tvAppList"></div>
-                            </div>
-                            <div class="tv-main">
-                                <div class="tv-featured-label">Featured App</div>
-                                <div class="tv-banner-wrapper">
-                                    <div class="tv-banner-preview">
-                                        <canvas id="tvPreviewCanvas" width="320" height="180"></canvas>
-                                    </div>
-                                    <div class="tv-banner-info">
-                                        <div class="tv-banner-title" id="tvBannerTitle">MyApp</div>
-                                        <div class="tv-banner-subtitle">Press to open</div>
+                            <div class="tv-section">
+                                <div class="tv-section-title" data-i18n="tvYourApps">Your Apps</div>
+                                <div class="tv-banner-row" id="tvBannerRow">
+                                    <div class="tv-banner-card user-banner" id="userTvBanner">
+                                        <div class="tv-banner-image">
+                                            <canvas id="tvPreviewCanvas" width="320" height="180"></canvas>
+                                        </div>
+                                        <div class="tv-banner-name" id="tvBannerTitle">MyApp</div>
                                     </div>
                                 </div>
-                                <div class="tv-row-label">Your Apps</div>
-                                <div class="tv-app-row" id="tvAppRow"></div>
+                            </div>
+                            
+                            <div class="tv-section">
+                                <div class="tv-section-title" data-i18n="tvPopular">Popular Apps</div>
+                                <div class="tv-banner-row" id="tvPopularRow"></div>
                             </div>
                         </div>
-                        <div class="tv-nav-hint">
-                            <span class="material-symbols-rounded">arrow_back</span>
-                            <span>Back</span>
-                            <span class="material-symbols-rounded">home</span>
-                            <span>Home</span>
+                        
+                        <div class="tv-footer">
+                            <div class="tv-nav-hint">
+                                <span class="material-symbols-rounded">arrow_back</span>
+                                <span>Back</span>
+                            </div>
+                            <div class="tv-nav-hint">
+                                <span class="material-symbols-rounded">radio_button_checked</span>
+                                <span>Select</span>
+                            </div>
+                            <div class="tv-nav-hint">
+                                <span class="material-symbols-rounded">home</span>
+                                <span>Home</span>
+                            </div>
                         </div>
                     </div>
                 </div>
