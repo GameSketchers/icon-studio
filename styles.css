@@ -106,7 +106,6 @@ select:focus-visible {
     }
 }
 
-/* ===== HEADER ===== */
 .header {
     position: sticky; 
     top: 0; 
@@ -185,7 +184,6 @@ select:focus-visible {
     border-color: var(--border-light);
 }
 
-/* ===== DESKTOP NAV ===== */
 .desktop-nav {
     display: flex; 
     background: var(--bg-card); 
@@ -223,7 +221,6 @@ select:focus-visible {
     box-shadow: inset var(--focus-ring);
 }
 
-/* ===== LANGUAGE MODAL ===== */
 .lang-modal {
     position: fixed; 
     inset: 0; 
@@ -344,7 +341,6 @@ select:focus-visible {
     opacity: 1; 
 }
 
-/* ===== MAIN CONTAINER ===== */
 .main-container {
     display: flex; 
     flex-direction: column; 
@@ -355,7 +351,6 @@ select:focus-visible {
     min-height: calc(100vh - 128px);
 }
 
-/* ===== PANELS ===== */
 .panel {
     display: none; 
     flex-direction: column; 
@@ -404,7 +399,6 @@ select:focus-visible {
     max-width: 400px;
 }
 
-/* ===== TABS ===== */
 .tabs {
     display: flex; 
     background: var(--bg-tertiary);
@@ -450,7 +444,6 @@ select:focus-visible {
     display: flex; 
 }
 
-/* ===== INPUT ELEMENTS ===== */
 .input-group { 
     display: flex; 
     flex-direction: column; 
@@ -509,7 +502,6 @@ select:focus-visible {
     font-style: italic; 
 }
 
-/* ===== UPLOAD ZONES ===== */
 .upload-zone {
     position: relative; 
     border: 2px dashed var(--border-light);
@@ -649,7 +641,6 @@ select:focus-visible {
     display: block;
 }
 
-/* ===== TOGGLE SWITCH ===== */
 .toggle-row { 
     display: flex; 
     justify-content: space-between; 
@@ -730,7 +721,6 @@ select:focus-visible {
     box-shadow: var(--focus-ring);
 }
 
-/* ===== COLOR PICKER ===== */
 .color-picker-row { 
     display: flex; 
     gap: 12px; 
@@ -806,7 +796,6 @@ select:focus-visible {
     box-shadow: var(--focus-ring), inset 0 0 0 1px rgba(255,255,255,0.1);
 }
 
-/* ===== RANGE SLIDER ===== */
 .range-wrapper {
     display: flex; 
     align-items: center; 
@@ -912,7 +901,6 @@ select:focus-visible {
     transform: rotate(180deg); 
 }
 
-/* ===== PREVIEW CONTROLS ===== */
 .preview-controls {
     display: flex; 
     flex-direction: column; 
@@ -975,7 +963,6 @@ select:focus-visible {
     color: var(--bg-primary); 
 }
 
-/* ===== SHAPE SELECTOR ===== */
 .shape-selector { 
     display: flex; 
     gap: 12px; 
@@ -1032,13 +1019,13 @@ select:focus-visible {
     border-radius: 2px; 
 }
 
-/* ===== PREVIEW CONTAINER ===== */
 .preview-container { 
     display: flex; 
     align-items: center; 
     justify-content: center; 
     padding: 20px 0; 
-    min-height: 480px; 
+    min-height: 480px;
+    width: 100%;
 }
 
 .preview-hint { 
@@ -1048,7 +1035,6 @@ select:focus-visible {
     max-width: 300px; 
 }
 
-/* ===== PHONE FRAME ===== */
 .phone-frame {
     width: 280px; 
     aspect-ratio: 9/19.5;
@@ -1152,7 +1138,6 @@ select:focus-visible {
     color: #fff; 
 }
 
-/* ===== APP GRID ===== */
 .app-grid { 
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
@@ -1252,7 +1237,6 @@ select:focus-visible {
     height: 100%; 
 }
 
-/* ===== PHONE DOCK ===== */
 .phone-dock {
     position: absolute; 
     bottom: 24px; 
@@ -1341,9 +1325,8 @@ select:focus-visible {
     border-radius: 2px; 
 }
 
-/* ===== TV FRAME ===== */
 .tv-frame {
-    width: 100%; 
+    width: 100%;
     max-width: 640px; 
     aspect-ratio: 16/9;
     background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
@@ -1371,7 +1354,6 @@ select:focus-visible {
     flex-direction: column;
 }
 
-/* TV Header */
 .tv-header {
     display: flex; 
     justify-content: space-between; 
@@ -1449,7 +1431,6 @@ select:focus-visible {
     font-size: 20px;
 }
 
-/* TV Content */
 .tv-content {
     flex: 1;
     padding: 16px 24px;
@@ -1473,7 +1454,6 @@ select:focus-visible {
     letter-spacing: 0.5px;
 }
 
-/* TV Banner Row */
 .tv-banner-row {
     display: flex;
     gap: 16px;
@@ -1491,7 +1471,6 @@ select:focus-visible {
     border-radius: 2px;
 }
 
-/* TV Banner Card */
 .tv-banner-card {
     flex-shrink: 0;
     display: flex;
@@ -1541,7 +1520,6 @@ select:focus-visible {
     max-width: 160px;
 }
 
-/* User banner - slightly larger */
 .tv-banner-card.user-banner .tv-banner-image {
     width: 180px;
     height: 101px;
@@ -1554,7 +1532,6 @@ select:focus-visible {
     color: #fff;
 }
 
-/* TV Footer */
 .tv-footer {
     display: flex;
     justify-content: center;
@@ -1575,7 +1552,6 @@ select:focus-visible {
     font-size: 14px;
 }
 
-/* ===== EXPORT PANEL ===== */
 .stats-grid { 
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
@@ -1664,7 +1640,6 @@ select:focus-visible {
     color: var(--text-muted); 
 }
 
-/* ===== FILE TREE ===== */
 .file-tree {
     background: var(--bg-tertiary); 
     border-radius: var(--radius-lg);
@@ -1689,7 +1664,6 @@ select:focus-visible {
 .file-item.file .material-symbols-rounded { color: #60a5fa; }
 .file-item.indent-1 { padding-left: 20px; }
 
-/* ===== DOWNLOAD BUTTON ===== */
 .download-btn {
     width: 100%; 
     display: flex; 
@@ -1739,7 +1713,6 @@ select:focus-visible {
     transition: width 0.3s; 
 }
 
-/* ===== CODE PANEL ===== */
 .code-section { 
     background: var(--bg-tertiary); 
     border-radius: var(--radius-lg); 
@@ -1806,7 +1779,6 @@ select:focus-visible {
     font-weight: 600; 
 }
 
-/* ===== MOBILE NAV ===== */
 .mobile-nav {
     display: none; 
     position: fixed; 
@@ -1846,7 +1818,6 @@ select:focus-visible {
     background: var(--bg-hover); 
 }
 
-/* ===== TOAST ===== */
 .toast {
     position: fixed; 
     bottom: 40px; 
@@ -1875,7 +1846,6 @@ select:focus-visible {
 .toast.success #toastIcon { color: var(--success); }
 .toast.error #toastIcon { color: var(--error); }
 
-/* ===== ANIMATIONS ===== */
 @keyframes spin { 
     from { transform: rotate(0deg); } 
     to { transform: rotate(360deg); } 
@@ -1885,7 +1855,6 @@ select:focus-visible {
     animation: spin 1s linear infinite; 
 }
 
-/* ===== ACCESSIBILITY ===== */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -1913,7 +1882,6 @@ select:focus-visible {
     .lang-option.active { border-color: Highlight; }
 }
 
-/* ===== RESPONSIVE - TABLET & MOBILE ===== */
 @media (max-width: 768px) {
     .header { padding: 12px 16px; height: 56px; }
     .logo-text { display: none; }
@@ -1932,9 +1900,21 @@ select:focus-visible {
     .panel { padding: 20px; border-radius: var(--radius-lg); }
     .preview-panel .panel-header { padding: 16px; }
     .preview-controls { padding: 16px; max-width: 100%; }
-    .preview-container { min-height: 420px; padding: 12px 0; }
     
-    .phone-frame { width: 260px; border-radius: 36px; padding: 8px; }
+    .preview-container { 
+        min-height: auto; 
+        padding: 12px 0;
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    .phone-frame { 
+        width: 260px; 
+        max-width: 100%;
+        border-radius: 36px; 
+        padding: 8px; 
+    }
+    
     .phone-screen { border-radius: 28px; }
     .phone-notch { width: 80px; height: 24px; }
     .app-grid { gap: 12px 8px; }
@@ -1944,21 +1924,106 @@ select:focus-visible {
     .phone-dock { padding: 8px 14px; gap: 12px; }
     .clock-time { font-size: 3rem; }
     
-    /* TV Mobile */
-    .tv-header { padding: 8px 16px; }
-    .tv-nav-item { padding: 6px 10px; font-size: 11px; }
-    .tv-nav-item span:not(.material-symbols-rounded) { display: none; }
-    .tv-nav-item .material-symbols-rounded { font-size: 16px; }
-    .tv-content { padding: 12px 16px; gap: 16px; }
-    .tv-section-title { font-size: 12px; }
-    .tv-banner-row { gap: 12px; }
-    .tv-banner-image { width: 120px; height: 68px; border-radius: 6px; }
-    .tv-banner-name { font-size: 10px; max-width: 120px; }
-    .tv-banner-card.user-banner .tv-banner-image { width: 140px; height: 79px; }
-    .tv-banner-card.user-banner .tv-banner-name { max-width: 140px; }
-    .tv-footer { padding: 8px 16px; gap: 24px; }
-    .tv-settings-btn { width: 28px; height: 28px; }
-    .tv-settings-btn .material-symbols-rounded { font-size: 16px; }
+    .tv-frame {
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 8px;
+        padding: 6px;
+    }
+    
+    .tv-screen {
+        border-radius: 4px;
+    }
+    
+    .tv-header { 
+        padding: 8px 12px; 
+    }
+    
+    .tv-nav {
+        gap: 4px;
+    }
+    
+    .tv-nav-item { 
+        padding: 6px 8px; 
+        font-size: 10px; 
+    }
+    
+    .tv-nav-item span:not(.material-symbols-rounded) { 
+        display: none; 
+    }
+    
+    .tv-nav-item .material-symbols-rounded { 
+        font-size: 16px; 
+    }
+    
+    .tv-header-right {
+        gap: 8px;
+    }
+    
+    .tv-time {
+        font-size: 11px;
+    }
+    
+    .tv-settings-btn {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .tv-settings-btn .material-symbols-rounded {
+        font-size: 16px;
+    }
+    
+    .tv-content { 
+        padding: 8px 12px; 
+        gap: 12px; 
+    }
+    
+    .tv-section {
+        gap: 8px;
+    }
+    
+    .tv-section-title { 
+        font-size: 10px; 
+    }
+    
+    .tv-banner-row { 
+        gap: 10px; 
+    }
+    
+    .tv-banner-image { 
+        width: 100px; 
+        height: 56px; 
+        border-radius: 4px; 
+    }
+    
+    .tv-banner-name { 
+        font-size: 9px; 
+        max-width: 100px; 
+    }
+    
+    .tv-banner-card.user-banner .tv-banner-image { 
+        width: 120px; 
+        height: 68px; 
+    }
+    
+    .tv-banner-card.user-banner .tv-banner-name { 
+        max-width: 120px; 
+    }
+    
+    .tv-footer { 
+        padding: 6px 12px; 
+        gap: 16px; 
+    }
+    
+    .tv-footer .tv-nav-hint {
+        font-size: 9px;
+        gap: 4px;
+    }
+    
+    .tv-footer .tv-nav-hint .material-symbols-rounded {
+        font-size: 12px;
+    }
     
     .lang-modal-content { padding: 20px; }
     .lang-options { grid-template-columns: 1fr; }
@@ -1972,19 +2037,117 @@ select:focus-visible {
     .toast.show { transform: translateX(0) translateY(0); }
 }
 
+@media (max-width: 480px) {
+    .tv-frame {
+        border-radius: 6px;
+        padding: 4px;
+    }
+    
+    .tv-header {
+        padding: 6px 10px;
+    }
+    
+    .tv-nav-item {
+        padding: 4px 6px;
+    }
+    
+    .tv-nav-item .material-symbols-rounded {
+        font-size: 14px;
+    }
+    
+    .tv-settings-btn {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .tv-settings-btn .material-symbols-rounded {
+        font-size: 14px;
+    }
+    
+    .tv-time {
+        font-size: 10px;
+    }
+    
+    .tv-content {
+        padding: 6px 10px;
+        gap: 10px;
+    }
+    
+    .tv-section-title {
+        font-size: 9px;
+    }
+    
+    .tv-banner-row {
+        gap: 8px;
+    }
+    
+    .tv-banner-image {
+        width: 80px;
+        height: 45px;
+        border-radius: 3px;
+    }
+    
+    .tv-banner-name {
+        font-size: 8px;
+        max-width: 80px;
+    }
+    
+    .tv-banner-card.user-banner .tv-banner-image {
+        width: 100px;
+        height: 56px;
+    }
+    
+    .tv-banner-card.user-banner .tv-banner-name {
+        max-width: 100px;
+        font-size: 9px;
+    }
+    
+    .tv-footer {
+        padding: 4px 10px;
+        gap: 12px;
+    }
+    
+    .tv-footer .tv-nav-hint {
+        font-size: 8px;
+    }
+    
+    .tv-footer .tv-nav-hint .material-symbols-rounded {
+        font-size: 10px;
+    }
+}
+
 @media (max-width: 380px) {
     .phone-frame { width: 240px; }
     .app-icon { width: 40px; height: 40px; }
     .dock-icon { width: 36px; height: 36px; }
     .clock-time { font-size: 2.5rem; }
     
-    .tv-banner-image { width: 100px; height: 56px; }
-    .tv-banner-name { max-width: 100px; }
-    .tv-banner-card.user-banner .tv-banner-image { width: 120px; height: 68px; }
-    .tv-banner-card.user-banner .tv-banner-name { max-width: 120px; }
+    .tv-frame {
+        border-radius: 4px;
+        padding: 3px;
+    }
+    
+    .tv-banner-image {
+        width: 70px;
+        height: 39px;
+    }
+    
+    .tv-banner-name {
+        font-size: 7px;
+        max-width: 70px;
+    }
+    
+    .tv-banner-card.user-banner .tv-banner-image {
+        width: 85px;
+        height: 48px;
+    }
+    
+    .tv-banner-card.user-banner .tv-banner-name {
+        max-width: 85px;
+        font-size: 8px;
+    }
 }
 
-/* ===== UTILITY CLASSES ===== */
 .hidden { 
     display: none !important; 
 }
