@@ -2,7 +2,18 @@
     'use strict';
 
     const ICON_BASE_PATH = './icons/';
-    const ADAPTIVE_SAFE_ZONE = 66 / 108;
+
+    const ANDROID_DENSITIES = {
+        'ldpi':    { legacy: 36,  adaptive: 81 },
+        'mdpi':    { legacy: 48,  adaptive: 108 },
+        'hdpi':    { legacy: 72,  adaptive: 162 },
+        'xhdpi':   { legacy: 96,  adaptive: 216 },
+        'xxhdpi':  { legacy: 144, adaptive: 324 },
+        'xxxhdpi': { legacy: 192, adaptive: 432 }
+    };
+
+    const IOS_SIZES = [20, 29, 40, 58, 60, 76, 80, 87, 120, 152, 167, 180, 1024];
+    const WEB_SIZES = [16, 32, 48, 72, 96, 128, 144, 192, 384, 512];
 
     const GRID_APPS = [
         { id: 'gmail', name: 'Gmail', file: 'gmail.png', mono: 'gmail_mono.png', color: '#EA4335' },
@@ -83,11 +94,7 @@
             copied: "Copied to clipboard!",
             dateDisplay: "Sunday, Jan 14",
             selectLanguage: "Select Language",
-            autoColor: "Color detected from image",
-            desktopTabConfig: "Config",
-            desktopTabPreview: "Preview",
-            desktopTabExport: "Export",
-            desktopTabCode: "Code"
+            autoColor: "Color detected from image"
         },
         tr: {
             appTitle: "İkon Stüdyosu",
@@ -131,11 +138,7 @@
             copied: "Panoya kopyalandı!",
             dateDisplay: "Pazar, 14 Ocak",
             selectLanguage: "Dil Seçin",
-            autoColor: "Renk resimden algılandı",
-            desktopTabConfig: "Ayarlar",
-            desktopTabPreview: "Önizleme",
-            desktopTabExport: "Dışa Aktar",
-            desktopTabCode: "Kod"
+            autoColor: "Renk resimden algılandı"
         },
         ja: {
             appTitle: "アイコンスタジオ",
@@ -179,11 +182,7 @@
             copied: "クリップボードにコピーしました！",
             dateDisplay: "1月14日 日曜日",
             selectLanguage: "言語を選択",
-            autoColor: "画像から色を検出しました",
-            desktopTabConfig: "設定",
-            desktopTabPreview: "プレビュー",
-            desktopTabExport: "エクスポート",
-            desktopTabCode: "コード"
+            autoColor: "画像から色を検出しました"
         },
         de: {
             appTitle: "Icon Studio",
@@ -205,7 +204,7 @@
             iconShape: "Vorschauform",
             tvBannerSection: "TV-BANNER (320×180)",
             uploadTvBanner: "TV-Banner hochladen",
-            tvHint: "Wird automatisch aus dem Symbol generiert, wenn nicht hochgeladen",
+            tvHint: "Wird automatisch aus dem Symbol generiert",
             tvApps: "Apps",
             preview: "Vorschau",
             previewHint: "Themenmodus umschalten für Monochrom-Vorschau",
@@ -227,11 +226,7 @@
             copied: "In die Zwischenablage kopiert!",
             dateDisplay: "Sonntag, 14. Jan",
             selectLanguage: "Sprache auswählen",
-            autoColor: "Farbe aus Bild erkannt",
-            desktopTabConfig: "Konfig",
-            desktopTabPreview: "Vorschau",
-            desktopTabExport: "Export",
-            desktopTabCode: "Code"
+            autoColor: "Farbe aus Bild erkannt"
         },
         fr: {
             appTitle: "Icon Studio",
@@ -248,15 +243,15 @@
             autoConvert: "Ou conversion automatique",
             bgColor: "Couleur d'arrière-plan",
             tvBgColor: "Arrière-plan bannière TV",
-            syncWithIcon: "Synchroniser avec l'arrière-plan de l'icône",
+            syncWithIcon: "Synchroniser avec l'arrière-plan",
             scale: "Échelle",
             iconShape: "Forme de prévisualisation",
             tvBannerSection: "BANNIÈRE TV (320×180)",
             uploadTvBanner: "Télécharger la bannière TV",
-            tvHint: "Si non téléchargé, sera généré automatiquement à partir de l'icône",
+            tvHint: "Généré automatiquement si non téléchargé",
             tvApps: "Apps",
             preview: "Aperçu",
-            previewHint: "Basculer le mode thème pour prévisualiser les icônes monochromes",
+            previewHint: "Basculer le mode thème pour prévisualiser",
             export: "Exporter",
             totalFiles: "Fichiers",
             platforms: "Plateformes",
@@ -270,16 +265,12 @@
             code: "Code",
             processing: "Traitement...",
             success: "ZIP téléchargé avec succès!",
-            error: "Veuillez d'abord télécharger une image de premier plan",
+            error: "Veuillez d'abord télécharger une image",
             loaded: "Image chargée!",
-            copied: "Copié dans le presse-papiers!",
+            copied: "Copié!",
             dateDisplay: "Dimanche 14 janv.",
             selectLanguage: "Choisir la langue",
-            autoColor: "Couleur détectée de l'image",
-            desktopTabConfig: "Config",
-            desktopTabPreview: "Aperçu",
-            desktopTabExport: "Export",
-            desktopTabCode: "Code"
+            autoColor: "Couleur détectée"
         },
         es: {
             appTitle: "Icon Studio",
@@ -287,24 +278,24 @@
             tabIcon: "Icono",
             tabTV: "Banner TV",
             appName: "Nombre de App",
-            iconFileName: "Nombre de archivo de icono",
+            iconFileName: "Nombre de archivo",
             foregroundSection: "PRIMER PLANO",
             uploadForeground: "Subir primer plano",
-            dragDrop: "Arrastrar y soltar o hacer clic",
+            dragDrop: "Arrastrar o hacer clic",
             monoIcon: "Icono Mono",
             uploadMono: "Subir capa Mono",
             autoConvert: "O conversión automática",
             bgColor: "Color de fondo",
             tvBgColor: "Fondo de banner TV",
-            syncWithIcon: "Sincronizar con fondo de icono",
+            syncWithIcon: "Sincronizar con fondo",
             scale: "Escala",
             iconShape: "Forma de vista previa",
             tvBannerSection: "BANNER TV (320×180)",
             uploadTvBanner: "Subir banner TV",
-            tvHint: "Si no se sube, se generará automáticamente desde el icono",
+            tvHint: "Se generará automáticamente si no se sube",
             tvApps: "Apps",
             preview: "Vista previa",
-            previewHint: "Cambiar modo de tema para previsualizar iconos monocromáticos",
+            previewHint: "Cambiar modo de tema para previsualizar",
             export: "Exportar",
             totalFiles: "Archivos",
             platforms: "Plataformas",
@@ -312,22 +303,18 @@
             androidDesc: "Adaptive + Legacy + Mono",
             iosDesc: "Todos los tamaños + Contents.json",
             webDesc: "Favicon + iconos Manifest",
-            fileStructure: "ESTRUCTURA DE ARCHIVOS",
+            fileStructure: "ESTRUCTURA",
             downloadZip: "Descargar ZIP",
             codeSnippets: "Fragmentos de código",
             code: "Código",
             processing: "Procesando...",
-            success: "¡ZIP descargado exitosamente!",
-            error: "Por favor, suba primero una imagen de primer plano",
+            success: "¡ZIP descargado!",
+            error: "Por favor, suba una imagen primero",
             loaded: "¡Imagen cargada!",
-            copied: "¡Copiado al portapapeles!",
+            copied: "¡Copiado!",
             dateDisplay: "Domingo, 14 ene",
             selectLanguage: "Seleccionar idioma",
-            autoColor: "Color detectado de la imagen",
-            desktopTabConfig: "Config",
-            desktopTabPreview: "Vista",
-            desktopTabExport: "Exportar",
-            desktopTabCode: "Código"
+            autoColor: "Color detectado"
         },
         zh: {
             appTitle: "图标工作室",
@@ -349,10 +336,10 @@
             iconShape: "预览形状",
             tvBannerSection: "电视横幅 (320×180)",
             uploadTvBanner: "上传电视横幅",
-            tvHint: "如果未上传，将从图标自动生成",
+            tvHint: "未上传将自动生成",
             tvApps: "应用",
             preview: "预览",
-            previewHint: "切换主题模式以预览单色图标",
+            previewHint: "切换主题模式预览单色图标",
             export: "导出",
             totalFiles: "文件",
             platforms: "平台",
@@ -365,17 +352,13 @@
             codeSnippets: "代码片段",
             code: "代码",
             processing: "处理中...",
-            success: "ZIP下载成功！",
+            success: "下载成功！",
             error: "请先上传前景图像",
             loaded: "图像已加载！",
-            copied: "已复制到剪贴板！",
+            copied: "已复制！",
             dateDisplay: "1月14日 星期日",
             selectLanguage: "选择语言",
-            autoColor: "从图像检测到颜色",
-            desktopTabConfig: "配置",
-            desktopTabPreview: "预览",
-            desktopTabExport: "导出",
-            desktopTabCode: "代码"
+            autoColor: "检测到颜色"
         },
         ko: {
             appTitle: "아이콘 스튜디오",
@@ -397,10 +380,10 @@
             iconShape: "미리보기 모양",
             tvBannerSection: "TV 배너 (320×180)",
             uploadTvBanner: "TV 배너 업로드",
-            tvHint: "업로드하지 않으면 아이콘에서 자동 생성됩니다",
+            tvHint: "업로드하지 않으면 자동 생성",
             tvApps: "앱",
             preview: "미리보기",
-            previewHint: "테마 모드를 전환하여 단색 아이콘 미리보기",
+            previewHint: "테마 모드 전환으로 미리보기",
             export: "내보내기",
             totalFiles: "파일",
             platforms: "플랫폼",
@@ -413,17 +396,13 @@
             codeSnippets: "코드 스니펫",
             code: "코드",
             processing: "처리 중...",
-            success: "ZIP이 성공적으로 다운로드되었습니다!",
+            success: "다운로드 완료!",
             error: "먼저 전경 이미지를 업로드하세요",
-            loaded: "이미지가 로드되었습니다!",
-            copied: "클립보드에 복사되었습니다!",
+            loaded: "이미지 로드됨!",
+            copied: "복사됨!",
             dateDisplay: "1월 14일 일요일",
             selectLanguage: "언어 선택",
-            autoColor: "이미지에서 색상 감지됨",
-            desktopTabConfig: "설정",
-            desktopTabPreview: "미리보기",
-            desktopTabExport: "내보내기",
-            desktopTabCode: "코드"
+            autoColor: "색상 감지됨"
         }
     };
 
@@ -448,89 +427,93 @@
         currentLang: 'en',
         currentTab: 'icon',
         currentPreviewMode: 'phone',
-        currentMobilePanel: 'config',
-        currentDesktopTab: 'config',
+        currentPanel: 'config',
         langModalOpen: false
     };
 
     let DOM = {};
     let toastTimeout;
 
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+    function $$(selector) {
+        return document.querySelectorAll(selector);
+    }
+
     function cacheDOMElements() {
         DOM = {
-            langBtn: document.getElementById('langBtn'),
-            langModal: document.getElementById('langModal'),
-            langModalClose: document.getElementById('langModalClose'),
-            langOptions: document.querySelectorAll('.lang-option'),
-            currentLangFlag: document.getElementById('currentLangFlag'),
-            currentLangName: document.getElementById('currentLangName'),
-            mobileMenuBtn: document.getElementById('mobileMenuBtn'),
-            mobileNav: document.getElementById('mobileNav'),
-            mobileNavItems: document.querySelectorAll('.mobile-nav-item'),
-            desktopTabs: document.getElementById('desktopTabs'),
-            desktopTabBtns: document.querySelectorAll('.desktop-tab-btn'),
-            configPanel: document.getElementById('configPanel'),
-            previewPanel: document.getElementById('previewPanel'),
-            exportPanel: document.getElementById('exportPanel'),
-            codePanel: document.getElementById('codePanel'),
-            tabs: document.querySelectorAll('.tab'),
-            iconTab: document.getElementById('iconTab'),
-            tvTab: document.getElementById('tvTab'),
-            appNameInput: document.getElementById('appNameInput'),
-            iconNameInput: document.getElementById('iconNameInput'),
-            bgColorPicker: document.getElementById('bgColorPicker'),
-            bgColorText: document.getElementById('bgColorText'),
-            tvBgColorPicker: document.getElementById('tvBgColorPicker'),
-            tvBgColorText: document.getElementById('tvBgColorText'),
-            syncTvBgColor: document.getElementById('syncTvBgColor'),
-            scaleSlider: document.getElementById('scaleSlider'),
-            scaleValue: document.getElementById('scaleValue'),
-            resetScaleBtn: document.getElementById('resetScaleBtn'),
-            monoToggle: document.getElementById('monoToggle'),
-            monoSection: document.getElementById('monoSection'),
-            monoStatus: document.getElementById('monoStatus'),
-            foregroundUpload: document.getElementById('foregroundUpload'),
-            foregroundFile: document.getElementById('foregroundFile'),
-            foregroundPreview: document.getElementById('foregroundPreview'),
-            monoUpload: document.getElementById('monoUpload'),
-            monoFile: document.getElementById('monoFile'),
-            tvBannerUpload: document.getElementById('tvBannerUpload'),
-            tvBannerFile: document.getElementById('tvBannerFile'),
-            tvBannerPreview: document.getElementById('tvBannerPreview'),
-            colorPresets: document.querySelectorAll('.color-preset'),
-            shapeOptions: document.querySelectorAll('.shape-option'),
-            segmentBtns: document.querySelectorAll('.segment-btn'),
-            previewContainer: document.querySelector('.preview-container'),
-            previewHint: document.getElementById('previewHint'),
-            phoneFrame: document.getElementById('phoneFrame'),
-            phoneScreen: document.getElementById('phoneScreen'),
-            appGrid: document.getElementById('appGrid'),
-            phoneDock: document.getElementById('phoneDock'),
-            clockDisplay: document.getElementById('clockDisplay'),
-            clockDate: document.getElementById('clockDate'),
-            statusTime: document.getElementById('statusTime'),
-            tvFrame: document.getElementById('tvFrame'),
-            tvScreen: document.getElementById('tvScreen'),
-            tvAppList: document.getElementById('tvAppList'),
-            tvAppRow: document.getElementById('tvAppRow'),
-            tvPreviewCanvas: document.getElementById('tvPreviewCanvas'),
-            tvBannerTitle: document.getElementById('tvBannerTitle'),
-            tvTime: document.getElementById('tvTime'),
-            exportAndroid: document.getElementById('exportAndroid'),
-            exportIOS: document.getElementById('exportIOS'),
-            exportWeb: document.getElementById('exportWeb'),
-            exportTV: document.getElementById('exportTV'),
-            exportPlayStore: document.getElementById('exportPlayStore'),
-            totalFilesCount: document.getElementById('totalFilesCount'),
-            platformCount: document.getElementById('platformCount'),
-            fileTree: document.getElementById('fileTree'),
-            downloadBtn: document.getElementById('downloadBtn'),
-            progressFill: document.getElementById('progressFill'),
-            copyBtns: document.querySelectorAll('.copy-btn'),
-            toast: document.getElementById('toast'),
-            toastIcon: document.getElementById('toastIcon'),
-            toastMessage: document.getElementById('toastMessage'),
-            processCanvas: document.getElementById('processCanvas')
+            langBtn: $('langBtn'),
+            langModal: $('langModal'),
+            langModalClose: $('langModalClose'),
+            langOptions: $$('.lang-option'),
+            currentLangFlag: $('currentLangFlag'),
+            currentLangName: $('currentLangName'),
+            mobileMenuBtn: $('mobileMenuBtn'),
+            mobileNav: $('mobileNav'),
+            mobileNavItems: $$('.mobile-nav-item'),
+            desktopTabs: $('desktopTabs'),
+            desktopTabBtns: $$('.desktop-tab-btn'),
+            configPanel: $('configPanel'),
+            previewPanel: $('previewPanel'),
+            exportPanel: $('exportPanel'),
+            codePanel: $('codePanel'),
+            tabs: $$('.tab'),
+            iconTab: $('iconTab'),
+            tvTab: $('tvTab'),
+            appNameInput: $('appNameInput'),
+            iconNameInput: $('iconNameInput'),
+            bgColorPicker: $('bgColorPicker'),
+            bgColorText: $('bgColorText'),
+            tvBgColorPicker: $('tvBgColorPicker'),
+            tvBgColorText: $('tvBgColorText'),
+            syncTvBgColor: $('syncTvBgColor'),
+            scaleSlider: $('scaleSlider'),
+            scaleValue: $('scaleValue'),
+            resetScaleBtn: $('resetScaleBtn'),
+            monoToggle: $('monoToggle'),
+            monoSection: $('monoSection'),
+            monoStatus: $('monoStatus'),
+            foregroundUpload: $('foregroundUpload'),
+            foregroundFile: $('foregroundFile'),
+            foregroundPreview: $('foregroundPreview'),
+            monoUpload: $('monoUpload'),
+            monoFile: $('monoFile'),
+            tvBannerUpload: $('tvBannerUpload'),
+            tvBannerFile: $('tvBannerFile'),
+            tvBannerPreview: $('tvBannerPreview'),
+            colorPresets: $$('.color-preset'),
+            shapeOptions: $$('.shape-option'),
+            segmentBtns: $$('.segment-btn'),
+            previewHint: $('previewHint'),
+            phoneFrame: $('phoneFrame'),
+            phoneScreen: $('phoneScreen'),
+            appGrid: $('appGrid'),
+            phoneDock: $('phoneDock'),
+            clockDisplay: $('clockDisplay'),
+            clockDate: $('clockDate'),
+            statusTime: $('statusTime'),
+            tvFrame: $('tvFrame'),
+            tvAppList: $('tvAppList'),
+            tvAppRow: $('tvAppRow'),
+            tvPreviewCanvas: $('tvPreviewCanvas'),
+            tvBannerTitle: $('tvBannerTitle'),
+            tvTime: $('tvTime'),
+            exportAndroid: $('exportAndroid'),
+            exportIOS: $('exportIOS'),
+            exportWeb: $('exportWeb'),
+            exportTV: $('exportTV'),
+            exportPlayStore: $('exportPlayStore'),
+            totalFilesCount: $('totalFilesCount'),
+            platformCount: $('platformCount'),
+            fileTree: $('fileTree'),
+            downloadBtn: $('downloadBtn'),
+            progressFill: $('progressFill'),
+            copyBtns: $$('.copy-btn'),
+            toast: $('toast'),
+            toastIcon: $('toastIcon'),
+            toastMessage: $('toastMessage')
         };
     }
 
@@ -547,138 +530,151 @@
         updateFileCount();
         updateFileTree();
         updateCodeSnippets();
-        checkViewMode();
+        handleResize();
         toggleTvInputsState();
         updateLangDisplay();
+        switchPanel('config');
     }
 
     function setupEventListeners() {
-        if (DOM.langBtn) {
-            DOM.langBtn.addEventListener('click', openLangModal);
-        }
-        if (DOM.langModalClose) {
-            DOM.langModalClose.addEventListener('click', closeLangModal);
-        }
-        if (DOM.langModal) {
-            DOM.langModal.addEventListener('click', (e) => {
-                if (e.target === DOM.langModal) closeLangModal();
-            });
-        }
-        DOM.langOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const lang = option.dataset.lang;
-                handleLanguageChange(lang);
+        DOM.langBtn?.addEventListener('click', openLangModal);
+        DOM.langModalClose?.addEventListener('click', closeLangModal);
+        DOM.langModal?.addEventListener('click', (e) => {
+            if (e.target === DOM.langModal) closeLangModal();
+        });
+        
+        DOM.langOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                setLanguage(opt.dataset.lang);
                 closeLangModal();
             });
         });
-        
-        if (DOM.mobileMenuBtn) {
-            DOM.mobileMenuBtn.addEventListener('click', openLangModal);
-        }
+
+        DOM.mobileMenuBtn?.addEventListener('click', openLangModal);
 
         DOM.mobileNavItems.forEach(item => {
-            item.addEventListener('click', handleMobileNavClick);
+            item.addEventListener('click', () => switchPanel(item.dataset.panel));
         });
 
         DOM.desktopTabBtns.forEach(btn => {
-            btn.addEventListener('click', handleDesktopTabClick);
+            btn.addEventListener('click', () => switchPanel(btn.dataset.panel));
         });
-        
-        window.addEventListener('resize', checkViewMode);
-        
+
+        window.addEventListener('resize', handleResize);
+
         DOM.tabs.forEach(tab => {
-            tab.addEventListener('click', handleTabClick);
+            tab.addEventListener('click', () => switchConfigTab(tab.dataset.tab));
         });
-        
-        DOM.appNameInput.addEventListener('input', handleAppNameChange);
-        DOM.iconNameInput.addEventListener('input', handleIconNameChange);
-        
-        DOM.bgColorPicker.addEventListener('input', handleBgColorChange);
-        DOM.bgColorText.addEventListener('input', handleBgColorTextChange);
-        
-        if (DOM.tvBgColorPicker) {
-            DOM.tvBgColorPicker.addEventListener('input', handleTvBgColorChange);
-        }
-        if (DOM.tvBgColorText) {
-            DOM.tvBgColorText.addEventListener('input', handleTvBgColorTextChange);
-        }
-        if (DOM.syncTvBgColor) {
-            DOM.syncTvBgColor.addEventListener('change', handleSyncTvBgColorChange);
-        }
-        
+
+        DOM.appNameInput?.addEventListener('input', (e) => {
+            state.appName = e.target.value || 'MyApp';
+            updateAppNameDisplays();
+            updateCodeSnippets();
+        });
+
+        DOM.iconNameInput?.addEventListener('input', (e) => {
+            state.iconName = e.target.value || 'ic_launcher';
+            updateFileTree();
+            updateCodeSnippets();
+        });
+
+        DOM.bgColorPicker?.addEventListener('input', (e) => updateBgColor(e.target.value));
+        DOM.bgColorText?.addEventListener('input', (e) => {
+            if (/^#[0-9A-Fa-f]{6}$/.test(e.target.value)) {
+                updateBgColor(e.target.value);
+            }
+        });
+
+        DOM.tvBgColorPicker?.addEventListener('input', handleTvBgColorChange);
+        DOM.tvBgColorText?.addEventListener('input', handleTvBgColorTextChange);
+        DOM.syncTvBgColor?.addEventListener('change', handleSyncTvBgChange);
+
         DOM.colorPresets.forEach(preset => {
-            preset.addEventListener('click', handleColorPresetClick);
+            preset.addEventListener('click', () => updateBgColor(preset.dataset.color));
         });
-        
-        if (DOM.scaleSlider) {
-            DOM.scaleSlider.addEventListener('input', handleScaleChange);
-        }
-        
-        if (DOM.resetScaleBtn) {
-            DOM.resetScaleBtn.addEventListener('click', handleResetScale);
-        }
-        
-        DOM.shapeOptions.forEach(option => {
-            option.addEventListener('click', handleShapeChange);
+
+        DOM.scaleSlider?.addEventListener('input', (e) => {
+            state.scale = parseInt(e.target.value);
+            updateScaleDisplay();
+            updateAllPreviews();
         });
-        
-        DOM.monoToggle.addEventListener('change', handleMonoToggle);
-        
+
+        DOM.resetScaleBtn?.addEventListener('click', () => {
+            state.scale = 100;
+            DOM.scaleSlider.value = 100;
+            updateScaleDisplay();
+            updateAllPreviews();
+        });
+
+        DOM.shapeOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                DOM.shapeOptions.forEach(o => o.classList.remove('active'));
+                opt.classList.add('active');
+                state.shape = opt.dataset.shape;
+                updateIconShapes();
+            });
+        });
+
+        DOM.monoToggle?.addEventListener('change', (e) => {
+            state.useMono = e.target.checked;
+            DOM.monoSection.style.display = e.target.checked ? 'block' : 'none';
+            if (!e.target.checked) {
+                state.isThemed = false;
+                updateThemeUI();
+            }
+            updateAllPreviews();
+            updateFileCount();
+            updateFileTree();
+        });
+
         setupUploadZone(DOM.foregroundUpload, DOM.foregroundFile, DOM.foregroundPreview, handleForegroundUpload);
         setupUploadZone(DOM.monoUpload, DOM.monoFile, null, handleMonoUpload);
         setupUploadZone(DOM.tvBannerUpload, DOM.tvBannerFile, DOM.tvBannerPreview, handleTvBannerUpload);
-        
+
         DOM.segmentBtns.forEach(btn => {
             if (btn.dataset.mode) {
-                btn.addEventListener('click', handlePreviewModeChange);
+                btn.addEventListener('click', () => switchPreviewMode(btn.dataset.mode));
             } else if (btn.dataset.theme) {
-                btn.addEventListener('click', handleThemeChange);
+                btn.addEventListener('click', () => switchTheme(btn.dataset.theme));
             }
         });
-        
+
         [DOM.exportAndroid, DOM.exportIOS, DOM.exportWeb, DOM.exportTV, DOM.exportPlayStore].forEach(el => {
-            if (el) el.addEventListener('change', () => {
+            el?.addEventListener('change', () => {
                 state[el.id] = el.checked;
                 updateFileCount();
                 updateFileTree();
             });
         });
-        
-        DOM.downloadBtn.addEventListener('click', handleDownload);
-        
+
+        DOM.downloadBtn?.addEventListener('click', handleDownload);
+
         DOM.copyBtns.forEach(btn => {
-            btn.addEventListener('click', handleCopyClick);
+            btn.addEventListener('click', () => handleCopy(btn));
         });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && state.langModalOpen) {
-                closeLangModal();
-            }
+            if (e.key === 'Escape' && state.langModalOpen) closeLangModal();
         });
     }
 
     function openLangModal() {
-        if (DOM.langModal) {
-            DOM.langModal.classList.add('active');
-            state.langModalOpen = true;
-            document.body.style.overflow = 'hidden';
-        }
+        DOM.langModal?.classList.add('active');
+        state.langModalOpen = true;
+        document.body.style.overflow = 'hidden';
     }
 
     function closeLangModal() {
-        if (DOM.langModal) {
-            DOM.langModal.classList.remove('active');
-            state.langModalOpen = false;
-            document.body.style.overflow = '';
-        }
+        DOM.langModal?.classList.remove('active');
+        state.langModalOpen = false;
+        document.body.style.overflow = '';
     }
 
-    function handleLanguageChange(lang) {
+    function setLanguage(lang) {
         state.currentLang = lang;
         updateLangDisplay();
         updateTranslations();
         updateClock();
-        
         DOM.langOptions.forEach(opt => {
             opt.classList.toggle('active', opt.dataset.lang === lang);
         });
@@ -690,39 +686,95 @@
         if (DOM.currentLangName) DOM.currentLangName.textContent = lang.name;
     }
 
-    function setupUploadZone(zone, input, previewEl, callback) {
-        if (!zone || !input) return;
+    function updateTranslations() {
+        const t = translations[state.currentLang] || translations.en;
+        $$('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key]) el.textContent = t[key];
+        });
+    }
+
+    function handleResize() {
+        const isMobile = window.innerWidth <= 768;
+        if (DOM.desktopTabs) DOM.desktopTabs.style.display = isMobile ? 'none' : 'flex';
+        if (DOM.mobileNav) DOM.mobileNav.style.display = isMobile ? 'flex' : 'none';
+        switchPanel(state.currentPanel);
+    }
+
+    function switchPanel(panel) {
+        state.currentPanel = panel;
         
-        zone.addEventListener('click', () => input.click());
-        
-        input.addEventListener('change', (e) => {
-            if (e.target.files.length) {
-                handleImageFile(e.target.files[0], zone, previewEl, callback);
+        const panels = {
+            config: DOM.configPanel,
+            preview: DOM.previewPanel,
+            export: DOM.exportPanel,
+            code: DOM.codePanel
+        };
+
+        Object.values(panels).forEach(p => {
+            if (p) {
+                p.classList.remove('active');
+                p.style.display = 'none';
             }
         });
-        
+
+        if (panels[panel]) {
+            panels[panel].classList.add('active');
+            panels[panel].style.display = 'flex';
+        }
+
+        DOM.mobileNavItems.forEach(item => {
+            item.classList.toggle('active', item.dataset.panel === panel);
+        });
+
+        DOM.desktopTabBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.panel === panel);
+        });
+    }
+
+    function switchConfigTab(tab) {
+        state.currentTab = tab;
+        DOM.tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+        DOM.iconTab.style.display = tab === 'icon' ? 'flex' : 'none';
+        DOM.iconTab.classList.toggle('active', tab === 'icon');
+        DOM.tvTab.style.display = tab === 'tv' ? 'flex' : 'none';
+        DOM.tvTab.classList.toggle('active', tab === 'tv');
+        updateFileTree();
+    }
+
+    function setupUploadZone(zone, input, previewEl, callback) {
+        if (!zone || !input) return;
+
+        zone.addEventListener('click', () => input.click());
+
+        input.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                processImageFile(e.target.files[0], zone, previewEl, callback);
+            }
+        });
+
         zone.addEventListener('dragover', (e) => {
             e.preventDefault();
             zone.classList.add('dragover');
         });
-        
+
         zone.addEventListener('dragleave', (e) => {
             e.preventDefault();
             zone.classList.remove('dragover');
         });
-        
+
         zone.addEventListener('drop', (e) => {
             e.preventDefault();
             zone.classList.remove('dragover');
             if (e.dataTransfer.files.length) {
-                handleImageFile(e.dataTransfer.files[0], zone, previewEl, callback);
+                processImageFile(e.dataTransfer.files[0], zone, previewEl, callback);
             }
         });
     }
 
-    function handleImageFile(file, zone, previewEl, callback) {
+    function processImageFile(file, zone, previewEl, callback) {
         if (!file.type.startsWith('image/')) return;
-        
+
         const reader = new FileReader();
         reader.onload = (e) => {
             const img = new Image();
@@ -742,121 +794,72 @@
     function getDominantColor(img) {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        
         const size = 50;
         canvas.width = size;
         canvas.height = size;
-        
         ctx.drawImage(img, 0, 0, size, size);
-        
+
         const imageData = ctx.getImageData(0, 0, size, size);
         const data = imageData.data;
-        
         const colorCounts = {};
         let maxCount = 0;
         let dominantColor = { r: 26, g: 26, b: 26 };
-        
+
         for (let i = 0; i < data.length; i += 4) {
-            const r = data[i];
-            const g = data[i + 1];
-            const b = data[i + 2];
-            const a = data[i + 3];
-            
+            const r = data[i], g = data[i + 1], b = data[i + 2], a = data[i + 3];
             if (a < 128) continue;
-            
             const brightness = (r + g + b) / 3;
             if (brightness > 240 || brightness < 15) continue;
-            
+
             const qr = Math.round(r / 32) * 32;
             const qg = Math.round(g / 32) * 32;
             const qb = Math.round(b / 32) * 32;
-            
             const key = `${qr},${qg},${qb}`;
             colorCounts[key] = (colorCounts[key] || 0) + 1;
-            
+
             if (colorCounts[key] > maxCount) {
                 maxCount = colorCounts[key];
                 dominantColor = { r: qr, g: qg, b: qb };
             }
         }
-        
+
         const toHex = (n) => Math.min(255, Math.max(0, n)).toString(16).padStart(2, '0');
         return `#${toHex(dominantColor.r)}${toHex(dominantColor.g)}${toHex(dominantColor.b)}`;
     }
 
-    function handleMobileNavClick(e) {
-        const item = e.currentTarget;
-        const panel = item.dataset.panel;
-        
-        DOM.mobileNavItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        
-        state.currentMobilePanel = panel;
-        updateMobilePanels();
+    function handleForegroundUpload(img) {
+        state.foregroundImg = img;
+        const detectedColor = getDominantColor(img);
+        updateBgColor(detectedColor);
+        updateAllPreviews();
+        showToast(translations[state.currentLang].autoColor, 'success');
     }
 
-    function handleDesktopTabClick(e) {
-        const btn = e.currentTarget;
-        const tab = btn.dataset.tab;
-        
-        DOM.desktopTabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        state.currentDesktopTab = tab;
-        updateDesktopPanels();
+    function handleMonoUpload(img) {
+        state.monoImg = img;
+        DOM.monoUpload?.classList.add('active');
+        if (DOM.monoStatus) DOM.monoStatus.style.opacity = '1';
+        updatePhonePreview();
+        showToast(translations[state.currentLang].loaded, 'success');
     }
 
-    function handleTabClick(e) {
-        const tab = e.currentTarget;
-        const tabId = tab.dataset.tab;
-        
-        DOM.tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        
-        state.currentTab = tabId;
-        
-        DOM.iconTab.classList.toggle('active', tabId === 'icon');
-        DOM.tvTab.classList.toggle('active', tabId === 'tv');
-        DOM.iconTab.style.display = tabId === 'icon' ? 'flex' : 'none';
-        DOM.tvTab.style.display = tabId === 'tv' ? 'flex' : 'none';
-        
-        updateFileTree();
-    }
-
-    function handleAppNameChange(e) {
-        state.appName = e.target.value || 'MyApp';
-        updateAppNameDisplays();
-        updateCodeSnippets();
-    }
-
-    function handleIconNameChange(e) {
-        state.iconName = e.target.value || 'ic_launcher';
-        updateFileTree();
-        updateCodeSnippets();
-    }
-
-    function handleBgColorChange(e) {
-        updateBgColor(e.target.value);
-    }
-
-    function handleBgColorTextChange(e) {
-        const val = e.target.value;
-        if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
-            updateBgColor(val);
-        }
+    function handleTvBannerUpload(img) {
+        state.tvBannerImg = img;
+        updateTVPreview();
+        showToast(translations[state.currentLang].loaded, 'success');
     }
 
     function updateBgColor(color) {
         state.bgColor = color;
-        DOM.bgColorPicker.value = color;
-        DOM.bgColorText.value = color;
-        
+        if (DOM.bgColorPicker) DOM.bgColorPicker.value = color;
+        if (DOM.bgColorText) DOM.bgColorText.value = color;
+
         if (state.syncTvBgColor) {
             state.tvBgColor = color;
             if (DOM.tvBgColorPicker) DOM.tvBgColorPicker.value = color;
             if (DOM.tvBgColorText) DOM.tvBgColorText.value = color;
         }
-        
+
         updateColorPresets();
         updateAllPreviews();
         updateCodeSnippets();
@@ -874,164 +877,432 @@
     }
 
     function handleTvBgColorTextChange(e) {
-        const val = e.target.value;
-        if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+        if (/^#[0-9A-Fa-f]{6}$/.test(e.target.value)) {
             if (state.syncTvBgColor) {
                 state.syncTvBgColor = false;
                 DOM.syncTvBgColor.checked = false;
                 toggleTvInputsState();
             }
-            state.tvBgColor = val;
-            DOM.tvBgColorPicker.value = val;
+            state.tvBgColor = e.target.value;
+            DOM.tvBgColorPicker.value = e.target.value;
             updateTVPreview();
         }
     }
 
-    function handleSyncTvBgColorChange(e) {
+    function handleSyncTvBgChange(e) {
         state.syncTvBgColor = e.target.checked;
-        if (state.syncTvBgColor) {
-            updateBgColor(state.bgColor);
-        }
+        if (state.syncTvBgColor) updateBgColor(state.bgColor);
         toggleTvInputsState();
     }
 
     function toggleTvInputsState() {
-        const opacity = state.syncTvBgColor ? '0.5' : '1';
-        const pointerEvents = state.syncTvBgColor ? 'none' : 'auto';
-        
-        const row = document.getElementById('tvColorRow');
+        const row = $('tvColorRow');
         if (row) {
-            row.style.opacity = opacity;
-            row.style.pointerEvents = pointerEvents;
+            row.style.opacity = state.syncTvBgColor ? '0.5' : '1';
+            row.style.pointerEvents = state.syncTvBgColor ? 'none' : 'auto';
         }
-        
         if (DOM.tvBgColorPicker) DOM.tvBgColorPicker.disabled = state.syncTvBgColor;
         if (DOM.tvBgColorText) DOM.tvBgColorText.disabled = state.syncTvBgColor;
     }
 
-    function handleColorPresetClick(e) {
-        updateBgColor(e.currentTarget.dataset.color);
-    }
-
-    function handleScaleChange(e) {
-        state.scale = parseInt(e.target.value);
-        updateScaleDisplay();
-        updateAllPreviews();
-    }
-
-    function handleResetScale() {
-        state.scale = 100;
-        if (DOM.scaleSlider) {
-            DOM.scaleSlider.value = 100;
-        }
-        updateScaleDisplay();
-        updateAllPreviews();
+    function updateColorPresets() {
+        DOM.colorPresets.forEach(preset => {
+            preset.classList.toggle('active', preset.dataset.color.toLowerCase() === state.bgColor.toLowerCase());
+        });
     }
 
     function updateScaleDisplay() {
-        if (DOM.scaleValue) {
-            DOM.scaleValue.textContent = state.scale + '%';
-        }
+        if (DOM.scaleValue) DOM.scaleValue.textContent = state.scale + '%';
     }
 
-    function handleShapeChange(e) {
-        const option = e.currentTarget;
-        DOM.shapeOptions.forEach(o => {
-            o.classList.toggle('active', o.dataset.shape === option.dataset.shape);
-        });
-        state.shape = option.dataset.shape;
-        updateIconShapes();
-    }
-
-    function handleMonoToggle(e) {
-        state.useMono = e.target.checked;
-        DOM.monoSection.style.display = e.target.checked ? 'block' : 'none';
-        
-        if (!e.target.checked) {
-            state.isThemed = false;
-            updateThemeUI();
-        }
-        updateAllPreviews();
-        updateFileCount();
-        updateFileTree();
-    }
-
-    function handleForegroundUpload(img) {
-        state.foregroundImg = img;
-        
-        const detectedColor = getDominantColor(img);
-        updateBgColor(detectedColor);
-        
-        updateAllPreviews();
-        showToast(translations[state.currentLang].autoColor || translations[state.currentLang].loaded, 'success');
-    }
-
-    function handleMonoUpload(img) {
-        state.monoImg = img;
-        DOM.monoUpload.classList.add('active');
-        DOM.monoStatus.style.opacity = '1';
-        updatePhonePreview();
-        showToast(translations[state.currentLang].loaded, 'success');
-    }
-
-    function handleTvBannerUpload(img) {
-        state.tvBannerImg = img;
-        updateTVPreview();
-        showToast(translations[state.currentLang].loaded, 'success');
-    }
-
-    function handlePreviewModeChange(e) {
-        const btn = e.currentTarget;
-        const mode = btn.dataset.mode;
-        
-        document.querySelectorAll('.segment-btn[data-mode]').forEach(b => {
+    function switchPreviewMode(mode) {
+        state.currentPreviewMode = mode;
+        $$('.segment-btn[data-mode]').forEach(b => {
             b.classList.toggle('active', b.dataset.mode === mode);
         });
-        
-        state.currentPreviewMode = mode;
-        DOM.phoneFrame.classList.toggle('hidden', mode !== 'phone');
-        DOM.tvFrame.classList.toggle('hidden', mode !== 'tv');
+        DOM.phoneFrame?.classList.toggle('hidden', mode !== 'phone');
+        DOM.tvFrame?.classList.toggle('hidden', mode !== 'tv');
         
         const t = translations[state.currentLang];
-        DOM.previewHint.textContent = mode === 'tv' ? t.tvHint : t.previewHint;
+        if (DOM.previewHint) {
+            DOM.previewHint.textContent = mode === 'tv' ? t.tvHint : t.previewHint;
+        }
     }
 
-    function handleThemeChange(e) {
-        const btn = e.currentTarget;
-        const theme = btn.dataset.theme;
-        
+    function switchTheme(theme) {
         if (theme === 'themed' && !state.useMono) {
-            showToast("Enable Mono Icon in Config first", "error");
+            showToast("Enable Mono Icon first", "error");
             return;
         }
-
         state.isThemed = (theme === 'themed');
         updateThemeUI();
     }
-    
+
     function updateThemeUI() {
-        document.querySelectorAll('.segment-btn[data-theme]').forEach(b => {
+        $$('.segment-btn[data-theme]').forEach(b => {
             b.classList.toggle('active', (b.dataset.theme === 'themed') === state.isThemed);
         });
-        DOM.phoneScreen.classList.toggle('themed', state.isThemed);
+        DOM.phoneScreen?.classList.toggle('themed', state.isThemed);
         updatePhonePreview();
     }
 
-    function handleCopyClick(e) {
-        const btn = e.currentTarget;
+    function updateIconShapes() {
+        $$('.app-icon').forEach(icon => {
+            icon.classList.remove('circle', 'squircle', 'rounded', 'square');
+            icon.classList.add(state.shape);
+        });
+    }
+
+    function renderPhoneApps() {
+        const appsBefore = GRID_APPS.slice(0, 4);
+        const appsAfter = GRID_APPS.slice(4);
+
+        let html = '';
+        appsBefore.forEach(app => html += createAppIconHtml(app));
+        
+        html += `
+            <div class="app-item">
+                <div class="app-icon user-icon ${state.shape}" id="userAppIcon">
+                    <canvas id="phonePreviewCanvas" width="100" height="100"></canvas>
+                </div>
+                <span class="app-label" id="phoneAppLabel">${state.appName}</span>
+            </div>
+        `;
+
+        appsAfter.forEach(app => html += createAppIconHtml(app));
+        DOM.appGrid.innerHTML = html;
+        updatePhonePreview();
+    }
+
+    function createAppIconHtml(app) {
+        return `
+            <div class="app-item">
+                <div class="app-icon ${state.shape}" style="background: ${app.color}">
+                    <img class="icon-color" src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" onerror="this.style.display='none'">
+                    <img class="icon-mono" src="${ICON_BASE_PATH}${app.mono}" alt="${app.name} Mono" onerror="this.style.display='none'">
+                </div>
+                <span class="app-label">${app.name}</span>
+            </div>
+        `;
+    }
+
+    function renderDockIcons() {
+        let html = '';
+        DOCK_ICONS.forEach(app => {
+            html += `
+                <div class="dock-icon" style="background: ${app.color}">
+                    <img class="icon-color" src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" onerror="this.style.display='none'">
+                    <img class="icon-mono" src="${ICON_BASE_PATH}${app.mono}" alt="${app.name} Mono" onerror="this.style.display='none'">
+                </div>
+            `;
+        });
+        DOM.phoneDock.innerHTML = html;
+    }
+
+    function renderTVApps() {
+        let sidebarHtml = '';
+        TV_APPS.forEach((app, i) => {
+            sidebarHtml += `
+                <div class="tv-app-item ${i === 0 ? 'active' : ''}" data-app="${app.id}">
+                    <div class="tv-app-icon" style="background: ${app.color}">
+                        <img src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" onerror="this.style.display='none'">
+                    </div>
+                    <span class="tv-app-name">${app.name}</span>
+                </div>
+            `;
+        });
+        sidebarHtml += `
+            <div class="tv-app-item" data-app="user">
+                <div class="tv-app-icon" id="tvSidebarUserIcon">
+                    <canvas id="tvSidebarCanvas" width="32" height="32"></canvas>
+                </div>
+                <span class="tv-app-name" id="tvSidebarAppName">${state.appName}</span>
+            </div>
+        `;
+        DOM.tvAppList.innerHTML = sidebarHtml;
+
+        let rowHtml = `
+            <div class="tv-app-card" data-app="user">
+                <div class="tv-app-card-icon" id="tvRowUserIcon">
+                    <canvas id="tvRowCanvas" width="60" height="60"></canvas>
+                </div>
+                <span class="tv-app-card-name" id="tvRowAppName">${state.appName}</span>
+            </div>
+        `;
+        TV_APPS.forEach(app => {
+            rowHtml += `
+                <div class="tv-app-card" data-app="${app.id}">
+                    <div class="tv-app-card-icon" style="background: ${app.color}">
+                        <img src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" onerror="this.style.display='none'">
+                    </div>
+                    <span class="tv-app-card-name">${app.name}</span>
+                </div>
+            `;
+        });
+        DOM.tvAppRow.innerHTML = rowHtml;
+        updateTVPreview();
+    }
+
+    function updateAllPreviews() {
+        updatePhonePreview();
+        updateTVPreview();
+    }
+
+    function updatePhonePreview() {
+        const canvas = $('phonePreviewCanvas');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const size = 100;
+        ctx.clearRect(0, 0, size, size);
+
+        if (state.isThemed && state.useMono) {
+            ctx.fillStyle = '#333333';
+            ctx.fillRect(0, 0, size, size);
+            if (state.monoImg) {
+                drawMonoImage(ctx, state.monoImg, size);
+            } else if (state.foregroundImg) {
+                drawAutoMono(ctx, state.foregroundImg, size);
+            }
+        } else {
+            ctx.fillStyle = state.bgColor;
+            ctx.fillRect(0, 0, size, size);
+            if (state.foregroundImg) {
+                drawScaledImage(ctx, state.foregroundImg, size);
+            }
+        }
+
+        const label = $('phoneAppLabel');
+        if (label) label.textContent = state.appName;
+    }
+
+    function updateTVPreview() {
+        const canvas = DOM.tvPreviewCanvas;
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, 320, 180);
+        ctx.fillStyle = state.syncTvBgColor ? state.bgColor : state.tvBgColor;
+        ctx.fillRect(0, 0, 320, 180);
+
+        if (state.tvBannerImg) {
+            const scale = Math.max(320 / state.tvBannerImg.width, 180 / state.tvBannerImg.height);
+            const w = state.tvBannerImg.width * scale;
+            const h = state.tvBannerImg.height * scale;
+            ctx.drawImage(state.tvBannerImg, (320 - w) / 2, (180 - h) / 2, w, h);
+        } else if (state.foregroundImg) {
+            const iconSize = 70 * (state.scale / 100);
+            const ar = state.foregroundImg.width / state.foregroundImg.height;
+            let dw = ar > 1 ? iconSize : iconSize * ar;
+            let dh = ar > 1 ? iconSize / ar : iconSize;
+            ctx.drawImage(state.foregroundImg, (320 - dw) / 2, 40, dw, dh);
+            
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '600 16px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(state.appName, 160, 140);
+            ctx.font = '400 11px Inter, sans-serif';
+            ctx.fillStyle = 'rgba(255,255,255,0.6)';
+            ctx.fillText('Open App', 160, 158);
+        }
+
+        if (DOM.tvBannerTitle) DOM.tvBannerTitle.textContent = state.appName;
+        updateSmallCanvas('tvSidebarCanvas', 32);
+        updateSmallCanvas('tvRowCanvas', 60);
+        
+        const sidebarName = $('tvSidebarAppName');
+        const rowName = $('tvRowAppName');
+        if (sidebarName) sidebarName.textContent = state.appName;
+        if (rowName) rowName.textContent = state.appName;
+    }
+
+    function updateSmallCanvas(id, size) {
+        const canvas = $(id);
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, size, size);
+        ctx.fillStyle = state.bgColor;
+        ctx.fillRect(0, 0, size, size);
+        if (state.foregroundImg) {
+            drawScaledImage(ctx, state.foregroundImg, size);
+        }
+    }
+
+    function drawScaledImage(ctx, img, canvasSize) {
+        const scaleFactor = state.scale / 100;
+        const drawSize = canvasSize * scaleFactor;
+        const ar = img.width / img.height;
+        let dw, dh;
+        
+        if (ar > 1) {
+            dw = drawSize;
+            dh = drawSize / ar;
+        } else {
+            dh = drawSize;
+            dw = drawSize * ar;
+        }
+        
+        const ox = (canvasSize - dw) / 2;
+        const oy = (canvasSize - dh) / 2;
+        ctx.drawImage(img, ox, oy, dw, dh);
+    }
+
+    function drawMonoImage(ctx, img, size) {
+        const temp = document.createElement('canvas');
+        temp.width = size;
+        temp.height = size;
+        const tctx = temp.getContext('2d');
+        drawScaledImage(tctx, img, size);
+        tctx.globalCompositeOperation = 'source-in';
+        tctx.fillStyle = '#ffffff';
+        tctx.fillRect(0, 0, size, size);
+        ctx.drawImage(temp, 0, 0);
+    }
+
+    function drawAutoMono(ctx, img, size) {
+        const temp = document.createElement('canvas');
+        temp.width = size;
+        temp.height = size;
+        const tctx = temp.getContext('2d');
+        drawScaledImage(tctx, img, size);
+        
+        const imageData = tctx.getImageData(0, 0, size, size);
+        const data = imageData.data;
+        for (let i = 0; i < data.length; i += 4) {
+            if (data[i + 3] > 20) {
+                data[i] = 255;
+                data[i + 1] = 255;
+                data[i + 2] = 255;
+            }
+        }
+        tctx.putImageData(imageData, 0, 0);
+        ctx.drawImage(temp, 0, 0);
+    }
+
+    function updateAppNameDisplays() {
+        const label = $('phoneAppLabel');
+        if (label) label.textContent = state.appName;
+        if (DOM.tvBannerTitle) DOM.tvBannerTitle.textContent = state.appName;
+        const sn = $('tvSidebarAppName');
+        const rn = $('tvRowAppName');
+        if (sn) sn.textContent = state.appName;
+        if (rn) rn.textContent = state.appName;
+        updateTVPreview();
+    }
+
+    function updateClock() {
+        const now = new Date();
+        const h = now.getHours().toString().padStart(2, '0');
+        const m = now.getMinutes().toString().padStart(2, '0');
+        const time = `${h}:${m}`;
+
+        if (DOM.clockDisplay) DOM.clockDisplay.textContent = time;
+        if (DOM.statusTime) DOM.statusTime.textContent = time;
+        if (DOM.tvTime) DOM.tvTime.textContent = time;
+
+        if (DOM.clockDate) {
+            DOM.clockDate.textContent = now.toLocaleDateString(state.currentLang, {
+                weekday: 'long', month: 'short', day: 'numeric'
+            });
+        }
+    }
+
+    function updateFileCount() {
+        let count = 0, platforms = 0;
+        
+        if (state.exportAndroid) {
+            count += 24;
+            if (state.useMono) count += 6;
+            platforms++;
+        }
+        if (state.exportIOS) { count += 14; platforms++; }
+        if (state.exportWeb) { count += 12; platforms++; }
+        if (state.exportTV) { count += 2; platforms++; }
+        if (state.exportPlayStore) count += 1;
+
+        DOM.totalFilesCount.textContent = count;
+        DOM.platformCount.textContent = platforms;
+    }
+
+    function updateFileTree() {
+        const name = state.iconName || 'ic_launcher';
+        let html = '';
+
+        if (state.exportAndroid) {
+            html += `
+                <div class="file-item folder"><span class="material-symbols-rounded">folder</span><span>android/res/</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${name}.png</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${name}_round.png</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${name}_foreground.png</span></div>
+            `;
+            if (state.useMono) {
+                html += `<div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${name}_monochrome.png</span></div>`;
+            }
+            html += `
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">code</span><span>values/${name}_background.xml</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">code</span><span>mipmap-anydpi-v26/${name}.xml</span></div>
+            `;
+        }
+
+        if (state.exportTV) {
+            html += `<div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>drawable-xhdpi/${name}_tv_banner.png</span></div>`;
+        }
+
+        if (state.exportIOS) {
+            html += `
+                <div class="file-item folder"><span class="material-symbols-rounded">folder</span><span>ios/AppIcon.appiconset/</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>Icon-*.png</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">code</span><span>Contents.json</span></div>
+            `;
+        }
+
+        if (state.exportWeb) {
+            html += `
+                <div class="file-item folder"><span class="material-symbols-rounded">folder</span><span>web/</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>icons/icon-*.png</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">code</span><span>manifest.json</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>favicon.png</span></div>
+            `;
+        }
+
+        if (state.exportPlayStore) {
+            html += `<div class="file-item file"><span class="material-symbols-rounded">image</span><span>playstore-icon.png</span></div>`;
+        }
+
+        if (!html) {
+            html = `<div class="file-item" style="color: var(--text-muted); font-style: italic;"><span class="material-symbols-rounded">info</span><span>No platforms selected</span></div>`;
+        }
+
+        DOM.fileTree.innerHTML = html;
+    }
+
+    function updateCodeSnippets() {
+        $$('.code-dynamic').forEach(el => {
+            if (el.id.includes('IconName')) el.textContent = state.iconName;
+            if (el.id.includes('BgColor') || el.id.includes('ThemeColor') || el.id.includes('ManifestBg')) el.textContent = state.bgColor;
+            if (el.id.includes('AppName')) el.textContent = state.appName;
+        });
+
+        const adaptiveFile = $('adaptiveIconFileName');
+        if (adaptiveFile) adaptiveFile.textContent = `${state.iconName}.xml`;
+        
+        const bgFile = $('bgColorFileName');
+        if (bgFile) bgFile.textContent = `${state.iconName}_background.xml`;
+    }
+
+    function handleCopy(btn) {
         const targetId = btn.dataset.target;
-        const codeBlock = document.getElementById(targetId);
-        
+        const codeBlock = $(targetId);
         if (!codeBlock) return;
-        
+
         const code = codeBlock.querySelector('code');
         const text = code ? code.textContent : codeBlock.textContent;
-        
+
         navigator.clipboard.writeText(text).then(() => {
             btn.classList.add('copied');
             btn.querySelector('.material-symbols-rounded').textContent = 'check';
             showToast(translations[state.currentLang].copied, 'success');
-            
+
             setTimeout(() => {
                 btn.classList.remove('copied');
                 btn.querySelector('.material-symbols-rounded').textContent = 'content_copy';
@@ -1044,659 +1315,116 @@
             showToast(translations[state.currentLang].error, 'error');
             return;
         }
-        
+
         DOM.downloadBtn.disabled = true;
-        DOM.downloadBtn.innerHTML = `
-            <span class="material-symbols-rounded spinning">sync</span>
-            <span>${translations[state.currentLang].processing}</span>
-        `;
-        
+        DOM.downloadBtn.innerHTML = `<span class="material-symbols-rounded spinning">sync</span><span>${translations[state.currentLang].processing}</span>`;
+
         try {
-            await generateAndDownloadZip();
+            await generateZip();
             showToast(translations[state.currentLang].success, 'success');
-        } catch (error) {
-            console.error('Download error:', error);
-            showToast('Error: ' + error.message, 'error');
+        } catch (err) {
+            console.error(err);
+            showToast('Error: ' + err.message, 'error');
         }
-        
+
         setTimeout(() => {
             DOM.downloadBtn.disabled = false;
-            DOM.downloadBtn.innerHTML = `
-                <span class="material-symbols-rounded">download</span>
-                <span data-i18n="downloadZip">${translations[state.currentLang].downloadZip}</span>
-            `;
+            DOM.downloadBtn.innerHTML = `<span class="material-symbols-rounded">download</span><span data-i18n="downloadZip">${translations[state.currentLang].downloadZip}</span>`;
             DOM.progressFill.style.width = '0%';
         }, 1500);
     }
 
-    function renderPhoneApps() {
-        const appsBefore = GRID_APPS.slice(0, 4);
-        const appsAfter = GRID_APPS.slice(4);
-
-        let html = '';
-        appsBefore.forEach(app => html += generateAppHtml(app));
-
-        html += `
-            <div class="app-item">
-                <div class="app-icon user-icon ${state.shape}" id="userAppIcon">
-                    <canvas id="phonePreviewCanvas" width="100" height="100"></canvas>
-                </div>
-                <span class="app-label" id="phoneAppLabel">${state.appName}</span>
-            </div>
-        `;
-
-        appsAfter.forEach(app => html += generateAppHtml(app));
-        DOM.appGrid.innerHTML = html;
-        updatePhonePreview();
-    }
-
-    function generateAppHtml(app) {
-        return `
-            <div class="app-item">
-                <div class="app-icon ${state.shape}" style="background: ${app.color}">
-                    <img class="icon-color" src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" 
-                         onerror="this.style.display='none'">
-                    <img class="icon-mono" src="${ICON_BASE_PATH}${app.mono}" alt="${app.name} Mono" 
-                         onerror="this.style.display='none'">
-                </div>
-                <span class="app-label">${app.name}</span>
-            </div>
-        `;
-    }
-
-    function renderDockIcons() {
-        let html = '';
-        DOCK_ICONS.forEach(app => {
-            html += `
-                <div class="dock-icon" style="background: ${app.color}">
-                    <img class="icon-color" src="${ICON_BASE_PATH}${app.file}" alt="${app.name}"
-                         onerror="this.style.display='none'">
-                    <img class="icon-mono" src="${ICON_BASE_PATH}${app.mono}" alt="${app.name} Mono" 
-                         onerror="this.style.display='none'">
-                </div>
-            `;
-        });
-        DOM.phoneDock.innerHTML = html;
-    }
-
-    function renderTVApps() {
-        let sidebarHtml = '';
-        TV_APPS.forEach((app, index) => {
-            sidebarHtml += `
-                <div class="tv-app-item ${index === 0 ? 'active' : ''}" data-app="${app.id}">
-                    <div class="tv-app-icon" style="background: ${app.color}">
-                        <img src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" onerror="this.style.display='none'">
-                    </div>
-                    <span class="tv-app-name">${app.name}</span>
-                </div>
-            `;
-        });
-        
-        sidebarHtml += `
-            <div class="tv-app-item" data-app="user">
-                <div class="tv-app-icon" id="tvSidebarUserIcon">
-                    <canvas id="tvSidebarCanvas" width="32" height="32"></canvas>
-                </div>
-                <span class="tv-app-name" id="tvSidebarAppName">${state.appName}</span>
-            </div>
-        `;
-        DOM.tvAppList.innerHTML = sidebarHtml;
-        
-        let rowHtml = `
-            <div class="tv-app-card" data-app="user">
-                <div class="tv-app-card-icon" id="tvRowUserIcon">
-                    <canvas id="tvRowCanvas" width="60" height="60"></canvas>
-                </div>
-                <span class="tv-app-card-name" id="tvRowAppName">${state.appName}</span>
-            </div>
-        `;
-        
-        TV_APPS.forEach(app => {
-            rowHtml += `
-                <div class="tv-app-card" data-app="${app.id}">
-                    <div class="tv-app-card-icon" style="background: ${app.color}">
-                        <img src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" onerror="this.style.display='none'">
-                    </div>
-                    <span class="tv-app-card-name">${app.name}</span>
-                </div>
-            `;
-        });
-        
-        DOM.tvAppRow.innerHTML = rowHtml;
-        updateTVPreview();
-    }
-
-    function updateAllPreviews() {
-        updatePhonePreview();
-        updateTVPreview();
-    }
-
-    function updatePhonePreview() {
-        const canvas = document.getElementById('phonePreviewCanvas');
-        if (!canvas) return;
-        
-        const ctx = canvas.getContext('2d');
-        const size = 100;
-        
-        ctx.clearRect(0, 0, size, size);
-        
-        if (state.isThemed && state.useMono) {
-            ctx.fillStyle = '#333333';
-            ctx.fillRect(0, 0, size, size);
-            
-            if (state.monoImg) {
-                drawMonoImage(ctx, state.monoImg, size);
-            } else if (state.foregroundImg) {
-                drawAutoMono(ctx, state.foregroundImg, size);
-            }
-        } else {
-            ctx.fillStyle = state.bgColor;
-            ctx.fillRect(0, 0, size, size);
-            
-            if (state.foregroundImg) {
-                drawCenteredImage(ctx, state.foregroundImg, size, state.scale);
-            }
-        }
-        
-        if (DOM.phoneAppLabel) DOM.phoneAppLabel.textContent = state.appName;
-    }
-
-    function updateTVPreview() {
-        const canvas = DOM.tvPreviewCanvas;
-        if (!canvas) return;
-        
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, 320, 180);
-        
-        ctx.fillStyle = state.syncTvBgColor ? state.bgColor : state.tvBgColor;
-        ctx.fillRect(0, 0, 320, 180);
-        
-        if (state.tvBannerImg) {
-            const imgScale = Math.max(320 / state.tvBannerImg.width, 180 / state.tvBannerImg.height);
-            const w = state.tvBannerImg.width * imgScale;
-            const h = state.tvBannerImg.height * imgScale;
-            ctx.drawImage(state.tvBannerImg, (320 - w) / 2, (180 - h) / 2, w, h);
-        } else if (state.foregroundImg) {
-            const iconSize = 70 * (state.scale / 100);
-            const aspectRatio = state.foregroundImg.width / state.foregroundImg.height;
-            let drawWidth = aspectRatio > 1 ? iconSize : iconSize * aspectRatio;
-            let drawHeight = aspectRatio > 1 ? iconSize / aspectRatio : iconSize;
-            
-            ctx.drawImage(state.foregroundImg, (320 - drawWidth) / 2, 40, drawWidth, drawHeight);
-            
-            ctx.fillStyle = '#ffffff';
-            ctx.font = '600 16px Inter, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText(state.appName, 160, 140);
-            
-            ctx.font = '400 11px Inter, sans-serif';
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-            ctx.fillText('Open App', 160, 158);
-        }
-        
-        if (DOM.tvBannerTitle) DOM.tvBannerTitle.textContent = state.appName;
-        
-        updateSmallCanvas('tvSidebarCanvas', 32);
-        updateSmallCanvas('tvRowCanvas', 60);
-        
-        if (DOM.tvSidebarAppName) DOM.tvSidebarAppName.textContent = state.appName;
-        if (DOM.tvRowAppName) DOM.tvRowAppName.textContent = state.appName;
-    }
-
-    function updateSmallCanvas(id, size) {
-        const canvas = document.getElementById(id);
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, size, size);
-        ctx.fillStyle = state.bgColor;
-        ctx.fillRect(0, 0, size, size);
-        
-        if (state.foregroundImg) {
-            drawCenteredImage(ctx, state.foregroundImg, size, state.scale);
-        }
-    }
-
-    function drawCenteredImage(ctx, img, canvasSize, scalePercent = 100) {
-        const scaleFactor = scalePercent / 100;
-        const drawSize = canvasSize * scaleFactor;
-        
-        const aspectRatio = img.width / img.height;
-        let drawWidth, drawHeight;
-        
-        if (aspectRatio > 1) {
-            drawWidth = drawSize;
-            drawHeight = drawSize / aspectRatio;
-        } else {
-            drawHeight = drawSize;
-            drawWidth = drawSize * aspectRatio;
-        }
-        
-        const offsetX = (canvasSize - drawWidth) / 2;
-        const offsetY = (canvasSize - drawHeight) / 2;
-        
-        ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-    }
-
-    function drawMonoImage(ctx, img, size) {
-        const tempCanvas = document.createElement('canvas');
-        tempCanvas.width = size;
-        tempCanvas.height = size;
-        const tempCtx = tempCanvas.getContext('2d');
-        
-        drawCenteredImage(tempCtx, img, size, state.scale);
-        
-        tempCtx.globalCompositeOperation = 'source-in';
-        tempCtx.fillStyle = '#ffffff';
-        tempCtx.fillRect(0, 0, size, size);
-        
-        ctx.drawImage(tempCanvas, 0, 0);
-    }
-
-    function drawAutoMono(ctx, img, size) {
-        const tempCanvas = document.createElement('canvas');
-        tempCanvas.width = size;
-        tempCanvas.height = size;
-        const tempCtx = tempCanvas.getContext('2d');
-        
-        drawCenteredImage(tempCtx, img, size, state.scale);
-        
-        const imageData = tempCtx.getImageData(0, 0, size, size);
-        const data = imageData.data;
-        
-        for (let i = 0; i < data.length; i += 4) {
-            if (data[i + 3] > 20) {
-                data[i] = 255;
-                data[i + 1] = 255;
-                data[i + 2] = 255;
-            }
-        }
-        
-        tempCtx.putImageData(imageData, 0, 0);
-        ctx.drawImage(tempCanvas, 0, 0);
-    }
-
-    function updateIconShapes() {
-        document.querySelectorAll('.app-icon').forEach(icon => {
-            icon.classList.remove('circle', 'squircle', 'rounded', 'square');
-            icon.classList.add(state.shape);
-        });
-    }
-
-    function updateColorPresets() {
-        DOM.colorPresets.forEach(preset => {
-            preset.classList.toggle('active', preset.dataset.color.toLowerCase() === state.bgColor.toLowerCase());
-        });
-    }
-
-    function updateAppNameDisplays() {
-        if (DOM.phoneAppLabel) DOM.phoneAppLabel.textContent = state.appName;
-        if (DOM.tvSidebarAppName) DOM.tvSidebarAppName.textContent = state.appName;
-        if (DOM.tvRowAppName) DOM.tvRowAppName.textContent = state.appName;
-        if (DOM.tvBannerTitle) DOM.tvBannerTitle.textContent = state.appName;
-        updateTVPreview();
-    }
-
-    function updateClock() {
-        const now = new Date();
-        const hours = now.getHours().toString().padStart(2, '0');
-        const minutes = now.getMinutes().toString().padStart(2, '0');
-        const time = `${hours}:${minutes}`;
-        
-        if (DOM.clockDisplay) DOM.clockDisplay.textContent = time;
-        if (DOM.statusTime) DOM.statusTime.textContent = time;
-        if (DOM.tvTime) DOM.tvTime.textContent = time;
-        
-        if (DOM.clockDate) {
-            const dateOptions = { weekday: 'long', month: 'short', day: 'numeric' };
-            DOM.clockDate.textContent = now.toLocaleDateString(state.currentLang, dateOptions);
-        }
-    }
-
-    function updateTranslations() {
-        const t = translations[state.currentLang] || translations.en;
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (t[key]) el.textContent = t[key];
-        });
-    }
-
-    function updateFileCount() {
-        let count = 0;
-        let platforms = 0;
-        
-        if (state.exportAndroid) { 
-            count += 24;
-            if (state.useMono) count += 6;
-            platforms++; 
-        }
-        if (state.exportIOS) { count += 14; platforms++; }
-        if (state.exportWeb) { count += 12; platforms++; }
-        if (state.exportTV) { count += 2; platforms++; }
-        if (state.exportPlayStore) { count += 1; }
-        
-        DOM.totalFilesCount.textContent = count;
-        DOM.platformCount.textContent = platforms;
-    }
-
-    function updateFileTree() {
-        const iconName = state.iconName || 'ic_launcher';
-        let html = '';
-        
-        if (state.exportAndroid) {
-            html += `
-                <div class="file-item folder">
-                    <span class="material-symbols-rounded">folder</span>
-                    <span>android/res/</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>mipmap-*/${iconName}.png</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>mipmap-*/${iconName}_round.png</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>mipmap-*/${iconName}_foreground.png</span>
-                </div>
-            `;
-            
-            if (state.useMono) {
-                html += `
-                    <div class="file-item file indent-1">
-                        <span class="material-symbols-rounded">image</span>
-                        <span>mipmap-*/${iconName}_monochrome.png</span>
-                    </div>
-                `;
-            }
-            
-            html += `
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">code</span>
-                    <span>values/${iconName}_background.xml</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">code</span>
-                    <span>mipmap-anydpi-v26/${iconName}.xml</span>
-                </div>
-            `;
-        }
-        
-        if (state.exportTV) {
-            html += `
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>drawable-xhdpi/${iconName}_tv_banner.png</span>
-                </div>
-            `;
-        }
-        
-        if (state.exportIOS) {
-            html += `
-                <div class="file-item folder">
-                    <span class="material-symbols-rounded">folder</span>
-                    <span>ios/AppIcon.appiconset/</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>Icon-*.png</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">code</span>
-                    <span>Contents.json</span>
-                </div>
-            `;
-        }
-        
-        if (state.exportWeb) {
-            html += `
-                <div class="file-item folder">
-                    <span class="material-symbols-rounded">folder</span>
-                    <span>web/</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>icons/icon-*.png</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">code</span>
-                    <span>manifest.json</span>
-                </div>
-                <div class="file-item file indent-1">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>favicon.png</span>
-                </div>
-            `;
-        }
-        
-        if (state.exportPlayStore) {
-            html += `
-                <div class="file-item file">
-                    <span class="material-symbols-rounded">image</span>
-                    <span>playstore-icon.png</span>
-                </div>
-            `;
-        }
-        
-        if (html === '') {
-            html = `
-                <div class="file-item" style="color: var(--text-muted); font-style: italic;">
-                    <span class="material-symbols-rounded">info</span>
-                    <span>No platforms selected</span>
-                </div>
-            `;
-        }
-        
-        DOM.fileTree.innerHTML = html;
-    }
-
-    function updateCodeSnippets() {
-        document.querySelectorAll('.code-dynamic').forEach(el => {
-            if (el.id.includes('IconName')) el.textContent = state.iconName;
-            if (el.id.includes('BgColor') || el.id.includes('ThemeColor')) el.textContent = state.bgColor;
-            if (el.id.includes('AppName')) el.textContent = state.appName;
-        });
-        
-        const adaptiveXml = document.getElementById('adaptiveIconFileName');
-        if (adaptiveXml) adaptiveXml.textContent = `${state.iconName}.xml`;
-        
-        const bgXml = document.getElementById('bgColorFileName');
-        if (bgXml) bgXml.textContent = `${state.iconName}_background.xml`;
-    }
-
-    function checkViewMode() {
-        const isMobile = window.innerWidth <= 768;
-        
-        if (isMobile) {
-            if (DOM.desktopTabs) DOM.desktopTabs.style.display = 'none';
-            if (DOM.mobileNav) DOM.mobileNav.style.display = 'flex';
-            updateMobilePanels();
-        } else {
-            if (DOM.desktopTabs) DOM.desktopTabs.style.display = 'flex';
-            if (DOM.mobileNav) DOM.mobileNav.style.display = 'none';
-            updateDesktopPanels();
-        }
-    }
-
-    function updateMobilePanels() {
-        const panels = {
-            config: DOM.configPanel,
-            preview: DOM.previewPanel,
-            export: DOM.exportPanel,
-            code: DOM.codePanel
-        };
-        
-        Object.entries(panels).forEach(([key, panel]) => {
-            if (panel) {
-                const isActive = key === state.currentMobilePanel;
-                panel.classList.toggle('active', isActive);
-                panel.style.display = isActive ? 'flex' : 'none';
-            }
-        });
-    }
-
-    function updateDesktopPanels() {
-        const panels = {
-            config: DOM.configPanel,
-            preview: DOM.previewPanel,
-            export: DOM.exportPanel,
-            code: DOM.codePanel
-        };
-        
-        Object.entries(panels).forEach(([key, panel]) => {
-            if (panel) {
-                const isActive = key === state.currentDesktopTab;
-                panel.classList.toggle('active', isActive);
-                panel.style.display = isActive ? 'flex' : 'none';
-            }
-        });
-    }
-
-    function showToast(message, type = 'success') {
-        if (toastTimeout) clearTimeout(toastTimeout);
-
-        DOM.toastMessage.textContent = message;
-        DOM.toast.className = `toast ${type}`;
-        
-        const icons = { success: 'check_circle', error: 'error', info: 'info' };
-        DOM.toastIcon.textContent = icons[type] || icons.success;
-        
-        void DOM.toast.offsetWidth;
-        
-        DOM.toast.classList.add('show');
-        toastTimeout = setTimeout(() => {
-            DOM.toast.classList.remove('show');
-        }, 3000);
-    }
-
-    async function generateAndDownloadZip() {
+    async function generateZip() {
         const zip = new JSZip();
-        const iconName = state.iconName || 'ic_launcher';
+        const name = state.iconName || 'ic_launcher';
         let progress = 0;
-        
-        const updateProgress = (amount) => {
-            progress += amount;
+
+        const updateProgress = (amt) => {
+            progress += amt;
             DOM.progressFill.style.width = Math.min(progress, 100) + '%';
         };
-        
-        const densities = {
-            'ldpi': { legacy: 36, adaptive: 81 },
-            'mdpi': { legacy: 48, adaptive: 108 },
-            'hdpi': { legacy: 72, adaptive: 162 },
-            'xhdpi': { legacy: 96, adaptive: 216 },
-            'xxhdpi': { legacy: 144, adaptive: 324 },
-            'xxxhdpi': { legacy: 192, adaptive: 432 }
-        };
-        
+
         if (state.exportAndroid) {
-            for (const [density, sizes] of Object.entries(densities)) {
-                zip.file(`android/res/mipmap-${density}/${iconName}.png`, 
-                    await generateLegacyIcon(sizes.legacy, false));
-                zip.file(`android/res/mipmap-${density}/${iconName}_round.png`, 
-                    await generateLegacyIcon(sizes.legacy, true));
-                zip.file(`android/res/mipmap-${density}/${iconName}_foreground.png`, 
-                    await generateAdaptiveForeground(sizes.adaptive));
+            for (const [density, sizes] of Object.entries(ANDROID_DENSITIES)) {
+                zip.file(`android/res/mipmap-${density}/${name}.png`, await createLegacyIcon(sizes.legacy, false));
+                zip.file(`android/res/mipmap-${density}/${name}_round.png`, await createLegacyIcon(sizes.legacy, true));
+                zip.file(`android/res/mipmap-${density}/${name}_foreground.png`, await createAdaptiveForeground(sizes.adaptive));
                 
                 if (state.useMono) {
-                    zip.file(`android/res/mipmap-${density}/${iconName}_monochrome.png`, 
-                        await generateMonochrome(sizes.adaptive));
+                    zip.file(`android/res/mipmap-${density}/${name}_monochrome.png`, await createMonochrome(sizes.adaptive));
                 }
-                
                 updateProgress(3);
             }
-            
-            const bgXml = `<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="${iconName}_background">${state.bgColor}</color>
-</resources>`;
-            zip.file(`android/res/values/${iconName}_background.xml`, bgXml);
-            
-            let adaptiveXml = `<?xml version="1.0" encoding="utf-8"?>
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/${iconName}_background"/>
-    <foreground android:drawable="@mipmap/${iconName}_foreground"/>`;
+
+            const bgXml = `<?xml version="1.0" encoding="utf-8"?>\n<resources>\n    <color name="${name}_background">${state.bgColor}</color>\n</resources>`;
+            zip.file(`android/res/values/${name}_background.xml`, bgXml);
+
+            let adaptiveXml = `<?xml version="1.0" encoding="utf-8"?>\n<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">\n    <background android:drawable="@color/${name}_background"/>\n    <foreground android:drawable="@mipmap/${name}_foreground"/>`;
             if (state.useMono) {
-                adaptiveXml += `
-    <monochrome android:drawable="@mipmap/${iconName}_monochrome"/>`;
+                adaptiveXml += `\n    <monochrome android:drawable="@mipmap/${name}_monochrome"/>`;
             }
-            adaptiveXml += `
-</adaptive-icon>`;
+            adaptiveXml += `\n</adaptive-icon>`;
             
-            zip.file(`android/res/mipmap-anydpi-v26/${iconName}.xml`, adaptiveXml);
-            zip.file(`android/res/mipmap-anydpi-v26/${iconName}_round.xml`, adaptiveXml);
+            zip.file(`android/res/mipmap-anydpi-v26/${name}.xml`, adaptiveXml);
+            zip.file(`android/res/mipmap-anydpi-v26/${name}_round.xml`, adaptiveXml);
             updateProgress(5);
         }
-        
+
         if (state.exportIOS) {
-            const iosSizes = [20, 29, 40, 58, 60, 76, 80, 87, 120, 152, 167, 180, 1024];
-            for (const size of iosSizes) {
-                zip.file(`ios/AppIcon.appiconset/Icon-${size}.png`, 
-                    await generateIOSIcon(size));
-                updateProgress(1.5);
-            }
-            zip.file('ios/AppIcon.appiconset/Contents.json', JSON.stringify(generateIOSContentsJson(), null, 2));
-        }
-        
-        if (state.exportWeb) {
-            const webSizes = [16, 32, 48, 72, 96, 128, 144, 192, 384, 512];
-            for (const size of webSizes) {
-                zip.file(`web/icons/icon-${size}.png`, 
-                    await generateWebIcon(size));
+            for (const size of IOS_SIZES) {
+                zip.file(`ios/AppIcon.appiconset/Icon-${size}.png`, await createIOSIcon(size));
                 updateProgress(1);
             }
-            
-            const manifest = {
+            zip.file('ios/AppIcon.appiconset/Contents.json', JSON.stringify(createIOSContentsJson(), null, 2));
+        }
+
+        if (state.exportWeb) {
+            for (const size of WEB_SIZES) {
+                zip.file(`web/icons/icon-${size}.png`, await createWebIcon(size));
+                updateProgress(1);
+            }
+            zip.file('web/manifest.json', JSON.stringify({
                 name: state.appName,
                 short_name: state.appName,
-                icons: webSizes.map(size => ({
-                    src: `icons/icon-${size}.png`,
-                    sizes: `${size}x${size}`,
+                icons: WEB_SIZES.map(s => ({
+                    src: `icons/icon-${s}.png`,
+                    sizes: `${s}x${s}`,
                     type: 'image/png',
                     purpose: 'any maskable'
                 })),
                 theme_color: state.bgColor,
                 background_color: state.bgColor,
                 display: 'standalone'
-            };
-            zip.file('web/manifest.json', JSON.stringify(manifest, null, 2));
-            zip.file('web/favicon.png', await generateWebIcon(32));
+            }, null, 2));
+            zip.file('web/favicon.png', await createWebIcon(32));
         }
-        
+
         if (state.exportTV) {
-            zip.file(`android/res/drawable-xhdpi/${iconName}_tv_banner.png`, 
-                await generateTVBanner());
-            zip.file(`android/res/drawable-xhdpi/${iconName}_tv_icon.png`, 
-                await generateLegacyIcon(320, false));
+            zip.file(`android/res/drawable-xhdpi/${name}_tv_banner.png`, await createTVBanner());
+            zip.file(`android/res/drawable-xhdpi/${name}_tv_icon.png`, await createLegacyIcon(320, false));
             updateProgress(5);
         }
-        
+
         if (state.exportPlayStore) {
-            zip.file('playstore-icon.png', await generatePlayStoreIcon());
+            zip.file('playstore-icon.png', await createPlayStoreIcon());
             updateProgress(5);
         }
-        
+
         DOM.progressFill.style.width = '100%';
-        const content = await zip.generateAsync({ 
-            type: 'blob', 
-            compression: 'DEFLATE', 
-            compressionOptions: { level: 9 } 
-        });
-        const filename = `${state.appName.toLowerCase().replace(/\s+/g, '_')}_icons.zip`;
-        saveAs(content, filename);
+        const content = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 9 } });
+        saveAs(content, `${state.appName.toLowerCase().replace(/\s+/g, '_')}_icons.zip`);
     }
 
-    function generateLegacyIcon(size, isRound = false) {
+    function createLegacyIcon(size, isRound) {
         return new Promise(resolve => {
-            const upscale = size < 128 ? 4 : 2;
+            const scale = size < 128 ? 4 : 2;
             const canvas = document.createElement('canvas');
-            canvas.width = size * upscale;
-            canvas.height = size * upscale;
+            canvas.width = size * scale;
+            canvas.height = size * scale;
             const ctx = canvas.getContext('2d');
-            
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = 'high';
-            
+
             if (isRound) {
                 ctx.beginPath();
                 ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, Math.PI * 2);
@@ -1707,101 +1435,93 @@
                 ctx.fillStyle = state.bgColor;
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
-            
+
             if (state.foregroundImg) {
-                drawCenteredImage(ctx, state.foregroundImg, canvas.width, state.scale);
+                drawScaledImageToCanvas(ctx, state.foregroundImg, canvas.width);
             }
-            
-            const finalCanvas = document.createElement('canvas');
-            finalCanvas.width = size;
-            finalCanvas.height = size;
-            const finalCtx = finalCanvas.getContext('2d');
-            finalCtx.imageSmoothingEnabled = true;
-            finalCtx.imageSmoothingQuality = 'high';
-            finalCtx.drawImage(canvas, 0, 0, size, size);
-            
-            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
+
+            const final = document.createElement('canvas');
+            final.width = size;
+            final.height = size;
+            const fctx = final.getContext('2d');
+            fctx.imageSmoothingEnabled = true;
+            fctx.imageSmoothingQuality = 'high';
+            fctx.drawImage(canvas, 0, 0, size, size);
+            final.toBlob(blob => resolve(blob), 'image/png', 1.0);
         });
     }
 
-    function generateAdaptiveForeground(size) {
+    function createAdaptiveForeground(size) {
         return new Promise(resolve => {
-            const upscale = size < 128 ? 4 : 2;
+            const scale = size < 128 ? 4 : 2;
             const canvas = document.createElement('canvas');
-            canvas.width = size * upscale;
-            canvas.height = size * upscale;
+            canvas.width = size * scale;
+            canvas.height = size * scale;
             const ctx = canvas.getContext('2d');
-            
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = 'high';
-            
+
             if (state.foregroundImg) {
-                const safeZoneSize = canvas.width * ADAPTIVE_SAFE_ZONE;
-                const userScale = state.scale / 100;
-                const finalSize = safeZoneSize * userScale;
-                
-                const aspectRatio = state.foregroundImg.width / state.foregroundImg.height;
-                let drawWidth, drawHeight;
-                
-                if (aspectRatio > 1) {
-                    drawWidth = finalSize;
-                    drawHeight = finalSize / aspectRatio;
+                const safeZone = canvas.width * 0.6667;
+                const scaleFactor = state.scale / 100;
+                const drawSize = safeZone * scaleFactor;
+                const ar = state.foregroundImg.width / state.foregroundImg.height;
+                let dw, dh;
+
+                if (ar > 1) {
+                    dw = drawSize;
+                    dh = drawSize / ar;
                 } else {
-                    drawHeight = finalSize;
-                    drawWidth = finalSize * aspectRatio;
+                    dh = drawSize;
+                    dw = drawSize * ar;
                 }
-                
-                const offsetX = (canvas.width - drawWidth) / 2;
-                const offsetY = (canvas.height - drawHeight) / 2;
-                
-                ctx.drawImage(state.foregroundImg, offsetX, offsetY, drawWidth, drawHeight);
+
+                const ox = (canvas.width - dw) / 2;
+                const oy = (canvas.height - dh) / 2;
+                ctx.drawImage(state.foregroundImg, ox, oy, dw, dh);
             }
-            
-            const finalCanvas = document.createElement('canvas');
-            finalCanvas.width = size;
-            finalCanvas.height = size;
-            const finalCtx = finalCanvas.getContext('2d');
-            finalCtx.imageSmoothingEnabled = true;
-            finalCtx.imageSmoothingQuality = 'high';
-            finalCtx.drawImage(canvas, 0, 0, size, size);
-            
-            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
+
+            const final = document.createElement('canvas');
+            final.width = size;
+            final.height = size;
+            const fctx = final.getContext('2d');
+            fctx.imageSmoothingEnabled = true;
+            fctx.imageSmoothingQuality = 'high';
+            fctx.drawImage(canvas, 0, 0, size, size);
+            final.toBlob(blob => resolve(blob), 'image/png', 1.0);
         });
     }
 
-    function generateMonochrome(size) {
+    function createMonochrome(size) {
         return new Promise(resolve => {
-            const upscale = size < 128 ? 4 : 2;
+            const scale = size < 128 ? 4 : 2;
             const canvas = document.createElement('canvas');
-            canvas.width = size * upscale;
-            canvas.height = size * upscale;
+            canvas.width = size * scale;
+            canvas.height = size * scale;
             const ctx = canvas.getContext('2d');
-            
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = 'high';
-            
+
             const img = state.monoImg || state.foregroundImg;
             if (img) {
-                const safeZoneSize = canvas.width * ADAPTIVE_SAFE_ZONE;
-                const userScale = state.scale / 100;
-                const finalSize = safeZoneSize * userScale;
-                
-                const aspectRatio = img.width / img.height;
-                let drawWidth, drawHeight;
-                
-                if (aspectRatio > 1) {
-                    drawWidth = finalSize;
-                    drawHeight = finalSize / aspectRatio;
+                const safeZone = canvas.width * 0.6667;
+                const scaleFactor = state.scale / 100;
+                const drawSize = safeZone * scaleFactor;
+                const ar = img.width / img.height;
+                let dw, dh;
+
+                if (ar > 1) {
+                    dw = drawSize;
+                    dh = drawSize / ar;
                 } else {
-                    drawHeight = finalSize;
-                    drawWidth = finalSize * aspectRatio;
+                    dh = drawSize;
+                    dw = drawSize * ar;
                 }
-                
-                const offsetX = (canvas.width - drawWidth) / 2;
-                const offsetY = (canvas.height - drawHeight) / 2;
-                
-                ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-                
+
+                const ox = (canvas.width - dw) / 2;
+                const oy = (canvas.height - dh) / 2;
+                ctx.drawImage(img, ox, oy, dw, dh);
+
                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 const data = imageData.data;
                 for (let i = 0; i < data.length; i += 4) {
@@ -1813,124 +1533,92 @@
                 }
                 ctx.putImageData(imageData, 0, 0);
             }
-            
-            const finalCanvas = document.createElement('canvas');
-            finalCanvas.width = size;
-            finalCanvas.height = size;
-            const finalCtx = finalCanvas.getContext('2d');
-            finalCtx.imageSmoothingEnabled = true;
-            finalCtx.imageSmoothingQuality = 'high';
-            finalCtx.drawImage(canvas, 0, 0, size, size);
-            
-            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
+
+            const final = document.createElement('canvas');
+            final.width = size;
+            final.height = size;
+            const fctx = final.getContext('2d');
+            fctx.imageSmoothingEnabled = true;
+            fctx.imageSmoothingQuality = 'high';
+            fctx.drawImage(canvas, 0, 0, size, size);
+            final.toBlob(blob => resolve(blob), 'image/png', 1.0);
         });
     }
 
-    function generateIOSIcon(size) {
+    function createIOSIcon(size) {
         return new Promise(resolve => {
-            const upscale = size < 128 ? 4 : 2;
+            const scale = size < 128 ? 4 : 2;
             const canvas = document.createElement('canvas');
-            canvas.width = size * upscale;
-            canvas.height = size * upscale;
+            canvas.width = size * scale;
+            canvas.height = size * scale;
             const ctx = canvas.getContext('2d');
-            
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = 'high';
-            
+
             ctx.fillStyle = state.bgColor;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+
             if (state.foregroundImg) {
-                drawCenteredImage(ctx, state.foregroundImg, canvas.width, state.scale * 0.85);
+                drawScaledImageToCanvas(ctx, state.foregroundImg, canvas.width);
             }
-            
-            const finalCanvas = document.createElement('canvas');
-            finalCanvas.width = size;
-            finalCanvas.height = size;
-            const finalCtx = finalCanvas.getContext('2d');
-            finalCtx.imageSmoothingEnabled = true;
-            finalCtx.imageSmoothingQuality = 'high';
-            finalCtx.drawImage(canvas, 0, 0, size, size);
-            
-            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
+
+            const final = document.createElement('canvas');
+            final.width = size;
+            final.height = size;
+            const fctx = final.getContext('2d');
+            fctx.imageSmoothingEnabled = true;
+            fctx.imageSmoothingQuality = 'high';
+            fctx.drawImage(canvas, 0, 0, size, size);
+            final.toBlob(blob => resolve(blob), 'image/png', 1.0);
         });
     }
 
-    function generateWebIcon(size) {
-        return new Promise(resolve => {
-            const upscale = size < 128 ? 4 : 2;
-            const canvas = document.createElement('canvas');
-            canvas.width = size * upscale;
-            canvas.height = size * upscale;
-            const ctx = canvas.getContext('2d');
-            
-            ctx.imageSmoothingEnabled = true;
-            ctx.imageSmoothingQuality = 'high';
-            
-            ctx.fillStyle = state.bgColor;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            if (state.foregroundImg) {
-                drawCenteredImage(ctx, state.foregroundImg, canvas.width, state.scale);
-            }
-            
-            const finalCanvas = document.createElement('canvas');
-            finalCanvas.width = size;
-            finalCanvas.height = size;
-            const finalCtx = finalCanvas.getContext('2d');
-            finalCtx.imageSmoothingEnabled = true;
-            finalCtx.imageSmoothingQuality = 'high';
-            finalCtx.drawImage(canvas, 0, 0, size, size);
-            
-            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
-        });
+    function createWebIcon(size) {
+        return createIOSIcon(size);
     }
 
-    function generatePlayStoreIcon() {
+    function createPlayStoreIcon() {
         return new Promise(resolve => {
             const size = 512;
-            const upscale = 2;
+            const scale = 2;
             const canvas = document.createElement('canvas');
-            canvas.width = size * upscale;
-            canvas.height = size * upscale;
+            canvas.width = size * scale;
+            canvas.height = size * scale;
             const ctx = canvas.getContext('2d');
-            
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = 'high';
-            
+
             ctx.fillStyle = state.bgColor;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+
             if (state.foregroundImg) {
-                drawCenteredImage(ctx, state.foregroundImg, canvas.width, state.scale * 0.9);
+                drawScaledImageToCanvas(ctx, state.foregroundImg, canvas.width);
             }
-            
-            const finalCanvas = document.createElement('canvas');
-            finalCanvas.width = size;
-            finalCanvas.height = size;
-            const finalCtx = finalCanvas.getContext('2d');
-            finalCtx.imageSmoothingEnabled = true;
-            finalCtx.imageSmoothingQuality = 'high';
-            finalCtx.drawImage(canvas, 0, 0, size, size);
-            
-            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
+
+            const final = document.createElement('canvas');
+            final.width = size;
+            final.height = size;
+            const fctx = final.getContext('2d');
+            fctx.imageSmoothingEnabled = true;
+            fctx.imageSmoothingQuality = 'high';
+            fctx.drawImage(canvas, 0, 0, size, size);
+            final.toBlob(blob => resolve(blob), 'image/png', 1.0);
         });
     }
 
-    function generateTVBanner() {
+    function createTVBanner() {
         return new Promise(resolve => {
-            const upscale = 2;
+            const scale = 2;
             const canvas = document.createElement('canvas');
-            canvas.width = 320 * upscale;
-            canvas.height = 180 * upscale;
+            canvas.width = 320 * scale;
+            canvas.height = 180 * scale;
             const ctx = canvas.getContext('2d');
-            
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = 'high';
-            
+
             ctx.fillStyle = state.syncTvBgColor ? state.bgColor : state.tvBgColor;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+
             if (state.tvBannerImg) {
                 const imgScale = Math.max(canvas.width / state.tvBannerImg.width, canvas.height / state.tvBannerImg.height);
                 const w = state.tvBannerImg.width * imgScale;
@@ -1938,10 +1626,9 @@
                 ctx.drawImage(state.tvBannerImg, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
             } else if (state.foregroundImg) {
                 const iconSize = 140 * (state.scale / 100);
-                const aspectRatio = state.foregroundImg.width / state.foregroundImg.height;
-                let dw = aspectRatio > 1 ? iconSize : iconSize * aspectRatio;
-                let dh = aspectRatio > 1 ? iconSize / aspectRatio : iconSize;
-                
+                const ar = state.foregroundImg.width / state.foregroundImg.height;
+                let dw = ar > 1 ? iconSize : iconSize * ar;
+                let dh = ar > 1 ? iconSize / ar : iconSize;
                 ctx.drawImage(state.foregroundImg, (canvas.width - dw) / 2, 80, dw, dh);
                 
                 ctx.fillStyle = '#ffffff';
@@ -1949,20 +1636,38 @@
                 ctx.textAlign = 'center';
                 ctx.fillText(state.appName, canvas.width / 2, 280);
             }
-            
-            const finalCanvas = document.createElement('canvas');
-            finalCanvas.width = 320;
-            finalCanvas.height = 180;
-            const finalCtx = finalCanvas.getContext('2d');
-            finalCtx.imageSmoothingEnabled = true;
-            finalCtx.imageSmoothingQuality = 'high';
-            finalCtx.drawImage(canvas, 0, 0, 320, 180);
-            
-            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
+
+            const final = document.createElement('canvas');
+            final.width = 320;
+            final.height = 180;
+            const fctx = final.getContext('2d');
+            fctx.imageSmoothingEnabled = true;
+            fctx.imageSmoothingQuality = 'high';
+            fctx.drawImage(canvas, 0, 0, 320, 180);
+            final.toBlob(blob => resolve(blob), 'image/png', 1.0);
         });
     }
 
-    function generateIOSContentsJson() {
+    function drawScaledImageToCanvas(ctx, img, canvasSize) {
+        const scaleFactor = state.scale / 100;
+        const drawSize = canvasSize * scaleFactor;
+        const ar = img.width / img.height;
+        let dw, dh;
+
+        if (ar > 1) {
+            dw = drawSize;
+            dh = drawSize / ar;
+        } else {
+            dh = drawSize;
+            dw = drawSize * ar;
+        }
+
+        const ox = (canvasSize - dw) / 2;
+        const oy = (canvasSize - dh) / 2;
+        ctx.drawImage(img, ox, oy, dw, dh);
+    }
+
+    function createIOSContentsJson() {
         return {
             images: [
                 { size: "20x20", idiom: "iphone", scale: "2x", filename: "Icon-40.png" },
@@ -1984,8 +1689,25 @@
                 { size: "83.5x83.5", idiom: "ipad", scale: "2x", filename: "Icon-167.png" },
                 { size: "1024x1024", idiom: "ios-marketing", scale: "1x", filename: "Icon-1024.png" }
             ],
-            info: { version: 1, author: "Icon Studio Pro" }
+            info: { version: 1, author: "Icon Studio" }
         };
+    }
+
+    function showToast(message, type = 'success') {
+        if (toastTimeout) clearTimeout(toastTimeout);
+        
+        DOM.toastMessage.textContent = message;
+        DOM.toast.className = `toast ${type}`;
+        
+        const icons = { success: 'check_circle', error: 'error', info: 'info' };
+        DOM.toastIcon.textContent = icons[type] || 'check_circle';
+
+        void DOM.toast.offsetWidth;
+        DOM.toast.classList.add('show');
+        
+        toastTimeout = setTimeout(() => {
+            DOM.toast.classList.remove('show');
+        }, 3000);
     }
 
     if (document.readyState === 'loading') {
@@ -1993,5 +1715,4 @@
     } else {
         init();
     }
-
 })();

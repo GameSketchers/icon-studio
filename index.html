@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>App Icon Studio Pro</title>
+    <title>Icon Studio Pro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -26,28 +26,28 @@
                 <span class="lang-name" id="currentLangName">English</span>
                 <span class="material-symbols-rounded">expand_more</span>
             </button>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-lang-btn" id="mobileLangBtn">
                 <span class="material-symbols-rounded">translate</span>
             </button>
         </div>
     </header>
 
-    <nav class="desktop-tabs" id="desktopTabs">
-        <button class="desktop-tab-btn active" data-tab="config">
+    <nav class="desktop-nav" id="desktopNav">
+        <button class="nav-tab active" data-panel="config">
             <span class="material-symbols-rounded">tune</span>
-            <span data-i18n="desktopTabConfig">Config</span>
+            <span data-i18n="config">Config</span>
         </button>
-        <button class="desktop-tab-btn" data-tab="preview">
+        <button class="nav-tab" data-panel="preview">
             <span class="material-symbols-rounded">visibility</span>
-            <span data-i18n="desktopTabPreview">Preview</span>
+            <span data-i18n="preview">Preview</span>
         </button>
-        <button class="desktop-tab-btn" data-tab="export">
+        <button class="nav-tab" data-panel="export">
             <span class="material-symbols-rounded">download</span>
-            <span data-i18n="desktopTabExport">Export</span>
+            <span data-i18n="export">Export</span>
         </button>
-        <button class="desktop-tab-btn" data-tab="code">
+        <button class="nav-tab" data-panel="code">
             <span class="material-symbols-rounded">code</span>
-            <span data-i18n="desktopTabCode">Code</span>
+            <span data-i18n="code">Code</span>
         </button>
     </nav>
 
@@ -107,25 +107,6 @@
         </div>
     </div>
 
-    <nav class="mobile-nav" id="mobileNav">
-        <button class="mobile-nav-item active" data-panel="config">
-            <span class="material-symbols-rounded">tune</span>
-            <span data-i18n="configuration">Config</span>
-        </button>
-        <button class="mobile-nav-item" data-panel="preview">
-            <span class="material-symbols-rounded">smartphone</span>
-            <span data-i18n="preview">Preview</span>
-        </button>
-        <button class="mobile-nav-item" data-panel="export">
-            <span class="material-symbols-rounded">download</span>
-            <span data-i18n="export">Export</span>
-        </button>
-        <button class="mobile-nav-item" data-panel="code">
-            <span class="material-symbols-rounded">code</span>
-            <span data-i18n="code">Code</span>
-        </button>
-    </nav>
-
     <main class="main-container">
         
         <section class="panel config-panel active" id="configPanel">
@@ -162,7 +143,7 @@
                     <input type="text" class="input-field" id="iconNameInput" value="ic_launcher" placeholder="ic_launcher">
                 </div>
 
-                <div class="section-title" data-i18n="foregroundSection">FOREGROUND</div>
+                <div class="section-title" data-i18n="foreground">FOREGROUND</div>
                 <div class="upload-zone" id="foregroundUpload">
                     <input type="file" id="foregroundFile" accept="image/*" hidden>
                     <div class="upload-content">
@@ -172,7 +153,7 @@
                         <div class="upload-title" data-i18n="uploadForeground">Upload Foreground</div>
                         <div class="upload-subtitle" data-i18n="dragDrop">Drag & Drop or Click</div>
                     </div>
-                    <img class="upload-preview" id="foregroundPreview" alt="Foreground Preview">
+                    <img class="upload-preview" id="foregroundPreview" alt="Preview">
                 </div>
 
                 <div class="divider"></div>
@@ -216,17 +197,17 @@
                         </div>
                         <input type="text" class="input-field color-text" id="bgColorText" value="#1a1a1a">
                     </div>
-                    <div class="color-presets" id="colorPresets">
-                        <div class="color-preset active" style="background: #1a1a1a" data-color="#1a1a1a" title="Dark"></div>
-                        <div class="color-preset" style="background: #ffffff" data-color="#ffffff" title="White"></div>
-                        <div class="color-preset" style="background: #6366f1" data-color="#6366f1" title="Indigo"></div>
-                        <div class="color-preset" style="background: #8b5cf6" data-color="#8b5cf6" title="Purple"></div>
-                        <div class="color-preset" style="background: #ec4899" data-color="#ec4899" title="Pink"></div>
-                        <div class="color-preset" style="background: #ef4444" data-color="#ef4444" title="Red"></div>
-                        <div class="color-preset" style="background: #f59e0b" data-color="#f59e0b" title="Amber"></div>
-                        <div class="color-preset" style="background: #22c55e" data-color="#22c55e" title="Green"></div>
-                        <div class="color-preset" style="background: #3b82f6" data-color="#3b82f6" title="Blue"></div>
-                        <div class="color-preset" style="background: #0ea5e9" data-color="#0ea5e9" title="Cyan"></div>
+                    <div class="color-presets">
+                        <div class="color-preset active" style="background:#1a1a1a" data-color="#1a1a1a"></div>
+                        <div class="color-preset" style="background:#ffffff" data-color="#ffffff"></div>
+                        <div class="color-preset" style="background:#6366f1" data-color="#6366f1"></div>
+                        <div class="color-preset" style="background:#8b5cf6" data-color="#8b5cf6"></div>
+                        <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
+                        <div class="color-preset" style="background:#ef4444" data-color="#ef4444"></div>
+                        <div class="color-preset" style="background:#f59e0b" data-color="#f59e0b"></div>
+                        <div class="color-preset" style="background:#22c55e" data-color="#22c55e"></div>
+                        <div class="color-preset" style="background:#3b82f6" data-color="#3b82f6"></div>
+                        <div class="color-preset" style="background:#0ea5e9" data-color="#0ea5e9"></div>
                     </div>
                 </div>
 
@@ -236,13 +217,13 @@
                         <span data-i18n="scale">Scale</span>
                     </label>
                     <div class="range-wrapper">
-                        <span class="range-label-min">50%</span>
-                        <input type="range" class="range-slider" id="scaleSlider" min="50" max="100" value="72">
-                        <span class="range-label-max">100%</span>
+                        <span class="range-label">50%</span>
+                        <input type="range" class="range-slider" id="scaleSlider" min="50" max="150" value="100">
+                        <span class="range-label">150%</span>
                     </div>
                     <div class="range-value-display">
-                        <span class="range-value" id="scaleValue">72%</span>
-                        <button class="reset-btn" id="resetScaleBtn" title="Reset to 72%">
+                        <span class="range-value" id="scaleValue">100%</span>
+                        <button class="reset-btn" id="resetScaleBtn" title="Reset">
                             <span class="material-symbols-rounded">refresh</span>
                         </button>
                     </div>
@@ -250,7 +231,7 @@
             </div>
 
             <div class="tab-content" id="tvTab">
-                <div class="section-title" data-i18n="tvBannerSection">TV BANNER (320×180)</div>
+                <div class="section-title" data-i18n="tvBanner">TV BANNER (320×180)</div>
                 
                 <div class="upload-zone" id="tvBannerUpload">
                     <input type="file" id="tvBannerFile" accept="image/*" hidden>
@@ -261,7 +242,7 @@
                         <div class="upload-title" data-i18n="uploadTvBanner">Upload TV Banner</div>
                         <div class="upload-subtitle">320×180px recommended</div>
                     </div>
-                    <img class="upload-preview" id="tvBannerPreview" alt="TV Banner Preview">
+                    <img class="upload-preview" id="tvBannerPreview" alt="Preview">
                 </div>
 
                 <p class="hint-text" data-i18n="tvHint">If not uploaded, will generate from icon automatically</p>
@@ -279,7 +260,7 @@
                         </div>
                         <input type="text" class="input-field color-text" id="tvBgColorText" value="#1a1a1a">
                     </div>
-                    <div class="toggle-row" style="margin-top: 12px;">
+                    <div class="toggle-row" style="margin-top:12px">
                         <div class="toggle-label">
                             <span data-i18n="syncWithIcon">Sync with icon background</span>
                         </div>
@@ -300,7 +281,6 @@
 
             <div class="preview-controls">
                 <div class="control-group">
-                    <label class="control-label">Device</label>
                     <div class="segment-control">
                         <button class="segment-btn active" data-mode="phone">
                             <span class="material-symbols-rounded">smartphone</span>
@@ -313,8 +293,7 @@
                     </div>
                 </div>
 
-                <div class="control-group" id="themeControlGroup">
-                    <label class="control-label">Theme Mode</label>
+                <div class="control-group">
                     <div class="segment-control">
                         <button class="segment-btn active" data-theme="normal">
                             <span class="material-symbols-rounded">palette</span>
@@ -327,33 +306,21 @@
                     </div>
                 </div>
 
-                <div class="control-group" id="shapeControlGroup">
+                <div class="control-group">
                     <label class="control-label" data-i18n="iconShape">Preview Shape</label>
                     <div class="shape-selector">
-                        <div class="shape-option" data-shape="circle" title="Circle">
-                            <div class="shape-preview circle"></div>
-                        </div>
-                        <div class="shape-option active" data-shape="squircle" title="Squircle">
-                            <div class="shape-preview squircle"></div>
-                        </div>
-                        <div class="shape-option" data-shape="rounded" title="Rounded">
-                            <div class="shape-preview rounded"></div>
-                        </div>
-                        <div class="shape-option" data-shape="square" title="Square">
-                            <div class="shape-preview square"></div>
-                        </div>
+                        <div class="shape-option" data-shape="circle"><div class="shape-preview circle"></div></div>
+                        <div class="shape-option active" data-shape="squircle"><div class="shape-preview squircle"></div></div>
+                        <div class="shape-option" data-shape="rounded"><div class="shape-preview rounded"></div></div>
+                        <div class="shape-option" data-shape="square"><div class="shape-preview square"></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="preview-container">
-                
                 <div class="phone-frame" id="phoneFrame">
                     <div class="phone-screen" id="phoneScreen">
-                        <div class="phone-notch">
-                            <div class="notch-speaker"></div>
-                        </div>
-
+                        <div class="phone-notch"><div class="notch-speaker"></div></div>
                         <div class="status-bar">
                             <span class="status-time" id="statusTime">12:30</span>
                             <div class="status-icons">
@@ -362,24 +329,20 @@
                                 <span class="material-symbols-rounded">battery_full</span>
                             </div>
                         </div>
-
                         <div class="home-content">
                             <div class="clock-widget">
                                 <div class="clock-time" id="clockDisplay">12:30</div>
-                                <div class="clock-date" id="clockDate" data-i18n="dateDisplay">Sunday, Jan 14</div>
+                                <div class="clock-date" id="clockDate">Sunday, Jan 14</div>
                             </div>
-
                             <div class="app-grid" id="appGrid"></div>
                         </div>
-
                         <div class="phone-dock" id="phoneDock"></div>
-
                         <div class="home-indicator"></div>
                     </div>
                 </div>
 
                 <div class="tv-frame hidden" id="tvFrame">
-                    <div class="tv-screen" id="tvScreen">
+                    <div class="tv-screen">
                         <div class="tv-header">
                             <div class="tv-logo">
                                 <span class="material-symbols-rounded">tv</span>
@@ -387,17 +350,15 @@
                             </div>
                             <div class="tv-time" id="tvTime">12:30</div>
                         </div>
-
                         <div class="tv-content">
                             <div class="tv-sidebar">
                                 <div class="tv-sidebar-title" data-i18n="tvApps">Apps</div>
                                 <div class="tv-app-list" id="tvAppList"></div>
                             </div>
-
                             <div class="tv-main">
                                 <div class="tv-featured-label">Featured App</div>
                                 <div class="tv-banner-wrapper">
-                                    <div class="tv-banner-preview" id="tvBannerPreviewBox">
+                                    <div class="tv-banner-preview">
                                         <canvas id="tvPreviewCanvas" width="320" height="180"></canvas>
                                     </div>
                                     <div class="tv-banner-info">
@@ -405,12 +366,10 @@
                                         <div class="tv-banner-subtitle">Press to open</div>
                                     </div>
                                 </div>
-
                                 <div class="tv-row-label">Your Apps</div>
                                 <div class="tv-app-row" id="tvAppRow"></div>
                             </div>
                         </div>
-
                         <div class="tv-nav-hint">
                             <span class="material-symbols-rounded">arrow_back</span>
                             <span>Back</span>
@@ -419,8 +378,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+
             <p class="preview-hint" id="previewHint" data-i18n="previewHint">Switch theme mode to preview themed monochrome icons</p>
         </section>
 
@@ -445,9 +404,7 @@
             <div class="export-options">
                 <div class="export-option">
                     <div class="export-option-info">
-                        <div class="export-option-icon android">
-                            <span class="material-symbols-rounded">android</span>
-                        </div>
+                        <div class="export-option-icon android"><span class="material-symbols-rounded">android</span></div>
                         <div class="export-option-text">
                             <div class="export-option-title">Android</div>
                             <div class="export-option-subtitle" data-i18n="androidDesc">Adaptive + Legacy + Mono</div>
@@ -461,9 +418,7 @@
 
                 <div class="export-option">
                     <div class="export-option-info">
-                        <div class="export-option-icon ios">
-                            <span class="material-symbols-rounded">phone_iphone</span>
-                        </div>
+                        <div class="export-option-icon ios"><span class="material-symbols-rounded">phone_iphone</span></div>
                         <div class="export-option-text">
                             <div class="export-option-title">iOS</div>
                             <div class="export-option-subtitle" data-i18n="iosDesc">All sizes + Contents.json</div>
@@ -477,9 +432,7 @@
 
                 <div class="export-option">
                     <div class="export-option-info">
-                        <div class="export-option-icon web">
-                            <span class="material-symbols-rounded">language</span>
-                        </div>
+                        <div class="export-option-icon web"><span class="material-symbols-rounded">language</span></div>
                         <div class="export-option-text">
                             <div class="export-option-title">Web / PWA</div>
                             <div class="export-option-subtitle" data-i18n="webDesc">Favicon + Manifest icons</div>
@@ -493,9 +446,7 @@
 
                 <div class="export-option">
                     <div class="export-option-info">
-                        <div class="export-option-icon tv">
-                            <span class="material-symbols-rounded">tv</span>
-                        </div>
+                        <div class="export-option-icon tv"><span class="material-symbols-rounded">tv</span></div>
                         <div class="export-option-text">
                             <div class="export-option-title">Android TV</div>
                             <div class="export-option-subtitle">Banner 320×180</div>
@@ -509,9 +460,7 @@
 
                 <div class="export-option">
                     <div class="export-option-info">
-                        <div class="export-option-icon store">
-                            <span class="material-symbols-rounded">storefront</span>
-                        </div>
+                        <div class="export-option-icon store"><span class="material-symbols-rounded">storefront</span></div>
                         <div class="export-option-text">
                             <div class="export-option-title">Play Store</div>
                             <div class="export-option-subtitle">512×512 Hi-Res</div>
@@ -547,150 +496,78 @@
 
             <div class="code-section">
                 <div class="code-header">
-                    <div class="code-title">
-                        <span class="material-symbols-rounded">tv</span>
-                        <span>AndroidManifest.xml - TV Features</span>
-                    </div>
-                    <button class="copy-btn" data-target="codeTvFeatures">
-                        <span class="material-symbols-rounded">content_copy</span>
-                    </button>
+                    <span class="code-title">AndroidManifest.xml</span>
+                    <button class="copy-btn" data-target="code1"><span class="material-symbols-rounded">content_copy</span></button>
                 </div>
-                <div class="code-block" id="codeTvFeatures">
-                    <pre><code>&lt;!-- Add inside &lt;manifest&gt; tag for Android TV support --&gt;
-&lt;uses-feature 
-    android:name="android.software.leanback"
-    android:required="false" /&gt;
-&lt;uses-feature 
-    android:name="android.hardware.touchscreen"
-    android:required="false" /&gt;</code></pre>
-                </div>
+                <div class="code-block" id="code1"><pre><code>&lt;application
+    android:icon="@mipmap/<span class="code-dynamic" id="codeIconName1">ic_launcher</span>"
+    android:roundIcon="@mipmap/<span class="code-dynamic" id="codeIconName2">ic_launcher</span>_round"
+    android:banner="@drawable/<span class="code-dynamic" id="codeIconName3">ic_launcher</span>_tv_banner"&gt;</code></pre></div>
             </div>
 
             <div class="code-section">
                 <div class="code-header">
-                    <div class="code-title">
-                        <span class="material-symbols-rounded">android</span>
-                        <span>AndroidManifest.xml - Application</span>
-                    </div>
-                    <button class="copy-btn" data-target="codeAppAttrs">
-                        <span class="material-symbols-rounded">content_copy</span>
-                    </button>
+                    <span class="code-title" id="adaptiveFileName">ic_launcher.xml</span>
+                    <button class="copy-btn" data-target="code2"><span class="material-symbols-rounded">content_copy</span></button>
                 </div>
-                <div class="code-block" id="codeAppAttrs">
-                    <pre><code>&lt;!-- Add these attributes to &lt;application&gt; tag --&gt;
-android:icon="@mipmap/<span class="code-dynamic" id="codeIconName1">ic_launcher</span>"
-android:roundIcon="@mipmap/<span class="code-dynamic" id="codeIconName2">ic_launcher</span>_round"
-android:banner="@drawable/<span class="code-dynamic" id="codeIconName3">ic_launcher</span>_tv_banner"
-android:logo="@mipmap/<span class="code-dynamic" id="codeIconName4">ic_launcher</span>"
-android:label="@string/app_name"</code></pre>
-                </div>
+                <div class="code-block" id="code2"><pre><code>&lt;adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;background android:drawable="@color/<span class="code-dynamic" id="codeIconName4">ic_launcher</span>_background"/&gt;
+    &lt;foreground android:drawable="@mipmap/<span class="code-dynamic" id="codeIconName5">ic_launcher</span>_foreground"/&gt;
+    &lt;monochrome android:drawable="@mipmap/<span class="code-dynamic" id="codeIconName6">ic_launcher</span>_monochrome"/&gt;
+&lt;/adaptive-icon&gt;</code></pre></div>
             </div>
 
             <div class="code-section">
                 <div class="code-header">
-                    <div class="code-title">
-                        <span class="material-symbols-rounded">deployed_code</span>
-                        <span id="adaptiveIconFileName">ic_launcher.xml</span>
-                    </div>
-                    <button class="copy-btn" data-target="codeAdaptiveIcon">
-                        <span class="material-symbols-rounded">content_copy</span>
-                    </button>
+                    <span class="code-title" id="bgColorFileName">ic_launcher_background.xml</span>
+                    <button class="copy-btn" data-target="code3"><span class="material-symbols-rounded">content_copy</span></button>
                 </div>
-                <div class="code-block" id="codeAdaptiveIcon">
-                    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"&gt;
-    &lt;background android:drawable="@color/<span class="code-dynamic" id="codeIconName5">ic_launcher</span>_background"/&gt;
-    &lt;foreground android:drawable="@mipmap/<span class="code-dynamic" id="codeIconName6">ic_launcher</span>_foreground"/&gt;
-    &lt;monochrome android:drawable="@mipmap/<span class="code-dynamic" id="codeIconName7">ic_launcher</span>_monochrome"/&gt;
-&lt;/adaptive-icon&gt;</code></pre>
-                </div>
+                <div class="code-block" id="code3"><pre><code>&lt;resources&gt;
+    &lt;color name="<span class="code-dynamic" id="codeIconName7">ic_launcher</span>_background"&gt;<span class="code-dynamic" id="codeBgColor">#1a1a1a</span>&lt;/color&gt;
+&lt;/resources&gt;</code></pre></div>
             </div>
 
             <div class="code-section">
                 <div class="code-header">
-                    <div class="code-title">
-                        <span class="material-symbols-rounded">format_color_fill</span>
-                        <span id="bgColorFileName">ic_launcher_background.xml</span>
-                    </div>
-                    <button class="copy-btn" data-target="codeBgColor">
-                        <span class="material-symbols-rounded">content_copy</span>
-                    </button>
+                    <span class="code-title">manifest.json (PWA)</span>
+                    <button class="copy-btn" data-target="code4"><span class="material-symbols-rounded">content_copy</span></button>
                 </div>
-                <div class="code-block" id="codeBgColor">
-                    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;resources&gt;
-    &lt;color name="<span class="code-dynamic" id="codeIconName8">ic_launcher</span>_background"&gt;<span class="code-dynamic" id="codeBgColorValue">#1a1a1a</span>&lt;/color&gt;
-&lt;/resources&gt;</code></pre>
-                </div>
-            </div>
-
-            <div class="code-section">
-                <div class="code-header">
-                    <div class="code-title">
-                        <span class="material-symbols-rounded">phone_iphone</span>
-                        <span>iOS Info.plist</span>
-                    </div>
-                    <button class="copy-btn" data-target="codeIosPlist">
-                        <span class="material-symbols-rounded">content_copy</span>
-                    </button>
-                </div>
-                <div class="code-block" id="codeIosPlist">
-                    <pre><code>&lt;key&gt;CFBundleIcons&lt;/key&gt;
-&lt;dict&gt;
-    &lt;key&gt;CFBundlePrimaryIcon&lt;/key&gt;
-    &lt;dict&gt;
-        &lt;key&gt;CFBundleIconFiles&lt;/key&gt;
-        &lt;array&gt;
-            &lt;string&gt;AppIcon&lt;/string&gt;
-        &lt;/array&gt;
-    &lt;/dict&gt;
-&lt;/dict&gt;</code></pre>
-                </div>
-            </div>
-
-            <div class="code-section">
-                <div class="code-header">
-                    <div class="code-title">
-                        <span class="material-symbols-rounded">language</span>
-                        <span>manifest.json</span>
-                    </div>
-                    <button class="copy-btn" data-target="codeWebManifest">
-                        <span class="material-symbols-rounded">content_copy</span>
-                    </button>
-                </div>
-                <div class="code-block" id="codeWebManifest">
-                    <pre><code>{
-  "name": "<span class="code-dynamic" id="codeAppName">MyApp</span>",
-  "short_name": "<span class="code-dynamic" id="codeAppNameShort">MyApp</span>",
-  "icons": [
-    {
-      "src": "/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
+                <div class="code-block" id="code4"><pre><code>{
+  "name": "<span class="code-dynamic" id="codeAppName1">MyApp</span>",
+  "short_name": "<span class="code-dynamic" id="codeAppName2">MyApp</span>",
   "theme_color": "<span class="code-dynamic" id="codeThemeColor">#1a1a1a</span>",
-  "background_color": "<span class="code-dynamic" id="codeManifestBg">#1a1a1a</span>"
-}</code></pre>
-                </div>
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512" }
+  ]
+}</code></pre></div>
             </div>
         </section>
-
     </main>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-item active" data-panel="config">
+            <span class="material-symbols-rounded">tune</span>
+            <span>Config</span>
+        </button>
+        <button class="mobile-nav-item" data-panel="preview">
+            <span class="material-symbols-rounded">smartphone</span>
+            <span>Preview</span>
+        </button>
+        <button class="mobile-nav-item" data-panel="export">
+            <span class="material-symbols-rounded">download</span>
+            <span>Export</span>
+        </button>
+        <button class="mobile-nav-item" data-panel="code">
+            <span class="material-symbols-rounded">code</span>
+            <span>Code</span>
+        </button>
+    </nav>
 
     <div class="toast" id="toast">
         <span class="material-symbols-rounded" id="toastIcon">check_circle</span>
         <span id="toastMessage">Success!</span>
     </div>
-
-    <canvas id="processCanvas" width="1024" height="1024" style="display: none;"></canvas>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
