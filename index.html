@@ -13,7 +13,6 @@
     <div class="bg-noise"></div>
     <div class="bg-gradient"></div>
 
-    <!-- HEADER -->
     <header class="header">
         <div class="logo">
             <div class="logo-icon">
@@ -33,7 +32,25 @@
         </div>
     </header>
 
-    <!-- LANGUAGE MODAL -->
+    <nav class="desktop-tabs" id="desktopTabs">
+        <button class="desktop-tab-btn active" data-tab="config">
+            <span class="material-symbols-rounded">tune</span>
+            <span data-i18n="desktopTabConfig">Config</span>
+        </button>
+        <button class="desktop-tab-btn" data-tab="preview">
+            <span class="material-symbols-rounded">visibility</span>
+            <span data-i18n="desktopTabPreview">Preview</span>
+        </button>
+        <button class="desktop-tab-btn" data-tab="export">
+            <span class="material-symbols-rounded">download</span>
+            <span data-i18n="desktopTabExport">Export</span>
+        </button>
+        <button class="desktop-tab-btn" data-tab="code">
+            <span class="material-symbols-rounded">code</span>
+            <span data-i18n="desktopTabCode">Code</span>
+        </button>
+    </nav>
+
     <div class="lang-modal" id="langModal">
         <div class="lang-modal-content">
             <div class="lang-modal-header">
@@ -90,7 +107,6 @@
         </div>
     </div>
 
-    <!-- MOBILE NAVIGATION -->
     <nav class="mobile-nav" id="mobileNav">
         <button class="mobile-nav-item active" data-panel="config">
             <span class="material-symbols-rounded">tune</span>
@@ -110,11 +126,9 @@
         </button>
     </nav>
 
-    <!-- MAIN CONTAINER -->
     <main class="main-container">
         
-        <!-- CONFIG PANEL -->
-        <section class="panel config-panel" id="configPanel">
+        <section class="panel config-panel active" id="configPanel">
             <div class="panel-header">
                 <span class="material-symbols-rounded">tune</span>
                 <h2 class="panel-title" data-i18n="configuration">Configuration</h2>
@@ -131,7 +145,6 @@
                 </button>
             </div>
 
-            <!-- ICON TAB -->
             <div class="tab-content active" id="iconTab">
                 <div class="input-group">
                     <label class="input-label">
@@ -164,7 +177,6 @@
 
                 <div class="divider"></div>
 
-                <!-- MONO TOGGLE -->
                 <div class="toggle-row">
                     <div class="toggle-label">
                         <span class="material-symbols-rounded">contrast</span>
@@ -193,7 +205,6 @@
 
                 <div class="divider"></div>
 
-                <!-- BACKGROUND COLOR -->
                 <div class="input-group">
                     <label class="input-label">
                         <span class="material-symbols-rounded">palette</span>
@@ -219,7 +230,6 @@
                     </div>
                 </div>
 
-                <!-- SCALE -->
                 <div class="input-group">
                     <label class="input-label">
                         <span class="material-symbols-rounded">zoom_in_map</span>
@@ -227,19 +237,18 @@
                     </label>
                     <div class="range-wrapper">
                         <span class="range-label-min">50%</span>
-                        <input type="range" class="range-slider" id="scaleSlider" min="50" max="150" value="100">
-                        <span class="range-label-max">150%</span>
+                        <input type="range" class="range-slider" id="scaleSlider" min="50" max="100" value="72">
+                        <span class="range-label-max">100%</span>
                     </div>
                     <div class="range-value-display">
-                        <span class="range-value" id="scaleValue">100%</span>
-                        <button class="reset-btn" id="resetScaleBtn" title="Reset to 100%">
+                        <span class="range-value" id="scaleValue">72%</span>
+                        <button class="reset-btn" id="resetScaleBtn" title="Reset to 72%">
                             <span class="material-symbols-rounded">refresh</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- TV TAB -->
             <div class="tab-content" id="tvTab">
                 <div class="section-title" data-i18n="tvBannerSection">TV BANNER (320×180)</div>
                 
@@ -259,7 +268,6 @@
 
                 <div class="divider"></div>
 
-                <!-- TV BACKGROUND COLOR -->
                 <div class="input-group">
                     <label class="input-label">
                         <span class="material-symbols-rounded">format_color_fill</span>
@@ -284,7 +292,6 @@
             </div>
         </section>
 
-        <!-- PREVIEW PANEL -->
         <section class="panel preview-panel" id="previewPanel">
             <div class="panel-header">
                 <span class="material-symbols-rounded">visibility</span>
@@ -341,7 +348,6 @@
 
             <div class="preview-container">
                 
-                <!-- PHONE FRAME -->
                 <div class="phone-frame" id="phoneFrame">
                     <div class="phone-screen" id="phoneScreen">
                         <div class="phone-notch">
@@ -372,7 +378,6 @@
                     </div>
                 </div>
 
-                <!-- TV FRAME -->
                 <div class="tv-frame hidden" id="tvFrame">
                     <div class="tv-screen" id="tvScreen">
                         <div class="tv-header">
@@ -419,7 +424,6 @@
             <p class="preview-hint" id="previewHint" data-i18n="previewHint">Switch theme mode to preview themed monochrome icons</p>
         </section>
 
-        <!-- EXPORT PANEL -->
         <section class="panel export-panel" id="exportPanel">
             <div class="panel-header">
                 <span class="material-symbols-rounded">download</span>
@@ -523,9 +527,7 @@
             <div class="divider"></div>
 
             <div class="section-title" data-i18n="fileStructure">FILE STRUCTURE</div>
-            <div class="file-tree" id="fileTree">
-                <!-- Dynamically populated by JS -->
-            </div>
+            <div class="file-tree" id="fileTree"></div>
 
             <button class="download-btn" id="downloadBtn">
                 <span class="material-symbols-rounded">download</span>
@@ -537,7 +539,6 @@
             </div>
         </section>
 
-        <!-- CODE PANEL -->
         <section class="panel code-panel" id="codePanel">
             <div class="panel-header">
                 <span class="material-symbols-rounded">code</span>
@@ -684,16 +685,13 @@ android:label="@string/app_name"</code></pre>
 
     </main>
 
-    <!-- TOAST -->
     <div class="toast" id="toast">
         <span class="material-symbols-rounded" id="toastIcon">check_circle</span>
         <span id="toastMessage">Success!</span>
     </div>
 
-    <!-- HIDDEN CANVAS -->
     <canvas id="processCanvas" width="1024" height="1024" style="display: none;"></canvas>
 
-    <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="app.js"></script>

@@ -2,6 +2,7 @@
     'use strict';
 
     const ICON_BASE_PATH = './icons/';
+    const ADAPTIVE_SAFE_ZONE = 66 / 108;
 
     const GRID_APPS = [
         { id: 'gmail', name: 'Gmail', file: 'gmail.png', mono: 'gmail_mono.png', color: '#EA4335' },
@@ -82,7 +83,11 @@
             copied: "Copied to clipboard!",
             dateDisplay: "Sunday, Jan 14",
             selectLanguage: "Select Language",
-            autoColor: "Color detected from image"
+            autoColor: "Color detected from image",
+            desktopTabConfig: "Config",
+            desktopTabPreview: "Preview",
+            desktopTabExport: "Export",
+            desktopTabCode: "Code"
         },
         tr: {
             appTitle: "İkon Stüdyosu",
@@ -126,7 +131,11 @@
             copied: "Panoya kopyalandı!",
             dateDisplay: "Pazar, 14 Ocak",
             selectLanguage: "Dil Seçin",
-            autoColor: "Renk resimden algılandı"
+            autoColor: "Renk resimden algılandı",
+            desktopTabConfig: "Ayarlar",
+            desktopTabPreview: "Önizleme",
+            desktopTabExport: "Dışa Aktar",
+            desktopTabCode: "Kod"
         },
         ja: {
             appTitle: "アイコンスタジオ",
@@ -170,7 +179,11 @@
             copied: "クリップボードにコピーしました！",
             dateDisplay: "1月14日 日曜日",
             selectLanguage: "言語を選択",
-            autoColor: "画像から色を検出しました"
+            autoColor: "画像から色を検出しました",
+            desktopTabConfig: "設定",
+            desktopTabPreview: "プレビュー",
+            desktopTabExport: "エクスポート",
+            desktopTabCode: "コード"
         },
         de: {
             appTitle: "Icon Studio",
@@ -214,7 +227,11 @@
             copied: "In die Zwischenablage kopiert!",
             dateDisplay: "Sonntag, 14. Jan",
             selectLanguage: "Sprache auswählen",
-            autoColor: "Farbe aus Bild erkannt"
+            autoColor: "Farbe aus Bild erkannt",
+            desktopTabConfig: "Konfig",
+            desktopTabPreview: "Vorschau",
+            desktopTabExport: "Export",
+            desktopTabCode: "Code"
         },
         fr: {
             appTitle: "Icon Studio",
@@ -258,7 +275,11 @@
             copied: "Copié dans le presse-papiers!",
             dateDisplay: "Dimanche 14 janv.",
             selectLanguage: "Choisir la langue",
-            autoColor: "Couleur détectée de l'image"
+            autoColor: "Couleur détectée de l'image",
+            desktopTabConfig: "Config",
+            desktopTabPreview: "Aperçu",
+            desktopTabExport: "Export",
+            desktopTabCode: "Code"
         },
         es: {
             appTitle: "Icon Studio",
@@ -302,7 +323,11 @@
             copied: "¡Copiado al portapapeles!",
             dateDisplay: "Domingo, 14 ene",
             selectLanguage: "Seleccionar idioma",
-            autoColor: "Color detectado de la imagen"
+            autoColor: "Color detectado de la imagen",
+            desktopTabConfig: "Config",
+            desktopTabPreview: "Vista",
+            desktopTabExport: "Exportar",
+            desktopTabCode: "Código"
         },
         zh: {
             appTitle: "图标工作室",
@@ -346,7 +371,11 @@
             copied: "已复制到剪贴板！",
             dateDisplay: "1月14日 星期日",
             selectLanguage: "选择语言",
-            autoColor: "从图像检测到颜色"
+            autoColor: "从图像检测到颜色",
+            desktopTabConfig: "配置",
+            desktopTabPreview: "预览",
+            desktopTabExport: "导出",
+            desktopTabCode: "代码"
         },
         ko: {
             appTitle: "아이콘 스튜디오",
@@ -390,7 +419,11 @@
             copied: "클립보드에 복사되었습니다!",
             dateDisplay: "1월 14일 일요일",
             selectLanguage: "언어 선택",
-            autoColor: "이미지에서 색상 감지됨"
+            autoColor: "이미지에서 색상 감지됨",
+            desktopTabConfig: "설정",
+            desktopTabPreview: "미리보기",
+            desktopTabExport: "내보내기",
+            desktopTabCode: "코드"
         }
     };
 
@@ -416,6 +449,7 @@
         currentTab: 'icon',
         currentPreviewMode: 'phone',
         currentMobilePanel: 'config',
+        currentDesktopTab: 'config',
         langModalOpen: false
     };
 
@@ -433,6 +467,8 @@
             mobileMenuBtn: document.getElementById('mobileMenuBtn'),
             mobileNav: document.getElementById('mobileNav'),
             mobileNavItems: document.querySelectorAll('.mobile-nav-item'),
+            desktopTabs: document.getElementById('desktopTabs'),
+            desktopTabBtns: document.querySelectorAll('.desktop-tab-btn'),
             configPanel: document.getElementById('configPanel'),
             previewPanel: document.getElementById('previewPanel'),
             exportPanel: document.getElementById('exportPanel'),
@@ -506,17 +542,17 @@
         renderTVApps();
         updateClock();
         setInterval(updateClock, 1000);
+        updateScaleDisplay();
         updateAllPreviews();
         updateFileCount();
         updateFileTree();
         updateCodeSnippets();
-        checkMobileView();
+        checkViewMode();
         toggleTvInputsState();
         updateLangDisplay();
     }
 
     function setupEventListeners() {
-        // Language modal
         if (DOM.langBtn) {
             DOM.langBtn.addEventListener('click', openLangModal);
         }
@@ -536,7 +572,6 @@
             });
         });
         
-        // Mobile menu - opens language modal
         if (DOM.mobileMenuBtn) {
             DOM.mobileMenuBtn.addEventListener('click', openLangModal);
         }
@@ -544,8 +579,12 @@
         DOM.mobileNavItems.forEach(item => {
             item.addEventListener('click', handleMobileNavClick);
         });
+
+        DOM.desktopTabBtns.forEach(btn => {
+            btn.addEventListener('click', handleDesktopTabClick);
+        });
         
-        window.addEventListener('resize', checkMobileView);
+        window.addEventListener('resize', checkViewMode);
         
         DOM.tabs.forEach(tab => {
             tab.addEventListener('click', handleTabClick);
@@ -611,7 +650,6 @@
             btn.addEventListener('click', handleCopyClick);
         });
 
-        // Escape key to close modal
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && state.langModalOpen) {
                 closeLangModal();
@@ -619,7 +657,6 @@
         });
     }
 
-    // Language Modal Functions
     function openLangModal() {
         if (DOM.langModal) {
             DOM.langModal.classList.add('active');
@@ -642,7 +679,6 @@
         updateTranslations();
         updateClock();
         
-        // Update active state in modal
         DOM.langOptions.forEach(opt => {
             opt.classList.toggle('active', opt.dataset.lang === lang);
         });
@@ -703,12 +739,10 @@
         reader.readAsDataURL(file);
     }
 
-    // Dominant Color Detection
     function getDominantColor(img) {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         
-        // Use small size for performance
         const size = 50;
         canvas.width = size;
         canvas.height = size;
@@ -720,7 +754,7 @@
         
         const colorCounts = {};
         let maxCount = 0;
-        let dominantColor = { r: 26, g: 26, b: 26 }; // Default dark
+        let dominantColor = { r: 26, g: 26, b: 26 };
         
         for (let i = 0; i < data.length; i += 4) {
             const r = data[i];
@@ -728,14 +762,11 @@
             const b = data[i + 2];
             const a = data[i + 3];
             
-            // Skip transparent/semi-transparent pixels
             if (a < 128) continue;
             
-            // Skip near-white and near-black
             const brightness = (r + g + b) / 3;
             if (brightness > 240 || brightness < 15) continue;
             
-            // Quantize colors (reduce to fewer buckets)
             const qr = Math.round(r / 32) * 32;
             const qg = Math.round(g / 32) * 32;
             const qb = Math.round(b / 32) * 32;
@@ -749,7 +780,6 @@
             }
         }
         
-        // Convert to hex
         const toHex = (n) => Math.min(255, Math.max(0, n)).toString(16).padStart(2, '0');
         return `#${toHex(dominantColor.r)}${toHex(dominantColor.g)}${toHex(dominantColor.b)}`;
     }
@@ -763,6 +793,17 @@
         
         state.currentMobilePanel = panel;
         updateMobilePanels();
+    }
+
+    function handleDesktopTabClick(e) {
+        const btn = e.currentTarget;
+        const tab = btn.dataset.tab;
+        
+        DOM.desktopTabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        state.currentDesktopTab = tab;
+        updateDesktopPanels();
     }
 
     function handleTabClick(e) {
@@ -918,7 +959,6 @@
     function handleForegroundUpload(img) {
         state.foregroundImg = img;
         
-        // Auto-detect dominant color
         const detectedColor = getDominantColor(img);
         updateBgColor(detectedColor);
         
@@ -1216,9 +1256,9 @@
         }
     }
 
-    function drawCenteredImage(ctx, img, size, scalePercent = 100) {
+    function drawCenteredImage(ctx, img, canvasSize, scalePercent = 100) {
         const scaleFactor = scalePercent / 100;
-        const drawSize = size * scaleFactor;
+        const drawSize = canvasSize * scaleFactor;
         
         const aspectRatio = img.width / img.height;
         let drawWidth, drawHeight;
@@ -1231,8 +1271,8 @@
             drawWidth = drawSize * aspectRatio;
         }
         
-        const offsetX = (size - drawWidth) / 2;
-        const offsetY = (size - drawHeight) / 2;
+        const offsetX = (canvasSize - drawWidth) / 2;
+        const offsetY = (canvasSize - drawHeight) / 2;
         
         ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
     }
@@ -1325,8 +1365,8 @@
         let platforms = 0;
         
         if (state.exportAndroid) { 
-            count += 20;
-            if (state.useMono) count += 5;
+            count += 24;
+            if (state.useMono) count += 6;
             platforms++; 
         }
         if (state.exportIOS) { count += 14; platforms++; }
@@ -1465,17 +1505,17 @@
         if (bgXml) bgXml.textContent = `${state.iconName}_background.xml`;
     }
 
-    function checkMobileView() {
+    function checkViewMode() {
         const isMobile = window.innerWidth <= 768;
+        
         if (isMobile) {
+            if (DOM.desktopTabs) DOM.desktopTabs.style.display = 'none';
+            if (DOM.mobileNav) DOM.mobileNav.style.display = 'flex';
             updateMobilePanels();
         } else {
-            [DOM.configPanel, DOM.previewPanel, DOM.exportPanel, DOM.codePanel].forEach(p => {
-                if (p) {
-                    p.classList.remove('active');
-                    p.style.display = '';
-                }
-            });
+            if (DOM.desktopTabs) DOM.desktopTabs.style.display = 'flex';
+            if (DOM.mobileNav) DOM.mobileNav.style.display = 'none';
+            updateDesktopPanels();
         }
     }
 
@@ -1490,6 +1530,23 @@
         Object.entries(panels).forEach(([key, panel]) => {
             if (panel) {
                 const isActive = key === state.currentMobilePanel;
+                panel.classList.toggle('active', isActive);
+                panel.style.display = isActive ? 'flex' : 'none';
+            }
+        });
+    }
+
+    function updateDesktopPanels() {
+        const panels = {
+            config: DOM.configPanel,
+            preview: DOM.previewPanel,
+            export: DOM.exportPanel,
+            code: DOM.codePanel
+        };
+        
+        Object.entries(panels).forEach(([key, panel]) => {
+            if (panel) {
+                const isActive = key === state.currentDesktopTab;
                 panel.classList.toggle('active', isActive);
                 panel.style.display = isActive ? 'flex' : 'none';
             }
@@ -1524,6 +1581,7 @@
         };
         
         const densities = {
+            'ldpi': { legacy: 36, adaptive: 81 },
             'mdpi': { legacy: 48, adaptive: 108 },
             'hdpi': { legacy: 72, adaptive: 162 },
             'xhdpi': { legacy: 96, adaptive: 216 },
@@ -1534,18 +1592,18 @@
         if (state.exportAndroid) {
             for (const [density, sizes] of Object.entries(densities)) {
                 zip.file(`android/res/mipmap-${density}/${iconName}.png`, 
-                    await generateHighQualityIcon(sizes.legacy, false));
+                    await generateLegacyIcon(sizes.legacy, false));
                 zip.file(`android/res/mipmap-${density}/${iconName}_round.png`, 
-                    await generateHighQualityIcon(sizes.legacy, true));
+                    await generateLegacyIcon(sizes.legacy, true));
                 zip.file(`android/res/mipmap-${density}/${iconName}_foreground.png`, 
-                    await generateHighQualityForeground(sizes.adaptive));
+                    await generateAdaptiveForeground(sizes.adaptive));
                 
                 if (state.useMono) {
                     zip.file(`android/res/mipmap-${density}/${iconName}_monochrome.png`, 
-                        await generateHighQualityMonochrome(sizes.adaptive));
+                        await generateMonochrome(sizes.adaptive));
                 }
                 
-                updateProgress(4);
+                updateProgress(3);
             }
             
             const bgXml = `<?xml version="1.0" encoding="utf-8"?>
@@ -1574,7 +1632,7 @@
             const iosSizes = [20, 29, 40, 58, 60, 76, 80, 87, 120, 152, 167, 180, 1024];
             for (const size of iosSizes) {
                 zip.file(`ios/AppIcon.appiconset/Icon-${size}.png`, 
-                    await generateHighQualityIcon(size, false, true));
+                    await generateIOSIcon(size));
                 updateProgress(1.5);
             }
             zip.file('ios/AppIcon.appiconset/Contents.json', JSON.stringify(generateIOSContentsJson(), null, 2));
@@ -1584,7 +1642,7 @@
             const webSizes = [16, 32, 48, 72, 96, 128, 144, 192, 384, 512];
             for (const size of webSizes) {
                 zip.file(`web/icons/icon-${size}.png`, 
-                    await generateHighQualityIcon(size, false));
+                    await generateWebIcon(size));
                 updateProgress(1);
             }
             
@@ -1602,19 +1660,19 @@
                 display: 'standalone'
             };
             zip.file('web/manifest.json', JSON.stringify(manifest, null, 2));
-            zip.file('web/favicon.png', await generateHighQualityIcon(32, false));
+            zip.file('web/favicon.png', await generateWebIcon(32));
         }
         
         if (state.exportTV) {
             zip.file(`android/res/drawable-xhdpi/${iconName}_tv_banner.png`, 
-                await generateHighQualityTVBanner());
+                await generateTVBanner());
             zip.file(`android/res/drawable-xhdpi/${iconName}_tv_icon.png`, 
-                await generateHighQualityIcon(320, false));
+                await generateLegacyIcon(320, false));
             updateProgress(5);
         }
         
         if (state.exportPlayStore) {
-            zip.file('playstore-icon.png', await generateHighQualityIcon(512, false, true));
+            zip.file('playstore-icon.png', await generatePlayStoreIcon());
             updateProgress(5);
         }
         
@@ -1628,7 +1686,7 @@
         saveAs(content, filename);
     }
 
-    function generateHighQualityIcon(size, isRound = false, noAlpha = false) {
+    function generateLegacyIcon(size, isRound = false) {
         return new Promise(resolve => {
             const upscale = size < 128 ? 4 : 2;
             const canvas = document.createElement('canvas');
@@ -1639,10 +1697,7 @@
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = 'high';
             
-            if (noAlpha) {
-                ctx.fillStyle = state.bgColor;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            } else if (isRound) {
+            if (isRound) {
                 ctx.beginPath();
                 ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, Math.PI * 2);
                 ctx.fillStyle = state.bgColor;
@@ -1669,7 +1724,7 @@
         });
     }
 
-    function generateHighQualityForeground(size) {
+    function generateAdaptiveForeground(size) {
         return new Promise(resolve => {
             const upscale = size < 128 ? 4 : 2;
             const canvas = document.createElement('canvas');
@@ -1681,7 +1736,25 @@
             ctx.imageSmoothingQuality = 'high';
             
             if (state.foregroundImg) {
-                drawCenteredImage(ctx, state.foregroundImg, canvas.width, state.scale);
+                const safeZoneSize = canvas.width * ADAPTIVE_SAFE_ZONE;
+                const userScale = state.scale / 100;
+                const finalSize = safeZoneSize * userScale;
+                
+                const aspectRatio = state.foregroundImg.width / state.foregroundImg.height;
+                let drawWidth, drawHeight;
+                
+                if (aspectRatio > 1) {
+                    drawWidth = finalSize;
+                    drawHeight = finalSize / aspectRatio;
+                } else {
+                    drawHeight = finalSize;
+                    drawWidth = finalSize * aspectRatio;
+                }
+                
+                const offsetX = (canvas.width - drawWidth) / 2;
+                const offsetY = (canvas.height - drawHeight) / 2;
+                
+                ctx.drawImage(state.foregroundImg, offsetX, offsetY, drawWidth, drawHeight);
             }
             
             const finalCanvas = document.createElement('canvas');
@@ -1696,7 +1769,7 @@
         });
     }
 
-    function generateHighQualityMonochrome(size) {
+    function generateMonochrome(size) {
         return new Promise(resolve => {
             const upscale = size < 128 ? 4 : 2;
             const canvas = document.createElement('canvas');
@@ -1709,7 +1782,25 @@
             
             const img = state.monoImg || state.foregroundImg;
             if (img) {
-                drawCenteredImage(ctx, img, canvas.width, state.scale);
+                const safeZoneSize = canvas.width * ADAPTIVE_SAFE_ZONE;
+                const userScale = state.scale / 100;
+                const finalSize = safeZoneSize * userScale;
+                
+                const aspectRatio = img.width / img.height;
+                let drawWidth, drawHeight;
+                
+                if (aspectRatio > 1) {
+                    drawWidth = finalSize;
+                    drawHeight = finalSize / aspectRatio;
+                } else {
+                    drawHeight = finalSize;
+                    drawWidth = finalSize * aspectRatio;
+                }
+                
+                const offsetX = (canvas.width - drawWidth) / 2;
+                const offsetY = (canvas.height - drawHeight) / 2;
+                
+                ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
                 
                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 const data = imageData.data;
@@ -1735,7 +1826,98 @@
         });
     }
 
-    function generateHighQualityTVBanner() {
+    function generateIOSIcon(size) {
+        return new Promise(resolve => {
+            const upscale = size < 128 ? 4 : 2;
+            const canvas = document.createElement('canvas');
+            canvas.width = size * upscale;
+            canvas.height = size * upscale;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
+            ctx.fillStyle = state.bgColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            if (state.foregroundImg) {
+                drawCenteredImage(ctx, state.foregroundImg, canvas.width, state.scale * 0.85);
+            }
+            
+            const finalCanvas = document.createElement('canvas');
+            finalCanvas.width = size;
+            finalCanvas.height = size;
+            const finalCtx = finalCanvas.getContext('2d');
+            finalCtx.imageSmoothingEnabled = true;
+            finalCtx.imageSmoothingQuality = 'high';
+            finalCtx.drawImage(canvas, 0, 0, size, size);
+            
+            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
+        });
+    }
+
+    function generateWebIcon(size) {
+        return new Promise(resolve => {
+            const upscale = size < 128 ? 4 : 2;
+            const canvas = document.createElement('canvas');
+            canvas.width = size * upscale;
+            canvas.height = size * upscale;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
+            ctx.fillStyle = state.bgColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            if (state.foregroundImg) {
+                drawCenteredImage(ctx, state.foregroundImg, canvas.width, state.scale);
+            }
+            
+            const finalCanvas = document.createElement('canvas');
+            finalCanvas.width = size;
+            finalCanvas.height = size;
+            const finalCtx = finalCanvas.getContext('2d');
+            finalCtx.imageSmoothingEnabled = true;
+            finalCtx.imageSmoothingQuality = 'high';
+            finalCtx.drawImage(canvas, 0, 0, size, size);
+            
+            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
+        });
+    }
+
+    function generatePlayStoreIcon() {
+        return new Promise(resolve => {
+            const size = 512;
+            const upscale = 2;
+            const canvas = document.createElement('canvas');
+            canvas.width = size * upscale;
+            canvas.height = size * upscale;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
+            ctx.fillStyle = state.bgColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            if (state.foregroundImg) {
+                drawCenteredImage(ctx, state.foregroundImg, canvas.width, state.scale * 0.9);
+            }
+            
+            const finalCanvas = document.createElement('canvas');
+            finalCanvas.width = size;
+            finalCanvas.height = size;
+            const finalCtx = finalCanvas.getContext('2d');
+            finalCtx.imageSmoothingEnabled = true;
+            finalCtx.imageSmoothingQuality = 'high';
+            finalCtx.drawImage(canvas, 0, 0, size, size);
+            
+            finalCanvas.toBlob(blob => resolve(blob), 'image/png', 1.0);
+        });
+    }
+
+    function generateTVBanner() {
         return new Promise(resolve => {
             const upscale = 2;
             const canvas = document.createElement('canvas');
