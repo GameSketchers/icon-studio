@@ -94,7 +94,8 @@
             copied: "Copied to clipboard!",
             dateDisplay: "Sunday, Jan 14",
             selectLanguage: "Select Language",
-            autoColor: "Color detected from image"
+            autoColor: "Color detected from image",
+            enableMono: "Enable Mono Icon first"
         },
         tr: {
             appTitle: "İkon Stüdyosu",
@@ -138,7 +139,8 @@
             copied: "Panoya kopyalandı!",
             dateDisplay: "Pazar, 14 Ocak",
             selectLanguage: "Dil Seçin",
-            autoColor: "Renk resimden algılandı"
+            autoColor: "Renk resimden algılandı",
+            enableMono: "Önce Mono İkonu etkinleştirin"
         },
         ja: {
             appTitle: "アイコンスタジオ",
@@ -182,7 +184,8 @@
             copied: "クリップボードにコピーしました！",
             dateDisplay: "1月14日 日曜日",
             selectLanguage: "言語を選択",
-            autoColor: "画像から色を検出しました"
+            autoColor: "画像から色を検出しました",
+            enableMono: "先にモノアイコンを有効にしてください"
         },
         de: {
             appTitle: "Icon Studio",
@@ -226,7 +229,8 @@
             copied: "In die Zwischenablage kopiert!",
             dateDisplay: "Sonntag, 14. Jan",
             selectLanguage: "Sprache auswählen",
-            autoColor: "Farbe aus Bild erkannt"
+            autoColor: "Farbe aus Bild erkannt",
+            enableMono: "Aktivieren Sie zuerst das Mono-Symbol"
         },
         fr: {
             appTitle: "Icon Studio",
@@ -270,7 +274,8 @@
             copied: "Copié!",
             dateDisplay: "Dimanche 14 janv.",
             selectLanguage: "Choisir la langue",
-            autoColor: "Couleur détectée"
+            autoColor: "Couleur détectée",
+            enableMono: "Activez d'abord l'icône Mono"
         },
         es: {
             appTitle: "Icon Studio",
@@ -314,7 +319,8 @@
             copied: "¡Copiado!",
             dateDisplay: "Domingo, 14 ene",
             selectLanguage: "Seleccionar idioma",
-            autoColor: "Color detectado"
+            autoColor: "Color detectado",
+            enableMono: "Primero habilite el icono Mono"
         },
         zh: {
             appTitle: "图标工作室",
@@ -358,7 +364,8 @@
             copied: "已复制！",
             dateDisplay: "1月14日 星期日",
             selectLanguage: "选择语言",
-            autoColor: "检测到颜色"
+            autoColor: "检测到颜色",
+            enableMono: "请先启用单色图标"
         },
         ko: {
             appTitle: "아이콘 스튜디오",
@@ -402,7 +409,8 @@
             copied: "복사됨!",
             dateDisplay: "1월 14일 일요일",
             selectLanguage: "언어 선택",
-            autoColor: "색상 감지됨"
+            autoColor: "색상 감지됨",
+            enableMono: "먼저 모노 아이콘을 활성화하세요"
         }
     };
 
@@ -433,6 +441,7 @@
 
     let DOM = {};
     let toastTimeout;
+    let clockInterval;
 
     function $(id) {
         return document.getElementById(id);
@@ -445,16 +454,16 @@
     function cacheDOMElements() {
         DOM = {
             langBtn: $('langBtn'),
+            mobileLangBtn: $('mobileLangBtn'),
             langModal: $('langModal'),
             langModalClose: $('langModalClose'),
             langOptions: $$('.lang-option'),
             currentLangFlag: $('currentLangFlag'),
             currentLangName: $('currentLangName'),
-            mobileMenuBtn: $('mobileMenuBtn'),
+            desktopNav: $('desktopNav'),
+            navTabs: $$('.nav-tab'),
             mobileNav: $('mobileNav'),
             mobileNavItems: $$('.mobile-nav-item'),
-            desktopTabs: $('desktopTabs'),
-            desktopTabBtns: $$('.desktop-tab-btn'),
             configPanel: $('configPanel'),
             previewPanel: $('previewPanel'),
             exportPanel: $('exportPanel'),
@@ -509,6 +518,7 @@
             platformCount: $('platformCount'),
             fileTree: $('fileTree'),
             downloadBtn: $('downloadBtn'),
+            progressBar: document.querySelector('.progress-bar'),
             progressFill: $('progressFill'),
             copyBtns: $$('.copy-btn'),
             toast: $('toast'),
@@ -524,7 +534,7 @@
         renderDockIcons();
         renderTVApps();
         updateClock();
-        setInterval(updateClock, 1000);
+        clockInterval = setInterval(updateClock, 1000);
         updateScaleDisplay();
         updateAllPreviews();
         updateFileCount();
@@ -538,6 +548,7 @@
 
     function setupEventListeners() {
         DOM.langBtn?.addEventListener('click', openLangModal);
+        DOM.mobileLangBtn?.addEventListener('click', openLangModal);
         DOM.langModalClose?.addEventListener('click', closeLangModal);
         DOM.langModal?.addEventListener('click', (e) => {
             if (e.target === DOM.langModal) closeLangModal();
@@ -550,13 +561,11 @@
             });
         });
 
-        DOM.mobileMenuBtn?.addEventListener('click', openLangModal);
-
         DOM.mobileNavItems.forEach(item => {
             item.addEventListener('click', () => switchPanel(item.dataset.panel));
         });
 
-        DOM.desktopTabBtns.forEach(btn => {
+        DOM.navTabs.forEach(btn => {
             btn.addEventListener('click', () => switchPanel(btn.dataset.panel));
         });
 
@@ -594,14 +603,14 @@
         });
 
         DOM.scaleSlider?.addEventListener('input', (e) => {
-            state.scale = parseInt(e.target.value);
+            state.scale = parseInt(e.target.value, 10);
             updateScaleDisplay();
             updateAllPreviews();
         });
 
         DOM.resetScaleBtn?.addEventListener('click', () => {
             state.scale = 100;
-            DOM.scaleSlider.value = 100;
+            if (DOM.scaleSlider) DOM.scaleSlider.value = 100;
             updateScaleDisplay();
             updateAllPreviews();
         });
@@ -617,7 +626,9 @@
 
         DOM.monoToggle?.addEventListener('change', (e) => {
             state.useMono = e.target.checked;
-            DOM.monoSection.style.display = e.target.checked ? 'block' : 'none';
+            if (DOM.monoSection) {
+                DOM.monoSection.style.display = e.target.checked ? 'block' : 'none';
+            }
             if (!e.target.checked) {
                 state.isThemed = false;
                 updateThemeUI();
@@ -676,7 +687,9 @@
         updateTranslations();
         updateClock();
         DOM.langOptions.forEach(opt => {
-            opt.classList.toggle('active', opt.dataset.lang === lang);
+            const isActive = opt.dataset.lang === lang;
+            opt.classList.toggle('active', isActive);
+            opt.setAttribute('aria-selected', isActive.toString());
         });
     }
 
@@ -696,7 +709,7 @@
 
     function handleResize() {
         const isMobile = window.innerWidth <= 768;
-        if (DOM.desktopTabs) DOM.desktopTabs.style.display = isMobile ? 'none' : 'flex';
+        if (DOM.desktopNav) DOM.desktopNav.style.display = isMobile ? 'none' : 'flex';
         if (DOM.mobileNav) DOM.mobileNav.style.display = isMobile ? 'flex' : 'none';
         switchPanel(state.currentPanel);
     }
@@ -727,18 +740,34 @@
             item.classList.toggle('active', item.dataset.panel === panel);
         });
 
-        DOM.desktopTabBtns.forEach(btn => {
+        DOM.navTabs.forEach(btn => {
             btn.classList.toggle('active', btn.dataset.panel === panel);
         });
     }
 
     function switchConfigTab(tab) {
         state.currentTab = tab;
-        DOM.tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
-        DOM.iconTab.style.display = tab === 'icon' ? 'flex' : 'none';
-        DOM.iconTab.classList.toggle('active', tab === 'icon');
-        DOM.tvTab.style.display = tab === 'tv' ? 'flex' : 'none';
-        DOM.tvTab.classList.toggle('active', tab === 'tv');
+        
+        DOM.tabs.forEach(t => {
+            const isActive = t.dataset.tab === tab;
+            t.classList.toggle('active', isActive);
+            t.setAttribute('aria-selected', isActive.toString());
+        });
+        
+        if (DOM.iconTab) {
+            const iconActive = tab === 'icon';
+            DOM.iconTab.style.display = iconActive ? 'flex' : 'none';
+            DOM.iconTab.classList.toggle('active', iconActive);
+            DOM.iconTab.hidden = !iconActive;
+        }
+        
+        if (DOM.tvTab) {
+            const tvActive = tab === 'tv';
+            DOM.tvTab.style.display = tvActive ? 'flex' : 'none';
+            DOM.tvTab.classList.toggle('active', tvActive);
+            DOM.tvTab.hidden = !tvActive;
+        }
+        
         updateFileTree();
     }
 
@@ -748,7 +777,7 @@
         zone.addEventListener('click', () => input.click());
 
         input.addEventListener('change', (e) => {
-            if (e.target.files.length) {
+            if (e.target.files && e.target.files.length) {
                 processImageFile(e.target.files[0], zone, previewEl, callback);
             }
         });
@@ -766,7 +795,7 @@
         zone.addEventListener('drop', (e) => {
             e.preventDefault();
             zone.classList.remove('dragover');
-            if (e.dataTransfer.files.length) {
+            if (e.dataTransfer.files && e.dataTransfer.files.length) {
                 processImageFile(e.dataTransfer.files[0], zone, previewEl, callback);
             }
         });
@@ -786,7 +815,13 @@
                 }
                 callback(img);
             };
+            img.onerror = () => {
+                showToast('Failed to load image', 'error');
+            };
             img.src = e.target.result;
+        };
+        reader.onerror = () => {
+            showToast('Failed to read file', 'error');
         };
         reader.readAsDataURL(file);
     }
@@ -832,7 +867,7 @@
         const detectedColor = getDominantColor(img);
         updateBgColor(detectedColor);
         updateAllPreviews();
-        showToast(translations[state.currentLang].autoColor, 'success');
+        showToast(translations[state.currentLang]?.autoColor || 'Color detected from image', 'success');
     }
 
     function handleMonoUpload(img) {
@@ -840,13 +875,13 @@
         DOM.monoUpload?.classList.add('active');
         if (DOM.monoStatus) DOM.monoStatus.style.opacity = '1';
         updatePhonePreview();
-        showToast(translations[state.currentLang].loaded, 'success');
+        showToast(translations[state.currentLang]?.loaded || 'Image loaded!', 'success');
     }
 
     function handleTvBannerUpload(img) {
         state.tvBannerImg = img;
         updateTVPreview();
-        showToast(translations[state.currentLang].loaded, 'success');
+        showToast(translations[state.currentLang]?.loaded || 'Image loaded!', 'success');
     }
 
     function updateBgColor(color) {
@@ -868,11 +903,11 @@
     function handleTvBgColorChange(e) {
         if (state.syncTvBgColor) {
             state.syncTvBgColor = false;
-            DOM.syncTvBgColor.checked = false;
+            if (DOM.syncTvBgColor) DOM.syncTvBgColor.checked = false;
             toggleTvInputsState();
         }
         state.tvBgColor = e.target.value;
-        DOM.tvBgColorText.value = e.target.value;
+        if (DOM.tvBgColorText) DOM.tvBgColorText.value = e.target.value;
         updateTVPreview();
     }
 
@@ -880,11 +915,11 @@
         if (/^#[0-9A-Fa-f]{6}$/.test(e.target.value)) {
             if (state.syncTvBgColor) {
                 state.syncTvBgColor = false;
-                DOM.syncTvBgColor.checked = false;
+                if (DOM.syncTvBgColor) DOM.syncTvBgColor.checked = false;
                 toggleTvInputsState();
             }
             state.tvBgColor = e.target.value;
-            DOM.tvBgColorPicker.value = e.target.value;
+            if (DOM.tvBgColorPicker) DOM.tvBgColorPicker.value = e.target.value;
             updateTVPreview();
         }
     }
@@ -923,7 +958,7 @@
         DOM.phoneFrame?.classList.toggle('hidden', mode !== 'phone');
         DOM.tvFrame?.classList.toggle('hidden', mode !== 'tv');
         
-        const t = translations[state.currentLang];
+        const t = translations[state.currentLang] || translations.en;
         if (DOM.previewHint) {
             DOM.previewHint.textContent = mode === 'tv' ? t.tvHint : t.previewHint;
         }
@@ -931,7 +966,8 @@
 
     function switchTheme(theme) {
         if (theme === 'themed' && !state.useMono) {
-            showToast("Enable Mono Icon first", "error");
+            const t = translations[state.currentLang] || translations.en;
+            showToast(t.enableMono, 'error');
             return;
         }
         state.isThemed = (theme === 'themed');
@@ -954,6 +990,8 @@
     }
 
     function renderPhoneApps() {
+        if (!DOM.appGrid) return;
+        
         const appsBefore = GRID_APPS.slice(0, 4);
         const appsAfter = GRID_APPS.slice(4);
 
@@ -965,7 +1003,7 @@
                 <div class="app-icon user-icon ${state.shape}" id="userAppIcon">
                     <canvas id="phonePreviewCanvas" width="100" height="100"></canvas>
                 </div>
-                <span class="app-label" id="phoneAppLabel">${state.appName}</span>
+                <span class="app-label" id="phoneAppLabel">${escapeHtml(state.appName)}</span>
             </div>
         `;
 
@@ -978,21 +1016,23 @@
         return `
             <div class="app-item">
                 <div class="app-icon ${state.shape}" style="background: ${app.color}">
-                    <img class="icon-color" src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" onerror="this.style.display='none'">
-                    <img class="icon-mono" src="${ICON_BASE_PATH}${app.mono}" alt="${app.name} Mono" onerror="this.style.display='none'">
+                    <img class="icon-color" src="${ICON_BASE_PATH}${app.file}" alt="${escapeHtml(app.name)}" onerror="this.style.display='none'">
+                    <img class="icon-mono" src="${ICON_BASE_PATH}${app.mono}" alt="${escapeHtml(app.name)} Mono" onerror="this.style.display='none'">
                 </div>
-                <span class="app-label">${app.name}</span>
+                <span class="app-label">${escapeHtml(app.name)}</span>
             </div>
         `;
     }
 
     function renderDockIcons() {
+        if (!DOM.phoneDock) return;
+        
         let html = '';
         DOCK_ICONS.forEach(app => {
             html += `
                 <div class="dock-icon" style="background: ${app.color}">
-                    <img class="icon-color" src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" onerror="this.style.display='none'">
-                    <img class="icon-mono" src="${ICON_BASE_PATH}${app.mono}" alt="${app.name} Mono" onerror="this.style.display='none'">
+                    <img class="icon-color" src="${ICON_BASE_PATH}${app.file}" alt="${escapeHtml(app.name)}" onerror="this.style.display='none'">
+                    <img class="icon-mono" src="${ICON_BASE_PATH}${app.mono}" alt="${escapeHtml(app.name)} Mono" onerror="this.style.display='none'">
                 </div>
             `;
         });
@@ -1000,14 +1040,16 @@
     }
 
     function renderTVApps() {
+        if (!DOM.tvAppList || !DOM.tvAppRow) return;
+        
         let sidebarHtml = '';
         TV_APPS.forEach((app, i) => {
             sidebarHtml += `
                 <div class="tv-app-item ${i === 0 ? 'active' : ''}" data-app="${app.id}">
                     <div class="tv-app-icon" style="background: ${app.color}">
-                        <img src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" onerror="this.style.display='none'">
+                        <img src="${ICON_BASE_PATH}${app.file}" alt="${escapeHtml(app.name)}" onerror="this.style.display='none'">
                     </div>
-                    <span class="tv-app-name">${app.name}</span>
+                    <span class="tv-app-name">${escapeHtml(app.name)}</span>
                 </div>
             `;
         });
@@ -1016,7 +1058,7 @@
                 <div class="tv-app-icon" id="tvSidebarUserIcon">
                     <canvas id="tvSidebarCanvas" width="32" height="32"></canvas>
                 </div>
-                <span class="tv-app-name" id="tvSidebarAppName">${state.appName}</span>
+                <span class="tv-app-name" id="tvSidebarAppName">${escapeHtml(state.appName)}</span>
             </div>
         `;
         DOM.tvAppList.innerHTML = sidebarHtml;
@@ -1026,21 +1068,27 @@
                 <div class="tv-app-card-icon" id="tvRowUserIcon">
                     <canvas id="tvRowCanvas" width="60" height="60"></canvas>
                 </div>
-                <span class="tv-app-card-name" id="tvRowAppName">${state.appName}</span>
+                <span class="tv-app-card-name" id="tvRowAppName">${escapeHtml(state.appName)}</span>
             </div>
         `;
         TV_APPS.forEach(app => {
             rowHtml += `
                 <div class="tv-app-card" data-app="${app.id}">
                     <div class="tv-app-card-icon" style="background: ${app.color}">
-                        <img src="${ICON_BASE_PATH}${app.file}" alt="${app.name}" onerror="this.style.display='none'">
+                        <img src="${ICON_BASE_PATH}${app.file}" alt="${escapeHtml(app.name)}" onerror="this.style.display='none'">
                     </div>
-                    <span class="tv-app-card-name">${app.name}</span>
+                    <span class="tv-app-card-name">${escapeHtml(app.name)}</span>
                 </div>
             `;
         });
         DOM.tvAppRow.innerHTML = rowHtml;
         updateTVPreview();
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
 
     function updateAllPreviews() {
@@ -1220,32 +1268,34 @@
         if (state.exportTV) { count += 2; platforms++; }
         if (state.exportPlayStore) count += 1;
 
-        DOM.totalFilesCount.textContent = count;
-        DOM.platformCount.textContent = platforms;
+        if (DOM.totalFilesCount) DOM.totalFilesCount.textContent = count;
+        if (DOM.platformCount) DOM.platformCount.textContent = platforms;
     }
 
     function updateFileTree() {
+        if (!DOM.fileTree) return;
+        
         const name = state.iconName || 'ic_launcher';
         let html = '';
 
         if (state.exportAndroid) {
             html += `
                 <div class="file-item folder"><span class="material-symbols-rounded">folder</span><span>android/res/</span></div>
-                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${name}.png</span></div>
-                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${name}_round.png</span></div>
-                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${name}_foreground.png</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${escapeHtml(name)}.png</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${escapeHtml(name)}_round.png</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${escapeHtml(name)}_foreground.png</span></div>
             `;
             if (state.useMono) {
-                html += `<div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${name}_monochrome.png</span></div>`;
+                html += `<div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>mipmap-*/${escapeHtml(name)}_monochrome.png</span></div>`;
             }
             html += `
-                <div class="file-item file indent-1"><span class="material-symbols-rounded">code</span><span>values/${name}_background.xml</span></div>
-                <div class="file-item file indent-1"><span class="material-symbols-rounded">code</span><span>mipmap-anydpi-v26/${name}.xml</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">code</span><span>values/${escapeHtml(name)}_background.xml</span></div>
+                <div class="file-item file indent-1"><span class="material-symbols-rounded">code</span><span>mipmap-anydpi-v26/${escapeHtml(name)}.xml</span></div>
             `;
         }
 
         if (state.exportTV) {
-            html += `<div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>drawable-xhdpi/${name}_tv_banner.png</span></div>`;
+            html += `<div class="file-item file indent-1"><span class="material-symbols-rounded">image</span><span>drawable-xhdpi/${escapeHtml(name)}_tv_banner.png</span></div>`;
         }
 
         if (state.exportIOS) {
@@ -1283,7 +1333,7 @@
             if (el.id.includes('AppName')) el.textContent = state.appName;
         });
 
-        const adaptiveFile = $('adaptiveIconFileName');
+        const adaptiveFile = $('adaptiveFileName');
         if (adaptiveFile) adaptiveFile.textContent = `${state.iconName}.xml`;
         
         const bgFile = $('bgColorFileName');
@@ -1300,28 +1350,42 @@
 
         navigator.clipboard.writeText(text).then(() => {
             btn.classList.add('copied');
-            btn.querySelector('.material-symbols-rounded').textContent = 'check';
-            showToast(translations[state.currentLang].copied, 'success');
+            const icon = btn.querySelector('.material-symbols-rounded');
+            if (icon) icon.textContent = 'check';
+            showToast(translations[state.currentLang]?.copied || 'Copied to clipboard!', 'success');
 
             setTimeout(() => {
                 btn.classList.remove('copied');
-                btn.querySelector('.material-symbols-rounded').textContent = 'content_copy';
+                if (icon) icon.textContent = 'content_copy';
             }, 2000);
+        }).catch(() => {
+            showToast('Failed to copy', 'error');
         });
     }
 
+    function updateProgress(value) {
+        if (DOM.progressFill) {
+            DOM.progressFill.style.width = Math.min(value, 100) + '%';
+        }
+        if (DOM.progressBar) {
+            DOM.progressBar.setAttribute('aria-valuenow', Math.min(value, 100).toString());
+        }
+    }
+
     async function handleDownload() {
+        const t = translations[state.currentLang] || translations.en;
+        
         if (!state.foregroundImg) {
-            showToast(translations[state.currentLang].error, 'error');
+            showToast(t.error, 'error');
             return;
         }
 
         DOM.downloadBtn.disabled = true;
-        DOM.downloadBtn.innerHTML = `<span class="material-symbols-rounded spinning">sync</span><span>${translations[state.currentLang].processing}</span>`;
+        DOM.downloadBtn.innerHTML = `<span class="material-symbols-rounded spinning">sync</span><span>${t.processing}</span>`;
 
         try {
             await generateZip();
-            showToast(translations[state.currentLang].success, 'success');
+            showToast(t.success, 'success');
         } catch (err) {
             console.error(err);
             showToast('Error: ' + err.message, 'error');
@@ -1329,8 +1393,8 @@
 
         setTimeout(() => {
             DOM.downloadBtn.disabled = false;
-            DOM.downloadBtn.innerHTML = `<span class="material-symbols-rounded">download</span><span data-i18n="downloadZip">${translations[state.currentLang].downloadZip}</span>`;
-            DOM.progressFill.style.width = '0%';
+            DOM.downloadBtn.innerHTML = `<span class="material-symbols-rounded">download</span><span data-i18n="downloadZip">${t.downloadZip}</span>`;
+            updateProgress(0);
         }, 1500);
     }
 
@@ -1339,9 +1403,9 @@
         const name = state.iconName || 'ic_launcher';
         let progress = 0;
 
-        const updateProgress = (amt) => {
+        const addProgress = (amt) => {
             progress += amt;
-            DOM.progressFill.style.width = Math.min(progress, 100) + '%';
+            updateProgress(progress);
         };
 
         if (state.exportAndroid) {
@@ -1353,7 +1417,7 @@
                 if (state.useMono) {
                     zip.file(`android/res/mipmap-${density}/${name}_monochrome.png`, await createMonochrome(sizes.adaptive));
                 }
-                updateProgress(3);
+                addProgress(3);
             }
 
             const bgXml = `<?xml version="1.0" encoding="utf-8"?>\n<resources>\n    <color name="${name}_background">${state.bgColor}</color>\n</resources>`;
@@ -1367,13 +1431,13 @@
             
             zip.file(`android/res/mipmap-anydpi-v26/${name}.xml`, adaptiveXml);
             zip.file(`android/res/mipmap-anydpi-v26/${name}_round.xml`, adaptiveXml);
-            updateProgress(5);
+            addProgress(5);
         }
 
         if (state.exportIOS) {
             for (const size of IOS_SIZES) {
                 zip.file(`ios/AppIcon.appiconset/Icon-${size}.png`, await createIOSIcon(size));
-                updateProgress(1);
+                addProgress(1);
             }
             zip.file('ios/AppIcon.appiconset/Contents.json', JSON.stringify(createIOSContentsJson(), null, 2));
         }
@@ -1381,7 +1445,7 @@
         if (state.exportWeb) {
             for (const size of WEB_SIZES) {
                 zip.file(`web/icons/icon-${size}.png`, await createWebIcon(size));
-                updateProgress(1);
+                addProgress(1);
             }
             zip.file('web/manifest.json', JSON.stringify({
                 name: state.appName,
@@ -1402,15 +1466,15 @@
         if (state.exportTV) {
             zip.file(`android/res/drawable-xhdpi/${name}_tv_banner.png`, await createTVBanner());
             zip.file(`android/res/drawable-xhdpi/${name}_tv_icon.png`, await createLegacyIcon(320, false));
-            updateProgress(5);
+            addProgress(5);
         }
 
         if (state.exportPlayStore) {
             zip.file('playstore-icon.png', await createPlayStoreIcon());
-            updateProgress(5);
+            addProgress(5);
         }
 
-        DOM.progressFill.style.width = '100%';
+        updateProgress(100);
         const content = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 9 } });
         saveAs(content, `${state.appName.toLowerCase().replace(/\s+/g, '_')}_icons.zip`);
     }
@@ -1696,17 +1760,19 @@
     function showToast(message, type = 'success') {
         if (toastTimeout) clearTimeout(toastTimeout);
         
-        DOM.toastMessage.textContent = message;
-        DOM.toast.className = `toast ${type}`;
+        if (DOM.toastMessage) DOM.toastMessage.textContent = message;
+        if (DOM.toast) DOM.toast.className = `toast ${type}`;
         
         const icons = { success: 'check_circle', error: 'error', info: 'info' };
-        DOM.toastIcon.textContent = icons[type] || 'check_circle';
+        if (DOM.toastIcon) DOM.toastIcon.textContent = icons[type] || 'check_circle';
 
-        void DOM.toast.offsetWidth;
-        DOM.toast.classList.add('show');
+        if (DOM.toast) {
+            void DOM.toast.offsetWidth;
+            DOM.toast.classList.add('show');
+        }
         
         toastTimeout = setTimeout(() => {
-            DOM.toast.classList.remove('show');
+            if (DOM.toast) DOM.toast.classList.remove('show');
         }, 3000);
     }
 

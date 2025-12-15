@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <title>Icon Studio Pro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
                 <span class="lang-name" id="currentLangName">English</span>
                 <span class="material-symbols-rounded">expand_more</span>
             </button>
-            <button class="mobile-lang-btn" id="mobileLangBtn">
+            <button class="mobile-lang-btn" id="mobileLangBtn" aria-label="Change language">
                 <span class="material-symbols-rounded">translate</span>
             </button>
         </div>
@@ -51,58 +51,58 @@
         </button>
     </nav>
 
-    <div class="lang-modal" id="langModal">
+    <div class="lang-modal" id="langModal" role="dialog" aria-modal="true" aria-labelledby="langModalTitle">
         <div class="lang-modal-content">
             <div class="lang-modal-header">
-                <h3 class="lang-modal-title">
+                <h2 class="lang-modal-title" id="langModalTitle">
                     <span class="material-symbols-rounded">translate</span>
                     <span data-i18n="selectLanguage">Select Language</span>
-                </h3>
-                <button class="lang-modal-close" id="langModalClose">
+                </h2>
+                <button class="lang-modal-close" id="langModalClose" aria-label="Close">
                     <span class="material-symbols-rounded">close</span>
                 </button>
             </div>
-            <div class="lang-options">
-                <div class="lang-option active" data-lang="en">
+            <div class="lang-options" role="listbox">
+                <button class="lang-option active" data-lang="en" role="option" aria-selected="true">
                     <span class="lang-option-flag">🇺🇸</span>
                     <span class="lang-option-name">English</span>
                     <span class="material-symbols-rounded lang-option-check">check_circle</span>
-                </div>
-                <div class="lang-option" data-lang="tr">
+                </button>
+                <button class="lang-option" data-lang="tr" role="option" aria-selected="false">
                     <span class="lang-option-flag">🇹🇷</span>
                     <span class="lang-option-name">Türkçe</span>
                     <span class="material-symbols-rounded lang-option-check">check_circle</span>
-                </div>
-                <div class="lang-option" data-lang="ja">
+                </button>
+                <button class="lang-option" data-lang="ja" role="option" aria-selected="false">
                     <span class="lang-option-flag">🇯🇵</span>
                     <span class="lang-option-name">日本語</span>
                     <span class="material-symbols-rounded lang-option-check">check_circle</span>
-                </div>
-                <div class="lang-option" data-lang="de">
+                </button>
+                <button class="lang-option" data-lang="de" role="option" aria-selected="false">
                     <span class="lang-option-flag">🇩🇪</span>
                     <span class="lang-option-name">Deutsch</span>
                     <span class="material-symbols-rounded lang-option-check">check_circle</span>
-                </div>
-                <div class="lang-option" data-lang="fr">
+                </button>
+                <button class="lang-option" data-lang="fr" role="option" aria-selected="false">
                     <span class="lang-option-flag">🇫🇷</span>
                     <span class="lang-option-name">Français</span>
                     <span class="material-symbols-rounded lang-option-check">check_circle</span>
-                </div>
-                <div class="lang-option" data-lang="es">
+                </button>
+                <button class="lang-option" data-lang="es" role="option" aria-selected="false">
                     <span class="lang-option-flag">🇪🇸</span>
                     <span class="lang-option-name">Español</span>
                     <span class="material-symbols-rounded lang-option-check">check_circle</span>
-                </div>
-                <div class="lang-option" data-lang="zh">
+                </button>
+                <button class="lang-option" data-lang="zh" role="option" aria-selected="false">
                     <span class="lang-option-flag">🇨🇳</span>
                     <span class="lang-option-name">中文</span>
                     <span class="material-symbols-rounded lang-option-check">check_circle</span>
-                </div>
-                <div class="lang-option" data-lang="ko">
+                </button>
+                <button class="lang-option" data-lang="ko" role="option" aria-selected="false">
                     <span class="lang-option-flag">🇰🇷</span>
                     <span class="lang-option-name">한국어</span>
                     <span class="material-symbols-rounded lang-option-check">check_circle</span>
-                </div>
+                </button>
             </div>
         </div>
     </div>
@@ -115,20 +115,20 @@
                 <h2 class="panel-title" data-i18n="configuration">Configuration</h2>
             </div>
 
-            <div class="tabs">
-                <button class="tab active" data-tab="icon">
+            <div class="tabs" role="tablist">
+                <button class="tab active" data-tab="icon" role="tab" aria-selected="true">
                     <span class="material-symbols-rounded">apps</span>
                     <span data-i18n="tabIcon">Icon</span>
                 </button>
-                <button class="tab" data-tab="tv">
+                <button class="tab" data-tab="tv" role="tab" aria-selected="false">
                     <span class="material-symbols-rounded">tv</span>
                     <span data-i18n="tabTV">TV Banner</span>
                 </button>
             </div>
 
-            <div class="tab-content active" id="iconTab">
+            <div class="tab-content active" id="iconTab" role="tabpanel">
                 <div class="input-group">
-                    <label class="input-label">
+                    <label class="input-label" for="appNameInput">
                         <span class="material-symbols-rounded">label</span>
                         <span data-i18n="appName">App Name</span>
                     </label>
@@ -136,7 +136,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label class="input-label">
+                    <label class="input-label" for="iconNameInput">
                         <span class="material-symbols-rounded">code</span>
                         <span data-i18n="iconFileName">Icon File Name</span>
                     </label>
@@ -153,7 +153,7 @@
                         <div class="upload-title" data-i18n="uploadForeground">Upload Foreground</div>
                         <div class="upload-subtitle" data-i18n="dragDrop">Drag & Drop or Click</div>
                     </div>
-                    <img class="upload-preview" id="foregroundPreview" alt="Preview">
+                    <img class="upload-preview" id="foregroundPreview" alt="Foreground preview">
                 </div>
 
                 <div class="divider"></div>
@@ -187,7 +187,7 @@
                 <div class="divider"></div>
 
                 <div class="input-group">
-                    <label class="input-label">
+                    <label class="input-label" for="bgColorPicker">
                         <span class="material-symbols-rounded">palette</span>
                         <span data-i18n="bgColor">Background Color</span>
                     </label>
@@ -197,22 +197,22 @@
                         </div>
                         <input type="text" class="input-field color-text" id="bgColorText" value="#1a1a1a">
                     </div>
-                    <div class="color-presets">
-                        <div class="color-preset active" style="background:#1a1a1a" data-color="#1a1a1a"></div>
-                        <div class="color-preset" style="background:#ffffff" data-color="#ffffff"></div>
-                        <div class="color-preset" style="background:#6366f1" data-color="#6366f1"></div>
-                        <div class="color-preset" style="background:#8b5cf6" data-color="#8b5cf6"></div>
-                        <div class="color-preset" style="background:#ec4899" data-color="#ec4899"></div>
-                        <div class="color-preset" style="background:#ef4444" data-color="#ef4444"></div>
-                        <div class="color-preset" style="background:#f59e0b" data-color="#f59e0b"></div>
-                        <div class="color-preset" style="background:#22c55e" data-color="#22c55e"></div>
-                        <div class="color-preset" style="background:#3b82f6" data-color="#3b82f6"></div>
-                        <div class="color-preset" style="background:#0ea5e9" data-color="#0ea5e9"></div>
+                    <div class="color-presets" role="group" aria-label="Color presets">
+                        <button class="color-preset active" style="background:#1a1a1a" data-color="#1a1a1a" aria-label="Black"></button>
+                        <button class="color-preset" style="background:#ffffff" data-color="#ffffff" aria-label="White"></button>
+                        <button class="color-preset" style="background:#6366f1" data-color="#6366f1" aria-label="Indigo"></button>
+                        <button class="color-preset" style="background:#8b5cf6" data-color="#8b5cf6" aria-label="Purple"></button>
+                        <button class="color-preset" style="background:#ec4899" data-color="#ec4899" aria-label="Pink"></button>
+                        <button class="color-preset" style="background:#ef4444" data-color="#ef4444" aria-label="Red"></button>
+                        <button class="color-preset" style="background:#f59e0b" data-color="#f59e0b" aria-label="Amber"></button>
+                        <button class="color-preset" style="background:#22c55e" data-color="#22c55e" aria-label="Green"></button>
+                        <button class="color-preset" style="background:#3b82f6" data-color="#3b82f6" aria-label="Blue"></button>
+                        <button class="color-preset" style="background:#0ea5e9" data-color="#0ea5e9" aria-label="Cyan"></button>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label class="input-label">
+                    <label class="input-label" for="scaleSlider">
                         <span class="material-symbols-rounded">zoom_in_map</span>
                         <span data-i18n="scale">Scale</span>
                     </label>
@@ -223,14 +223,14 @@
                     </div>
                     <div class="range-value-display">
                         <span class="range-value" id="scaleValue">100%</span>
-                        <button class="reset-btn" id="resetScaleBtn" title="Reset">
+                        <button class="reset-btn" id="resetScaleBtn" aria-label="Reset scale">
                             <span class="material-symbols-rounded">refresh</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="tab-content" id="tvTab">
+            <div class="tab-content" id="tvTab" role="tabpanel" hidden>
                 <div class="section-title" data-i18n="tvBanner">TV BANNER (320×180)</div>
                 
                 <div class="upload-zone" id="tvBannerUpload">
@@ -242,7 +242,7 @@
                         <div class="upload-title" data-i18n="uploadTvBanner">Upload TV Banner</div>
                         <div class="upload-subtitle">320×180px recommended</div>
                     </div>
-                    <img class="upload-preview" id="tvBannerPreview" alt="Preview">
+                    <img class="upload-preview" id="tvBannerPreview" alt="TV Banner preview">
                 </div>
 
                 <p class="hint-text" data-i18n="tvHint">If not uploaded, will generate from icon automatically</p>
@@ -250,7 +250,7 @@
                 <div class="divider"></div>
 
                 <div class="input-group">
-                    <label class="input-label">
+                    <label class="input-label" for="tvBgColorPicker">
                         <span class="material-symbols-rounded">format_color_fill</span>
                         <span data-i18n="tvBgColor">TV Banner Background</span>
                     </label>
@@ -281,7 +281,7 @@
 
             <div class="preview-controls">
                 <div class="control-group">
-                    <div class="segment-control">
+                    <div class="segment-control" role="group">
                         <button class="segment-btn active" data-mode="phone">
                             <span class="material-symbols-rounded">smartphone</span>
                             <span>Phone</span>
@@ -294,7 +294,7 @@
                 </div>
 
                 <div class="control-group">
-                    <div class="segment-control">
+                    <div class="segment-control" role="group">
                         <button class="segment-btn active" data-theme="normal">
                             <span class="material-symbols-rounded">palette</span>
                             <span>Normal</span>
@@ -308,11 +308,11 @@
 
                 <div class="control-group">
                     <label class="control-label" data-i18n="iconShape">Preview Shape</label>
-                    <div class="shape-selector">
-                        <div class="shape-option" data-shape="circle"><div class="shape-preview circle"></div></div>
-                        <div class="shape-option active" data-shape="squircle"><div class="shape-preview squircle"></div></div>
-                        <div class="shape-option" data-shape="rounded"><div class="shape-preview rounded"></div></div>
-                        <div class="shape-option" data-shape="square"><div class="shape-preview square"></div></div>
+                    <div class="shape-selector" role="group" aria-label="Icon shape">
+                        <button class="shape-option" data-shape="circle" aria-label="Circle"><div class="shape-preview circle"></div></button>
+                        <button class="shape-option active" data-shape="squircle" aria-label="Squircle"><div class="shape-preview squircle"></div></button>
+                        <button class="shape-option" data-shape="rounded" aria-label="Rounded"><div class="shape-preview rounded"></div></button>
+                        <button class="shape-option" data-shape="square" aria-label="Square"><div class="shape-preview square"></div></button>
                     </div>
                 </div>
             </div>
@@ -483,7 +483,7 @@
                 <span data-i18n="downloadZip">Download ZIP</span>
             </button>
 
-            <div class="progress-bar">
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
         </section>
@@ -497,7 +497,7 @@
             <div class="code-section">
                 <div class="code-header">
                     <span class="code-title">AndroidManifest.xml</span>
-                    <button class="copy-btn" data-target="code1"><span class="material-symbols-rounded">content_copy</span></button>
+                    <button class="copy-btn" data-target="code1" aria-label="Copy code"><span class="material-symbols-rounded">content_copy</span></button>
                 </div>
                 <div class="code-block" id="code1"><pre><code>&lt;application
     android:icon="@mipmap/<span class="code-dynamic" id="codeIconName1">ic_launcher</span>"
@@ -508,7 +508,7 @@
             <div class="code-section">
                 <div class="code-header">
                     <span class="code-title" id="adaptiveFileName">ic_launcher.xml</span>
-                    <button class="copy-btn" data-target="code2"><span class="material-symbols-rounded">content_copy</span></button>
+                    <button class="copy-btn" data-target="code2" aria-label="Copy code"><span class="material-symbols-rounded">content_copy</span></button>
                 </div>
                 <div class="code-block" id="code2"><pre><code>&lt;adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"&gt;
     &lt;background android:drawable="@color/<span class="code-dynamic" id="codeIconName4">ic_launcher</span>_background"/&gt;
@@ -520,7 +520,7 @@
             <div class="code-section">
                 <div class="code-header">
                     <span class="code-title" id="bgColorFileName">ic_launcher_background.xml</span>
-                    <button class="copy-btn" data-target="code3"><span class="material-symbols-rounded">content_copy</span></button>
+                    <button class="copy-btn" data-target="code3" aria-label="Copy code"><span class="material-symbols-rounded">content_copy</span></button>
                 </div>
                 <div class="code-block" id="code3"><pre><code>&lt;resources&gt;
     &lt;color name="<span class="code-dynamic" id="codeIconName7">ic_launcher</span>_background"&gt;<span class="code-dynamic" id="codeBgColor">#1a1a1a</span>&lt;/color&gt;
@@ -530,7 +530,7 @@
             <div class="code-section">
                 <div class="code-header">
                     <span class="code-title">manifest.json (PWA)</span>
-                    <button class="copy-btn" data-target="code4"><span class="material-symbols-rounded">content_copy</span></button>
+                    <button class="copy-btn" data-target="code4" aria-label="Copy code"><span class="material-symbols-rounded">content_copy</span></button>
                 </div>
                 <div class="code-block" id="code4"><pre><code>{
   "name": "<span class="code-dynamic" id="codeAppName1">MyApp</span>",
@@ -564,7 +564,7 @@
         </button>
     </nav>
 
-    <div class="toast" id="toast">
+    <div class="toast" id="toast" role="alert" aria-live="polite">
         <span class="material-symbols-rounded" id="toastIcon">check_circle</span>
         <span id="toastMessage">Success!</span>
     </div>
