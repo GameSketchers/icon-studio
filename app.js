@@ -20,7 +20,7 @@
         { id: 'maps', name: 'Maps', file: 'maps.png', mono: 'maps_mono.png', color: '#34A853' },
         { id: 'photos', name: 'Photos', file: 'photos.png', mono: 'photos_mono.png', color: '#4285F4' },
         { id: 'chrome', name: 'Chrome', file: 'chrome.png', mono: 'chrome_mono.png', color: '#4285F4' },
-        { id: 'youtube', name: 'YouTube', file: 'youtube.png', mono: 'youtube_mono.png', color: '#FF0000' },
+        { id: 'youtube', name: 'YouTube', file: 'youtube.png', mono: 'youtube_mono.png', color: '#ffffff' },
         { id: 'drive', name: 'Drive', file: 'drive.png', mono: 'drive_mono.png', color: '#FBBC04' },
         { id: 'calendar', name: 'Calendar', file: 'calendar.png', mono: 'calendar_mono.png', color: '#4285F4' },
         { id: 'settings', name: 'Settings', file: 'settings.png', mono: 'settings_mono.png', color: '#555555' }
@@ -33,10 +33,10 @@
     ];
 
     const TV_APPS = [
+        { id: 'hbo_max', name: 'HBO Max', banner: 'hbo_max_banner.webp', color: '#080b16' },
         { id: 'netflix', name: 'Netflix', banner: 'netflix_banner.png', color: '#E50914' },
-        { id: 'youtube', name: 'YouTube', banner: 'youtube_banner.png', color: '#FF0000' },
+        { id: 'youtube', name: 'YouTube', banner: 'youtube_banner.png', color: '#ffffff' },
         { id: 'prime', name: 'Prime Video', banner: 'prime_banner.png', color: '#00A8E1' },
-        { id: 'disney', name: 'Disney+', banner: 'disney_banner.png', color: '#113CCF' },
         { id: 'spotify', name: 'Spotify', banner: 'spotify_banner.png', color: '#1DB954' },
         { id: 'twitch', name: 'Twitch', banner: 'twitch_banner.png', color: '#9146FF' }
     ];
